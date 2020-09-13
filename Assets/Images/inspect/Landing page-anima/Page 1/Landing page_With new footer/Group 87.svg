@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 58 (101010) - https://sketch.com -->
+    <title>0755B266-4931-4DB6-B657-0E2E3FABFF83</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="40" height="40" rx="20"></rect>
+        <filter x="-40.0%" y="-35.0%" width="180.0%" height="180.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.154173951 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Landing-page_With-new-footer" transform="translate(-177.000000, -3154.000000)">
+            <g id="Group-87" transform="translate(187.000000, 3162.000000)">
+                <g id="Rectangle">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <path d="M15.7276444,16.289904 C15.3488027,15.9189509 14.7159138,15.9017216 14.3140476,16.2514214 C13.9121813,16.6011212 13.8935163,17.1853258 14.2723581,17.5562789 L20.5570561,23.7101106 C20.9646613,24.1092282 21.6571482,24.0941394 22.0438981,23.6777132 L27.7591822,17.5238815 C28.1186403,17.1368413 28.0701338,16.5541004 27.6508399,16.2222932 C27.231546,15.8904859 26.6002427,15.9352611 26.2407846,16.3223014 L21.2494034,21.6966833 L15.7276444,16.289904 Z" id="Path-2" fill="#4F439A" fill-rule="nonzero" transform="translate(21.000000, 20.000000) rotate(-90.000000) translate(-21.000000, -20.000000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>
