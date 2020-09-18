@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class BottomNavigation extends StatefulWidget {
   @override
   _BottomNavigationState createState() => _BottomNavigationState();
@@ -12,7 +13,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return BottomNavigationBar(
         selectedItemColor: Color(0xff4f439a),
         currentIndex: currentindex,
-     
+
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
@@ -32,6 +33,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                BottomNavigationBarItem(
             icon: Icon(Icons.person,),
             title: Text('Me',style: TextStyle(fontWeight: FontWeight.bold),),
+
             ),
                   BottomNavigationBarItem(
             icon: Icon(Icons.menu),

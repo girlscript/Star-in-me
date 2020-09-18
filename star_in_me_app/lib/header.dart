@@ -17,7 +17,7 @@ Widget Header(){
                   hintText: "People, Network, Blogs & Events",
                   hintStyle: TextStyle(fontSize: 14),
                   prefixIcon:Icon(Icons.search),
-          
+
                   ),
                 ),
               ),
