@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter/widgets.dart';
 import 'package:loading/loading.dart';
 import 'package:loading/indicator/ball_pulse_indicator.dart';
@@ -10,6 +11,7 @@ import 'authentication/signup.dart';
 
 import 'landing.dart';
 import 'thankyou_screen.dart';
+import 'home.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,7 +41,8 @@ class MyApp extends StatelessWidget {
       routes: <String,WidgetBuilder>{
         "login":(context)=>LoginPage(),
         "signup":(context)=>SignupPage(),
-        "thanks":(context)=>ThankYou()
+        "thanks":(context)=>ThankYou(),
+        "home":(context)=>Home(),
         
 
       },  
@@ -51,5 +54,4 @@ class MyApp extends StatelessWidget {
       }
        );
   }
-
 }
