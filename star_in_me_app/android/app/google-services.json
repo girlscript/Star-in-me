@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "714256145906",
+    "firebase_url": "https://star-in-me.firebaseio.com",
+    "project_id": "star-in-me",
+    "storage_bucket": "star-in-me.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:714256145906:android:206a2dd971ba6373749f6b",
+        "android_client_info": {
+          "package_name": "com.example.star_in_me_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "714256145906-sls0mso2405edt9cjth1caai42lluvpa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.star_in_me_app",
+            "certificate_hash": "e4213537a29c22c4db76dee1e9efc796b8d765be"
+          }
+        },
+        {
+          "client_id": "714256145906-spkg1ifiev3cls1uktumjc143r94qap9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGrhy2sgEvwrHT2zlOrpAAKq8Db3lHFZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "714256145906-spkg1ifiev3cls1uktumjc143r94qap9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
