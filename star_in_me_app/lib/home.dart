@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'bottomnavigation.dart';
-import 'header.dart';
+import 'components/bottomnavigation.dart';
+import 'components/header.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -8,12 +8,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          backgroundColor: Color(0xffebeced),
-          appBar: Header(),
+      backgroundColor: Color(0xffebeced),
+      appBar: Header(),
       bottomNavigationBar: BottomNavigation(),
     );
   }
