@@ -14,6 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.3
+  dots_indicator: ^1.2.0
 
 dev_dependencies:
   flutter_test:
