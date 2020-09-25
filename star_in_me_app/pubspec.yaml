@@ -14,7 +14,6 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.3
-  dots_indicator: ^1.2.0
 
 dev_dependencies:
   flutter_test:
@@ -26,6 +25,7 @@ dev_dependencies:
   email_validator: ^1.0.5
   google_sign_in: ^4.5.3
   linkedin_login: ^1.2.2
+  dots_indicator: ^1.2.0
   
   
 

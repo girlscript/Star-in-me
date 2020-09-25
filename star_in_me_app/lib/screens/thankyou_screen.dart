@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:star_in_me_app/onboarding/UI1.dart';
 
 class ThankYou extends StatefulWidget {
   static final String thankYouPage = '/login/thankyou';
@@ -53,7 +54,9 @@ class _ThankYouState extends State<ThankYou> {
                 style: TextStyle(color: Colors.grey),
               ),
               RaisedButton(
-                onPressed: () => print('profile clicked'),
+                onPressed: () {
+                  Navigator.pushNamed(context, UI1.onboardingUi1);
+                },
                 color: Colors.purple[700],
                 splashColor: Colors.blueAccent,
                 child: Text('START BUILDING YOUR PROFILE'),

@@ -1,4 +1,5 @@
 import 'package:star_in_me_app/authentication/forgot_password.dart';
+import 'package:star_in_me_app/onboarding/UI1.dart';
 import 'package:star_in_me_app/screens/landing.dart';
 
 import 'screens/thankyou_screen.dart';
@@ -14,4 +15,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   SignupPage.signUpPageId: (context) => SignupPage(),
   ThankYou.thankYouPage: (context) => ThankYou(),
   ForgotPassword.forgotPassword: (context) => ForgotPassword(),
+  UI1.onboardingUi1: (context) => UI1(),
 };

@@ -2,8 +2,8 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
 class UI1 extends StatefulWidget {
+  static final onboardingUi1 = '/onboardingUI1';
   @override
   _UI1State createState() => _UI1State();
 }
@@ -22,22 +22,20 @@ class _UI1State extends State<UI1> {
               child: Row(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(10.0,5.0,0.0,0.0),
+                    padding: const EdgeInsets.fromLTRB(10.0, 5.0, 0.0, 0.0),
                     child: Image.asset('images/logo.png',
-                        height: 50.0,
-                        width: 50.0),
+                        height: 50.0, width: 50.0),
                   ),
                 ],
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(bottom : 40),
+              margin: const EdgeInsets.only(bottom: 40),
               color: Color(0xff4f439a),
               height: 350,
               child: Center(
-                child: Image.asset('images/UI1.png',
-                    height: 280.0,
-                    width: 280.0),
+                child:
+                    Image.asset('images/UI1.png', height: 280.0, width: 280.0),
               ),
             ),
             Column(
@@ -46,9 +44,18 @@ class _UI1State extends State<UI1> {
                   child: RichText(
                     text: TextSpan(
                       text: 'Showcase the ',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27, color: Colors.black),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 27,
+                          color: Colors.black),
                       children: <TextSpan>[
-                        TextSpan(text: 'star', style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xffaf61a5),),),
+                        TextSpan(
+                          text: 'star',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xffaf61a5),
+                          ),
+                        ),
                         TextSpan(text: ' in you'),
                       ],
                     ),
@@ -57,13 +64,17 @@ class _UI1State extends State<UI1> {
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Center(
-                    child: Text('Showcase your story through our '
-                        'visually captivating profile builder!',
-                      style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20.0), textAlign: TextAlign.center,),
+                    child: Text(
+                      'Showcase your story through our '
+                      'visually captivating profile builder!',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w300, fontSize: 20.0),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top:30),
+                  padding: const EdgeInsets.only(top: 30),
                   child: Center(
                     child: DotsIndicator(
                       dotsCount: 3,
@@ -77,15 +88,9 @@ class _UI1State extends State<UI1> {
                 ),
               ],
             ),
-
-
-
           ],
         ),
       ),
-
     );
   }
 }
-
-
