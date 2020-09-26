@@ -37,7 +37,10 @@ flutter:
   uses-material-design: true
 
   assets:
-    - images/
+    - images/images/assets/Build-your-profile.jpg
+    - images/assets/Events.jpg
+    - images/assets/newImage.jpg
+    - images/assets/Seek-guidance.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

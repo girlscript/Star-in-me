@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Star-in-me-new_branch.iml" filepath="$PROJECT_DIR$/Star-in-me-new_branch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/star_in_me_app/android/app/src/debug/debug.iml" filepath="$PROJECT_DIR$/star_in_me_app/android/app/src/debug/debug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/star_in_me_app/android/app/src/profile/profile.iml" filepath="$PROJECT_DIR$/star_in_me_app/android/app/src/profile/profile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/star_in_me_app/star_in_me_app.iml" filepath="$PROJECT_DIR$/star_in_me_app/star_in_me_app.iml" />
+    </modules>
+  </component>
+</project>

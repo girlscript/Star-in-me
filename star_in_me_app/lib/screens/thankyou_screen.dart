@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:star_in_me_app/onboarding/UI1.dart';
+import 'package:star_in_me_app/screens/landing.dart';
 
 class ThankYou extends StatefulWidget {
   static final String thankYouPage = '/login/thankyou';
@@ -55,7 +56,7 @@ class _ThankYouState extends State<ThankYou> {
               ),
               RaisedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, UI1.onboardingUi1);
+                  Navigator.pushNamed(context, LandingPage.landingPageId);
                 },
                 color: Colors.purple[700],
                 splashColor: Colors.blueAccent,
