@@ -215,7 +215,7 @@ class _SignupPageState extends State<SignupPage> {
                           TextFormField(
                             enableSuggestions: true,
                             controller: firstNameController,
-                            keyboardType: TextInputType.name,
+                            keyboardType: TextInputType.text,
                             keyboardAppearance: Brightness.dark,
                             validator: (value) {
                               if (value.isEmpty) {
@@ -237,7 +237,7 @@ class _SignupPageState extends State<SignupPage> {
                           TextFormField(
                             enableSuggestions: true,
                             controller: lastNameEditingCntroller,
-                            keyboardType: TextInputType.name,
+                            keyboardType: TextInputType.text,
                             keyboardAppearance: Brightness.dark,
                             validator: (value) {
                               if (value.isEmpty) {
