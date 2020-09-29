@@ -7,7 +7,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:linkedin_login/linkedin_login.dart';
-// import 'file:///G:/flutter/Star-in-me/star_in_me_app/lib/screens/thankyou_screen.dart';
 import 'package:star_in_me_app/screens/thankyou_screen.dart';
 
 final _auth = FirebaseAuth.instance;
@@ -216,7 +215,7 @@ class _SignupPageState extends State<SignupPage> {
                           TextFormField(
                             enableSuggestions: true,
                             controller: firstNameController,
-                            keyboardType: TextInputType.name,
+                            keyboardType: TextInputType.text,
                             keyboardAppearance: Brightness.dark,
                             validator: (value) {
                               if (value.isEmpty) {
@@ -238,7 +237,7 @@ class _SignupPageState extends State<SignupPage> {
                           TextFormField(
                             enableSuggestions: true,
                             controller: lastNameEditingCntroller,
-                            keyboardType: TextInputType.name,
+                            keyboardType: TextInputType.text,
                             keyboardAppearance: Brightness.dark,
                             validator: (value) {
                               if (value.isEmpty) {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:star_in_me_app/authentication/signup.dart';
-// import 'file:///G:/flutter/Star-in-me/star_in_me_app/lib/screens/thankyou_screen.dart';
 import 'package:star_in_me_app/screens/thankyou_screen.dart';
 import 'animations/fadeanimations.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';

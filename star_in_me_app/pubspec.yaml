@@ -26,7 +26,8 @@ dev_dependencies:
   email_validator: ^1.0.5
   google_sign_in: ^4.5.3
   linkedin_login: ^1.2.2
-  
+  dots_indicator: ^1.2.0
+  dotted_border: ^1.0.6
   
 
   firebase_core: ^0.5.0
@@ -38,6 +39,10 @@ flutter:
 
   assets:
     - images/
+    - images/assets/Build-your-profile.jpg
+    - images/assets/Events.jpg
+    - images/assets/newImage.jpg
+    - images/assets/Seek-guidance.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
