@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/work_exp.dart';
 
+import 'education.dart';
+
 class Volunteer extends StatefulWidget {
   static final String volunteerId = '/volunteer';
   @override
@@ -83,7 +85,9 @@ class _VolunteerState extends State<Volunteer> {
                         // color: Colors.purple,
                       ),
                       FlatButton(
-                          onPressed: null,
+                          onPressed: (){
+                            Navigator.pushNamed(context, Education.educationId);
+                          },
                           child: SvgPicture.asset(
                             'images/Education-line.svg',
                             height: 45.0,
@@ -228,17 +232,11 @@ class _VolunteerState extends State<Volunteer> {
                           controller: startDateController,
                           keyboardType: TextInputType.text,
                           keyboardAppearance: Brightness.dark,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return "Enter Start Date";
-                            }
-                            return null;
-                          },
                           onChanged: (value) {
                             startDate = value;
                           },
                           decoration: InputDecoration(
-                              labelText: "Start Date *",
+                              labelText: "Start Date",
                               border: const OutlineInputBorder(),
                               suffixIcon:
                               Icon(Icons.calendar_today_outlined)),
@@ -255,17 +253,11 @@ class _VolunteerState extends State<Volunteer> {
                           controller: endDateController,
                           keyboardType: TextInputType.text,
                           keyboardAppearance: Brightness.dark,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return "Enter End Date";
-                            }
-                            return null;
-                          },
                           onChanged: (value) {
-                            startDate = value;
+                            endDate = value;
                           },
                           decoration: InputDecoration(
-                              labelText: "End Date *",
+                              labelText: "End Date",
                               border: const OutlineInputBorder(),
                               suffixIcon:
                               Icon(Icons.calendar_today_outlined)),

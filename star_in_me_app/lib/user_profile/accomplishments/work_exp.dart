@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:star_in_me_app/user_profile/accomplishments/education.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/volunteer.dart';
 
 class WorkExperience extends StatefulWidget {
@@ -87,7 +88,9 @@ class _WorkExperienceState extends State<WorkExperience> {
                           // color: Colors.purple,
                         ),
                         FlatButton(
-                            onPressed: null,
+                            onPressed: (){
+                              Navigator.pushNamed(context, Education.educationId);
+                            },
                             child: SvgPicture.asset(
                               'images/Education-line.svg',
                               height: 45.0,
@@ -283,7 +286,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                               return null;
                             },
                             onChanged: (value) {
-                              startDate = value;
+                              endDate = value;
                             },
                             decoration: InputDecoration(
                                 labelText: "End Date *",

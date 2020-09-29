@@ -2,6 +2,7 @@ import 'package:star_in_me_app/authentication/forgot_password.dart';
 import 'package:star_in_me_app/onboarding/UI1.dart';
 import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'package:star_in_me_app/screens/landing.dart';
+import 'package:star_in_me_app/user_profile/accomplishments/education.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/volunteer.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/work_exp.dart';
 
@@ -21,5 +22,6 @@ Map<String, Widget Function(BuildContext)> routes = {
   UI1.onboardingUi1: (context) => UI1(),
   UserProfile.UserProfileId: (context) => UserProfile(),
   WorkExperience.workExperienceId: (context) => WorkExperience(),
-  Volunteer.volunteerId: (context) => Volunteer()
+  Volunteer.volunteerId: (context) => Volunteer(),
+  Education.educationId: (context) =>Education()
 };
