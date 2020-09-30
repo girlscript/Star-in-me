@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/certification.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/work_exp.dart';
 
+import 'awards.dart';
+
 class Education extends StatefulWidget {
   static final String educationId = '/education';
   @override
@@ -79,7 +81,9 @@ class _EducationState extends State<Education> {
                             width: 45.0,
                           )),
                       FlatButton(
-                          onPressed: null,
+                          onPressed: (){
+                            Navigator.pushNamed(context, Awards.awardsId);
+                          },
                           child: SvgPicture.asset(
                             'images/Awards_line.svg',
                             height: 45.0,

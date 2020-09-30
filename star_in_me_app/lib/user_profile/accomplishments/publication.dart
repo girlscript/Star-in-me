@@ -5,6 +5,8 @@ import 'package:star_in_me_app/user_profile/accomplishments/education.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/patent.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/work_exp.dart';
 
+import 'awards.dart';
+
 class Publication extends StatefulWidget {
   static final String publicationId = '/publication';
   @override
@@ -100,7 +102,9 @@ class _PublicationState extends State<Publication> {
                             width: 45.0,
                           )),
                       FlatButton(
-                          onPressed: null,
+                          onPressed: (){
+                            Navigator.pushNamed(context, Awards.awardsId);
+                          },
                           child: SvgPicture.asset(
                             'images/Awards_line.svg',
                             height: 45.0,

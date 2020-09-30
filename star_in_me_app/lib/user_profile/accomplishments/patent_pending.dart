@@ -2,33 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/certification.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/education.dart';
-import 'package:star_in_me_app/user_profile/accomplishments/patent_pending.dart';
+import 'package:star_in_me_app/user_profile/accomplishments/patent.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/publication.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/work_exp.dart';
 
 import 'awards.dart';
 
-class Patent extends StatefulWidget {
-  static final String patentId = '/patent';
+class PatentPending extends StatefulWidget {
+  static final String patenPendingtId = '/patent_pending';
   @override
-  _PatentState createState() => _PatentState();
+  _PatentPendingState createState() => _PatentPendingState();
 }
 
-class _PatentState extends State<Patent> {
+class _PatentPendingState extends State<PatentPending> {
   final _formKey = GlobalKey<FormState>();
   int selectedRadio;
   final titleController = TextEditingController();
   final officeController = TextEditingController();
   final numberController = TextEditingController();
-  final publicationDateController = TextEditingController();
   final descriptionController = TextEditingController();
 
   String title,
-  office,
-  number,
-      publicationDate,
+      office,
+      number,
       description;
-  bool _isChecked = false;
+  bool _isChecked = true;
   bool navigateToPage = false;
   @override
   void initState() {
@@ -117,19 +115,19 @@ class _PatentState extends State<Patent> {
                     children: [
                       Expanded(
                           child: RadioListTile(
-                            value: 1,
-                            groupValue: selectedRadio,
-                            title: Text('Certification'),
-                            activeColor: Color.fromRGBO(79, 67, 154, 1),
-                            onChanged: (int value) {
-                              setSelectedRadio(value);
-                              setState(() {
-                                navigateToPage = true;
-                              });
-                              if (navigateToPage) {
-                                Navigator.pushNamed(context, Certification.certificationId);
+                              value: 1,
+                              groupValue: selectedRadio,
+                              title: Text('Certification'),
+                              activeColor: Color.fromRGBO(79, 67, 154, 1),
+                              onChanged: (int value) {
+                                setSelectedRadio(value);
+                                setState(() {
+                                  navigateToPage = true;
+                                });
+                                if (navigateToPage) {
+                                  Navigator.pushNamed(context, Certification.certificationId);
+                                }
                               }
-                            }
                           )),
                       Expanded(
                         child: RadioListTile(
@@ -156,7 +154,6 @@ class _PatentState extends State<Patent> {
                           activeColor: Color.fromRGBO(79, 67, 154, 1),
                           onChanged: (int value) {
                             setSelectedRadio(value);
-
                           },
                         ),
                       )
@@ -174,7 +171,7 @@ class _PatentState extends State<Patent> {
                           setState(() {
                             _isChecked = isChecked;
                           });
-                          Navigator.pushNamed(context, PatentPending.patenPendingtId);
+                          Navigator.pushNamed(context, Patent.patentId);
                         },
                         checkColor: Color.fromRGBO(79, 67, 154, 1),
                         activeColor: Color.fromRGBO(79, 67, 154, 1),
@@ -246,30 +243,9 @@ class _PatentState extends State<Patent> {
                       number = value;
                     },
                     decoration: InputDecoration(
-                      labelText: "Patent Number",
+                      labelText: "Application Number",
                       border: const OutlineInputBorder(),
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  width: 380.0,
-                  height: 40,
-                  child: TextFormField(
-                    enableSuggestions: true,
-                    controller: publicationDateController,
-                    keyboardType: TextInputType.text,
-                    keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      publicationDate = value;
-                    },
-                    decoration: InputDecoration(
-                        labelText: "Publication Date",
-                        border: const OutlineInputBorder(),
-                        suffixIcon:
-                        Icon(Icons.calendar_today_outlined)),
                   ),
                 ),
                 SizedBox(
@@ -310,7 +286,7 @@ class _PatentState extends State<Patent> {
                   ),
                 ),
                 SizedBox(
-                  height: 120,
+                  height: 170,
                 )
               ])
             ])));
