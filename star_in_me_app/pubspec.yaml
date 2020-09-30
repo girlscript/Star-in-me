@@ -27,6 +27,7 @@ dev_dependencies:
   linkedin_login: ^1.2.2
   dots_indicator: ^1.2.0
   dotted_border: ^1.0.6
+  carousel_slider: ^2.3.1
   
 
   firebase_core: ^0.5.0

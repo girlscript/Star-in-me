@@ -38,272 +38,274 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: FadeAnimation(
-          2.0,
-          ModalProgressHUD(
-            inAsyncCall: showSpinner,
-            child: Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Center(
-                child: Form(
-                    key: _formKey,
-                    child: ListView(
-                      shrinkWrap: true,
-                      children: <Widget>[
-                        Center(
-                            child: Text(
-                          'Welcome Back',
-                          style: TextStyle(
-                              color: Colors.purple,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30.0),
-                        )),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        Column(
-                          children: <Widget>[
-                            Text(
-                              'Stay connected, be informed and keep',
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                            Text(
-                              'inspiring.',
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        TextFormField(
-                          enableSuggestions: true,
-                          controller: emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          keyboardAppearance: Brightness.dark,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return "Enter your Email ID";
-                            } else if (!EmailValidator.validate(value)) {
-                              return "Enter a Valid Email ID";
-                            }
-                            return null;
-                          },
-                          onChanged: (value) {
-                            email = value;
-                          },
-                          decoration: InputDecoration(
-                            labelText: "Email Address",
-                            border: const OutlineInputBorder(),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        TextFormField(
-                          controller: passController,
-                          decoration: InputDecoration(
-                            labelText: "Password",
-                            suffixIcon: FlatButton(
-                                onPressed: () {
-                                  setState(() {
-                                    toggle();
-                                  });
-                                },
-                                child: Icon(
-                                  Icons.remove_red_eye,
-                                  color: Colors.black12,
-                                )),
-                            border: const OutlineInputBorder(),
-                          ),
-                          validator: (value) =>
-                              value.length < 6 ? 'Password too short.' : null,
-                          onChanged: (value) {
-                            pass = value;
-                          },
-                          obscureText: _secureText,
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 5.0),
-                              child: Checkbox(
-                                value: _isChecked,
-                                tristate: false,
-                                onChanged: (bool isChecked) {
-                                  setState(() {
-                                    _isChecked = isChecked;
-                                  });
-                                },
-                              ),
-                            ),
-                            Text(
-                              'Remember password',
-                              style: TextStyle(
-                                fontSize: 16.0,
+    return SafeArea(
+      child: Scaffold(
+        body: FadeAnimation(
+            2.0,
+            ModalProgressHUD(
+              inAsyncCall: showSpinner,
+              child: Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Center(
+                  child: Form(
+                      key: _formKey,
+                      child: ListView(
+                        shrinkWrap: true,
+                        children: <Widget>[
+                          Center(
+                              child: Text(
+                            'Welcome Back',
+                            style: TextStyle(
+                                color: Colors.purple,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.grey,
+                                fontSize: 30.0),
+                          )),
+                          SizedBox(
+                            height: 20.0,
+                          ),
+                          Column(
+                            children: <Widget>[
+                              Text(
+                                'Stay connected, be informed and keep',
+                                style: TextStyle(color: Colors.grey),
                               ),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 5.0),
-                          child: Material(
-                            color: Colors.white.withOpacity(0.0),
-                            child: InkWell(
-                              child: Text('Forgot Password? ',
-                                  style: TextStyle(color: Colors.black38)),
-                              onTap: () => Navigator.pushNamed(
-                                  context, ForgotPassword.forgotPassword),
+                              Text(
+                                'inspiring.',
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20.0,
+                          ),
+                          TextFormField(
+                            enableSuggestions: true,
+                            controller: emailController,
+                            keyboardType: TextInputType.emailAddress,
+                            keyboardAppearance: Brightness.dark,
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return "Enter your Email ID";
+                              } else if (!EmailValidator.validate(value)) {
+                                return "Enter a Valid Email ID";
+                              }
+                              return null;
+                            },
+                            onChanged: (value) {
+                              email = value;
+                            },
+                            decoration: InputDecoration(
+                              labelText: "Email Address",
+                              border: const OutlineInputBorder(),
                             ),
                           ),
-                        ),
-                        SizedBox(height: 10.0),
-                        Container(
-                            width: double.infinity,
-                            padding:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
-                            child: RaisedButton(
-                              splashColor: Colors.lightBlueAccent,
-                              elevation: 10.0,
-                              highlightElevation: 30.0,
-                              child: const Text('LOGIN'),
-                              color: Colors.deepPurple[500],
-                              textColor: Colors.white,
-                              onPressed: () async {
-                                bool isUser;
-                                UserCredential userCredential;
-                                if (_formKey.currentState.validate()) {
-                                  setState(() {
-                                    showSpinner = true;
-                                  });
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          TextFormField(
+                            controller: passController,
+                            decoration: InputDecoration(
+                              labelText: "Password",
+                              suffixIcon: FlatButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      toggle();
+                                    });
+                                  },
+                                  child: Icon(
+                                    Icons.remove_red_eye,
+                                    color: Colors.black12,
+                                  )),
+                              border: const OutlineInputBorder(),
+                            ),
+                            validator: (value) =>
+                                value.length < 6 ? 'Password too short.' : null,
+                            onChanged: (value) {
+                              pass = value;
+                            },
+                            obscureText: _secureText,
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 5.0),
+                                child: Checkbox(
+                                  value: _isChecked,
+                                  tristate: false,
+                                  onChanged: (bool isChecked) {
+                                    setState(() {
+                                      _isChecked = isChecked;
+                                    });
+                                  },
+                                ),
+                              ),
+                              Text(
+                                'Remember password',
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5.0),
+                            child: Material(
+                              color: Colors.white.withOpacity(0.0),
+                              child: InkWell(
+                                child: Text('Forgot Password? ',
+                                    style: TextStyle(color: Colors.black38)),
+                                onTap: () => Navigator.pushNamed(
+                                    context, ForgotPassword.forgotPassword),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10.0),
+                          Container(
+                              width: double.infinity,
+                              padding:
+                                  const EdgeInsets.only(left: 5.0, right: 5.0),
+                              child: RaisedButton(
+                                splashColor: Colors.lightBlueAccent,
+                                elevation: 10.0,
+                                highlightElevation: 30.0,
+                                child: const Text('LOGIN'),
+                                color: Colors.deepPurple[500],
+                                textColor: Colors.white,
+                                onPressed: () async {
+                                  bool isUser;
+                                  UserCredential userCredential;
+                                  if (_formKey.currentState.validate()) {
+                                    setState(() {
+                                      showSpinner = true;
+                                    });
+                                    try {
+                                      final user = await _auth
+                                          .signInWithEmailAndPassword(
+                                              email: email, password: pass);
+                                      print(user);
+                                      if (user != null) {
+                                        Navigator.pushNamed(
+                                            context, ThankYou.thankYouPage);
+                                      }
+                                    } on FirebaseAuthException catch (e) {
+                                      if (e.code == 'user-not-found') {
+                                        isUser = false;
+                                      }
+                                      print('${e.code}');
+                                    } catch (e) {
+                                      print(e.toString());
+                                    } finally {
+                                      setState(() {
+                                        showSpinner = false;
+                                      });
+                                      if (!isUser) {
+                                        Navigator.pushNamed(
+                                            context, SignupPage.signUpPageId);
+                                      }
+                                    }
+                                  }
+                                },
+                              )),
+                          SizedBox(height: 15.0),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5.0),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                  'No account? ',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                                Material(
+                                  color: Colors.white.withOpacity(0.0),
+                                  child: InkWell(
+                                    child: Text('Sign up now!',
+                                        style: TextStyle(
+                                            color: Colors.purple[700],
+                                            fontSize: 15.0)),
+                                    onTap: () => Navigator.pushNamed(
+                                        context, SignupPage.signUpPageId),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15.0,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 5.0),
+                            child: Text('Login with',
+                                style: TextStyle(color: Colors.purple[700])),
+                          ),
+                          SizedBox(height: 10.0),
+                          Row(
+                            children: <Widget>[
+                              GestureDetector(
+                                onTap: () {},
+                                child: Container(
+                                  height: 30.0,
+                                  child: FittedBox(
+                                    child: Image.asset(
+                                      'images/linkedin_logo.png',
+                                      height: 10.0,
+                                      width: 10.0,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 8.0),
+                              GestureDetector(
+                                onTap: () async {
                                   try {
-                                    final user =
-                                        await _auth.signInWithEmailAndPassword(
-                                            email: email, password: pass);
-                                    print(user);
+                                    final user = await _signInWithGoogle();
                                     if (user != null) {
                                       Navigator.pushNamed(
                                           context, ThankYou.thankYouPage);
                                     }
                                   } on FirebaseAuthException catch (e) {
-                                    if (e.code == 'user-not-found') {
-                                      isUser = false;
-                                    }
                                     print('${e.code}');
                                   } catch (e) {
                                     print(e.toString());
-                                  } finally {
-                                    setState(() {
-                                      showSpinner = false;
-                                    });
-                                    if (!isUser) {
-                                      Navigator.pushNamed(
-                                          context, SignupPage.signUpPageId);
-                                    }
                                   }
-                                }
-                              },
-                            )),
-                        SizedBox(height: 15.0),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 5.0),
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                'No account? ',
-                                style: TextStyle(color: Colors.grey),
+                                },
+                                child: Container(
+                                  height: 30.0,
+                                  child: FittedBox(
+                                    child: Image.asset(
+                                      'images/google_logo.png',
+                                      height: 10.0,
+                                      width: 10.0,
+                                    ),
+                                  ),
+                                ),
                               ),
-                              Material(
-                                color: Colors.white.withOpacity(0.0),
-                                child: InkWell(
-                                  child: Text('Sign up now!',
-                                      style: TextStyle(
-                                          color: Colors.purple[700],
-                                          fontSize: 15.0)),
-                                  onTap: () => Navigator.pushNamed(
-                                      context, SignupPage.signUpPageId),
+                              SizedBox(width: 8.0),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Container(
+                                  height: 30.0,
+                                  child: FittedBox(
+                                    child: Image.asset(
+                                      'images/facebook_logo.png',
+                                      height: 10.0,
+                                      width: 10.0,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                        SizedBox(
-                          height: 15.0,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 5.0),
-                          child: Text('Login with',
-                              style: TextStyle(color: Colors.purple[700])),
-                        ),
-                        SizedBox(height: 10.0),
-                        Row(
-                          children: <Widget>[
-                            GestureDetector(
-                              onTap: () {},
-                              child: Container(
-                                height: 30.0,
-                                child: FittedBox(
-                                  child: Image.asset(
-                                    'images/linkedin_logo.png',
-                                    height: 10.0,
-                                    width: 10.0,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 8.0),
-                            GestureDetector(
-                              onTap: () async {
-                                try {
-                                  final user = await _signInWithGoogle();
-                                  if (user != null) {
-                                    Navigator.pushNamed(
-                                        context, ThankYou.thankYouPage);
-                                  }
-                                } on FirebaseAuthException catch (e) {
-                                  print('${e.code}');
-                                } catch (e) {
-                                  print(e.toString());
-                                }
-                              },
-                              child: Container(
-                                height: 30.0,
-                                child: FittedBox(
-                                  child: Image.asset(
-                                    'images/google_logo.png',
-                                    height: 10.0,
-                                    width: 10.0,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 8.0),
-                            GestureDetector(
-                              onTap: () {},
-                              child: Container(
-                                height: 30.0,
-                                child: FittedBox(
-                                  child: Image.asset(
-                                    'images/facebook_logo.png',
-                                    height: 10.0,
-                                    width: 10.0,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    )),
+                        ],
+                      )),
+                ),
               ),
-            ),
-          )),
+            )),
+      ),
     );
   }
 }
