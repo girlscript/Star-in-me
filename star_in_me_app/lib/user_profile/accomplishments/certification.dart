@@ -1,39 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:star_in_me_app/user_profile/accomplishments/certification.dart';
+import 'package:star_in_me_app/user_profile/accomplishments/education.dart';
+import 'package:star_in_me_app/user_profile/accomplishments/publication.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/work_exp.dart';
 
-import 'education.dart';
-
-class Volunteer extends StatefulWidget {
-  static final String volunteerId = '/volunteer';
+class Certification extends StatefulWidget {
+  static final String certificationId = '/certification';
   @override
-  _VolunteerState createState() => _VolunteerState();
+  _CertificationState createState() => _CertificationState();
 }
 
-class _VolunteerState extends State<Volunteer> {
+class _CertificationState extends State<Certification> {
   final _formKey = GlobalKey<FormState>();
-  final organisationController = TextEditingController();
-  final volunteerController = TextEditingController();
-  final causeController = TextEditingController();
-  final locationController = TextEditingController();
-  final descriptionController = TextEditingController();
-  final startDateController = TextEditingController();
-  final endDateController = TextEditingController();
-  String organisation,
-      volunteer,
-      cause,
-      location,
-      description,
-      startDate,
-      endDate;
-  bool _isChecked = false;
   int selectedRadio;
+  final certificateController = TextEditingController();
+  final organisationController = TextEditingController();
+  final certificateIdController = TextEditingController();
+  final certificateUrlController = TextEditingController();
+  final issueDateController = TextEditingController();
+  final expiryDateController = TextEditingController();
+
+  String certificate,
+      organisation,
+      certificateId,
+      certificateUrl,
+      issueDate,
+      expiryDate;
+  bool _isChecked = false;
   bool navigateToPage = false;
   @override
   void initState() {
     super.initState();
-    selectedRadio = 2;
+    selectedRadio = 1;
   }
 
   setSelectedRadio(int val) {
@@ -41,7 +39,6 @@ class _VolunteerState extends State<Volunteer> {
       selectedRadio = val;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +59,7 @@ class _VolunteerState extends State<Volunteer> {
                   child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Add Volunteer Experience',
+                        'Add Certification',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16.0,
@@ -75,7 +72,7 @@ class _VolunteerState extends State<Volunteer> {
                     children: [
                       FlatButton(
                         onPressed: () {
-                          setState(() {});
+                          Navigator.pushNamed(context, WorkExperience.workExperienceId);
                         },
                         child: SvgPicture.asset(
                           'images/Job_line.svg',
@@ -95,9 +92,7 @@ class _VolunteerState extends State<Volunteer> {
                             width: 45.0,
                           )),
                       FlatButton(
-                          onPressed: (){
-                            Navigator.pushNamed(context, Certification.certificationId);
-                          },
+                          onPressed: null,
                           child: SvgPicture.asset(
                             'images/Certification-Line.svg',
                             height: 45.0,
@@ -113,36 +108,79 @@ class _VolunteerState extends State<Volunteer> {
                     ],
                   ),
                 ),
-                Row(children: [
-                  Flexible(
+                Row(
+                    children: [
+                  Expanded(
                       child: RadioListTile(
-                    value: 1,
-                    groupValue: selectedRadio,
-                    title: Text('Work'),
-                    activeColor: Color.fromRGBO(79, 67, 154, 1),
-                    onChanged: (int value) {
-                      setSelectedRadio(value);
-                      setState(() {
-                        navigateToPage = true;
-                      });
-                      if (navigateToPage) {
-                        Navigator.pushNamed(
-                            context, WorkExperience.workExperienceId);
-                      }
-                    },
-                  )),
-                  Flexible(
-                    child: RadioListTile(
-                        value: 2,
+                        value: 1,
                         groupValue: selectedRadio,
-                        title: Text('Volunteer'),
+                        title: Text('Certification'),
                         activeColor: Color.fromRGBO(79, 67, 154, 1),
                         onChanged: (int value) {
                           setSelectedRadio(value);
                         },
-                        selected: selectedRadio == 2),
+                        selected: selectedRadio == 1,
+                      )),
+                  Expanded(
+                    child: RadioListTile(
+                      value: 2,
+                      groupValue: selectedRadio,
+                      title: Text('Publication'),
+                      activeColor: Color.fromRGBO(79, 67, 154, 1),
+                      onChanged: (int value) {
+                        setSelectedRadio(value);
+                        setState(() {
+                          navigateToPage = true;
+                        });
+                        if (navigateToPage) {
+                          Navigator.pushNamed(context, Publication.publicationId);
+                        }
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: RadioListTile(
+                      value: 3,
+                      groupValue: selectedRadio,
+                      title: Text('Patent'),
+                      activeColor: Color.fromRGBO(79, 67, 154, 1),
+                      onChanged: (int value) {
+                        setSelectedRadio(value);
+                        setState(() {
+                          navigateToPage = true;
+                        });
+                        if (navigateToPage) {
+                          // Navigator.pushNamed(context, Volunteer.volunteerId);
+                        }
+                      },
+                    ),
                   )
                 ]),
+                SizedBox(height: 14,),
+                Container(
+                  width: 380.0,
+                  height: 40,
+                  child: TextFormField(
+                    enableSuggestions: true,
+                    controller: certificateController,
+                    keyboardType: TextInputType.text,
+                    keyboardAppearance: Brightness.dark,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return "Enter Your Certification/Course Name";
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      certificate = value;
+                    },
+                    decoration: InputDecoration(
+                      labelText: "Certification/Course Name *",
+                      border: const OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
                 Container(
                   width: 380.0,
                   height: 40,
@@ -153,7 +191,7 @@ class _VolunteerState extends State<Volunteer> {
                     keyboardAppearance: Brightness.dark,
                     validator: (value) {
                       if (value.isEmpty) {
-                        return "Enter Your Organisation/Company";
+                        return "Enter Your Issuing Organisation/Institute";
                       }
                       return null;
                     },
@@ -161,61 +199,47 @@ class _VolunteerState extends State<Volunteer> {
                       organisation = value;
                     },
                     decoration: InputDecoration(
-                      labelText: "Organisation/Company *",
+                      labelText: "Issuing Organisation/Institute*",
                       border: const OutlineInputBorder(),
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(
+                  height: 10,
+                ),
                 Container(
                   width: 380.0,
                   height: 40,
                   child: TextFormField(
                     enableSuggestions: true,
-                    controller: volunteerController,
+                    controller: certificateIdController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
                     onChanged: (value) {
-                      volunteer = value;
+                      certificateId = value;
                     },
                     decoration: InputDecoration(
-                      labelText: "Volunteer Role",
+                      labelText: "Certificate ID",
                       border: const OutlineInputBorder(),
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(
+                  height: 10,
+                ),
                 Container(
                   width: 380.0,
                   height: 40,
                   child: TextFormField(
                     enableSuggestions: true,
-                    controller: causeController,
+                    controller: certificateUrlController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
                     onChanged: (value) {
-                      cause = value;
+                      certificateUrl= value;
                     },
                     decoration: InputDecoration(
-                      labelText: "Cause",
-                      border: const OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 10),
-                Container(
-                  width: 380.0,
-                  height: 40,
-                  child: TextFormField(
-                    enableSuggestions: true,
-                    controller: locationController,
-                    keyboardType: TextInputType.text,
-                    keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      location = value;
-                    },
-                    decoration: InputDecoration(
-                      labelText: "Location",
+                      labelText: "Certificate URL",
                       border: const OutlineInputBorder(),
                     ),
                   ),
@@ -232,16 +256,17 @@ class _VolunteerState extends State<Volunteer> {
                         height: 40,
                         child: TextFormField(
                           enableSuggestions: true,
-                          controller: startDateController,
+                          controller: issueDateController,
                           keyboardType: TextInputType.text,
                           keyboardAppearance: Brightness.dark,
                           onChanged: (value) {
-                            startDate = value;
+                            issueDate = value;
                           },
                           decoration: InputDecoration(
-                              labelText: "Start Date",
+                              labelText: "Issue Date",
                               border: const OutlineInputBorder(),
-                              suffixIcon: Icon(Icons.calendar_today_outlined)),
+                              suffixIcon:
+                              Icon(Icons.calendar_today_outlined)),
                         ),
                       ),
                       SizedBox(
@@ -252,23 +277,24 @@ class _VolunteerState extends State<Volunteer> {
                         height: 40,
                         child: TextFormField(
                           enableSuggestions: true,
-                          controller: endDateController,
+                          controller: expiryDateController,
                           keyboardType: TextInputType.text,
                           keyboardAppearance: Brightness.dark,
                           onChanged: (value) {
-                            endDate = value;
+                            expiryDate = value;
                           },
                           decoration: InputDecoration(
-                              labelText: "End Date",
+                              labelText: "Expiry Date",
                               border: const OutlineInputBorder(),
-                              suffixIcon: Icon(Icons.calendar_today_outlined)),
+                              suffixIcon:
+                              Icon(Icons.calendar_today_outlined)),
                         ),
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: 18,
+                  height: 10,
                 ),
                 Row(
                   children: [
@@ -285,7 +311,7 @@ class _VolunteerState extends State<Volunteer> {
                       ),
                     ),
                     Text(
-                      'Currently Working',
+                      'No Expiry Date',
                       style: TextStyle(
                         fontSize: 14.0,
                         color: Colors.grey,
@@ -293,66 +319,9 @@ class _VolunteerState extends State<Volunteer> {
                     )
                   ],
                 ),
+
                 SizedBox(
-                  height: 14,
-                ),
-                Container(
-                  width: 380.0,
-                  height: 40,
-                  child: TextFormField(
-                    enableSuggestions: true,
-                    controller: descriptionController,
-                    keyboardType: TextInputType.text,
-                    keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      description = value;
-                    },
-                    decoration: InputDecoration(
-                      labelText: "Description",
-                      border: const OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 11,
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 18),
-                      child: Container(
-                        width: 147,
-                        height: 40,
-                        child: OutlineButton(
-                          onPressed: () {},
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(
-                                'images/Add-Fill-color.svg',
-                                height: 20,
-                                width: 20,
-                              ),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Text(
-                                'ADD MEDIA',
-                                style: TextStyle(
-                                  color: Color.fromRGBO(79, 67, 154, 1),
-                                ),
-                              ),
-                            ],
-                          ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0)),
-                          borderSide: BorderSide(color: Color.fromRGBO(79, 67, 154, 1)),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 16,
+                  height: 15,
                 ),
                 Container(
                   width: 380,
@@ -371,9 +340,9 @@ class _VolunteerState extends State<Volunteer> {
                   ),
                 ),
                 SizedBox(
-                  height: 46,
+                  height: 130,
                 )
-              ]),
+              ])
             ])));
   }
 }

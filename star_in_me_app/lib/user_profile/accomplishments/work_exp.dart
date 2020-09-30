@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:star_in_me_app/user_profile/accomplishments/certification.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/education.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/volunteer.dart';
 
@@ -97,7 +98,9 @@ class _WorkExperienceState extends State<WorkExperience> {
                               width: 45.0,
                             )),
                         FlatButton(
-                            onPressed: null,
+                            onPressed: (){
+                              Navigator.pushNamed(context, Certification.certificationId);
+                            },
                             child: SvgPicture.asset(
                               'images/Certification-Line.svg',
                               height: 45.0,
@@ -119,15 +122,10 @@ class _WorkExperienceState extends State<WorkExperience> {
                       value: 1,
                       groupValue: selectedRadio,
                       title: Text('Work'),
-                      activeColor: Colors.purple,
+                      activeColor: Color.fromRGBO(79, 67, 154, 1),
                       onChanged: (int value) {
                         setSelectedRadio(value);
-                        setState(() {
-                          navigateToPage=true;
-                        });
-                        if (navigateToPage){
-                          Navigator.pushNamed(context, Volunteer.volunteerId);
-                        }
+
                       },
                       selected: selectedRadio == 1,
                     )),
@@ -136,10 +134,15 @@ class _WorkExperienceState extends State<WorkExperience> {
                           value: 2,
                           groupValue: selectedRadio,
                           title: Text('Volunteer'),
-                          activeColor: Colors.purple,
+                          activeColor: Color.fromRGBO(79, 67, 154, 1),
                           onChanged: (int value) {
                             setSelectedRadio(value);
-
+                            setState(() {
+                              navigateToPage=true;
+                            });
+                            if (navigateToPage){
+                              Navigator.pushNamed(context, Volunteer.volunteerId);
+                            }
                           },
                         ),
                     )
@@ -304,7 +307,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                   Row(
                     children: [
                       Theme(
-                        data: ThemeData(unselectedWidgetColor: Colors.purple),
+                        data: ThemeData(unselectedWidgetColor: Color.fromRGBO(79, 67, 154, 1)),
                         child: Checkbox(
                           value: _isChecked,
                           tristate: false,
@@ -369,14 +372,14 @@ class _WorkExperienceState extends State<WorkExperience> {
                                 Text(
                                   'ADD MEDIA',
                                   style: TextStyle(
-                                    color: Colors.purple,
+                                    color: Color.fromRGBO(79, 67, 154, 1),
                                   ),
                                 ),
                               ],
                             ),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
-                            borderSide: BorderSide(color: Colors.purple),
+                            borderSide: BorderSide(color: Color.fromRGBO(79, 67, 154, 1)),
                           ),
                         ),
                       ),
@@ -388,7 +391,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                   Container(
                     width: 380,
                     height: 40,
-                    color: Colors.deepPurple,
+                    color: Color.fromRGBO(79, 67, 154, 1),
                     child: RaisedButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5)),

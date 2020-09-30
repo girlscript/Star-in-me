@@ -2,7 +2,9 @@ import 'package:star_in_me_app/authentication/forgot_password.dart';
 import 'package:star_in_me_app/onboarding/UI1.dart';
 import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'package:star_in_me_app/screens/landing.dart';
+import 'package:star_in_me_app/user_profile/accomplishments/certification.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/education.dart';
+import 'package:star_in_me_app/user_profile/accomplishments/publication.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/volunteer.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/work_exp.dart';
 
@@ -23,5 +25,7 @@ Map<String, Widget Function(BuildContext)> routes = {
   UserProfile.UserProfileId: (context) => UserProfile(),
   WorkExperience.workExperienceId: (context) => WorkExperience(),
   Volunteer.volunteerId: (context) => Volunteer(),
-  Education.educationId: (context) =>Education()
+  Education.educationId: (context) =>Education(),
+  Certification.certificationId:(context)=> Certification(),
+  Publication.publicationId:(context)=>Publication()
 };

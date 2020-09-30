@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:star_in_me_app/user_profile/accomplishments/certification.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/work_exp.dart';
 
 class Education extends StatefulWidget {
@@ -60,7 +61,6 @@ class _EducationState extends State<Education> {
                           width: 45.0,
                         ),
                         shape: CircleBorder(),
-                        // color: Colors.purple,
                       ),
                       FlatButton(
                           onPressed: null,
@@ -70,7 +70,9 @@ class _EducationState extends State<Education> {
                             width: 45.0,
                           )),
                       FlatButton(
-                          onPressed: null,
+                          onPressed: (){
+                            Navigator.pushNamed(context, Certification.certificationId);
+                          },
                           child: SvgPicture.asset(
                             'images/Certification-Line.svg',
                             height: 45.0,
@@ -238,14 +240,14 @@ class _EducationState extends State<Education> {
                               Text(
                                 'ADD MEDIA',
                                 style: TextStyle(
-                                  color: Colors.purple,
+                                  color: Color.fromRGBO(79, 67, 154, 1),
                                 ),
                               ),
                             ],
                           ),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0)),
-                          borderSide: BorderSide(color: Colors.purple),
+                          borderSide: BorderSide(color: Color.fromRGBO(79, 67, 154, 1)),
                         ),
                       ),
                     ),
@@ -257,7 +259,7 @@ class _EducationState extends State<Education> {
                 Row(
                   children: [
                     Theme(
-                      data: ThemeData(unselectedWidgetColor: Colors.purple),
+                      data: ThemeData(unselectedWidgetColor: Color.fromRGBO(79, 67, 154, 1)),
                       child: Checkbox(
                         value: _isChecked,
                         tristate: false,
@@ -283,7 +285,7 @@ class _EducationState extends State<Education> {
                 Container(
                   width: 380,
                   height: 40,
-                  color: Colors.deepPurple,
+                  color: Color.fromRGBO(79, 67, 154, 1),
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
