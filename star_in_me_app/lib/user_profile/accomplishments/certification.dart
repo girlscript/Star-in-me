@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/education.dart';
+import 'package:star_in_me_app/user_profile/accomplishments/patent.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/publication.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/work_exp.dart';
 
@@ -150,7 +151,7 @@ class _CertificationState extends State<Certification> {
                           navigateToPage = true;
                         });
                         if (navigateToPage) {
-                          // Navigator.pushNamed(context, Volunteer.volunteerId);
+                          Navigator.pushNamed(context, Patent.patentId);
                         }
                       },
                     ),

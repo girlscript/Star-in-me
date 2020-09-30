@@ -140,7 +140,7 @@ class _VolunteerState extends State<Volunteer> {
                         onChanged: (int value) {
                           setSelectedRadio(value);
                         },
-                        selected: selectedRadio == 2),
+                        ),
                   )
                 ]),
                 Container(

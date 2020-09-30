@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/certification.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/education.dart';
+import 'package:star_in_me_app/user_profile/accomplishments/patent.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/work_exp.dart';
 
 class Publication extends StatefulWidget {
@@ -125,7 +126,6 @@ class _PublicationState extends State<Publication> {
                                  Navigator.pushNamed(context, Certification.certificationId);
                               }
                             },
-                            selected: selectedRadio == 1,
                           )),
                       Expanded(
                         child: RadioListTile(
@@ -151,7 +151,7 @@ class _PublicationState extends State<Publication> {
                               navigateToPage = true;
                             });
                             if (navigateToPage) {
-                              // Navigator.pushNamed(context, Volunteer.volunteerId);
+                              Navigator.pushNamed(context, Patent.patentId);
                             }
                           },
                         ),

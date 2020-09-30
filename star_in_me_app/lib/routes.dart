@@ -4,6 +4,7 @@ import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'package:star_in_me_app/screens/landing.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/certification.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/education.dart';
+import 'package:star_in_me_app/user_profile/accomplishments/patent.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/publication.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/volunteer.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/work_exp.dart';
@@ -27,5 +28,6 @@ Map<String, Widget Function(BuildContext)> routes = {
   Volunteer.volunteerId: (context) => Volunteer(),
   Education.educationId: (context) =>Education(),
   Certification.certificationId:(context)=> Certification(),
-  Publication.publicationId:(context)=>Publication()
+  Publication.publicationId:(context)=>Publication(),
+  Patent.patentId:(context)=>Patent()
 };
