@@ -4,18 +4,24 @@ import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'package:star_in_me_app/screens/landing.dart';
 
 import 'screens/thankyou_screen.dart';
-import 'home.dart';
 import 'dart:core';
 import 'package:flutter/material.dart';
 import 'authentication/login.dart';
 import 'authentication/signup.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {
+  //index Page Routes
   LandingPage.landingPageId: (context) => LandingPage(),
+
+  //Auth Routes
   LoginPage.loginPageId: (context) => LoginPage(),
   SignupPage.signUpPageId: (context) => SignupPage(),
-  ThankYou.thankYouPage: (context) => ThankYou(),
   ForgotPassword.forgotPassword: (context) => ForgotPassword(),
+  ThankYou.thankYouPage: (context) => ThankYou(),
+
+  //Onboarding Routes
   UI1.onboardingUi1: (context) => UI1(),
-  UserProfile.UserProfileId: (context) => UserProfile(),
+
+  //User Profile Routes
+  UserProfile.userProfileId: (context) => UserProfile(),
 };
