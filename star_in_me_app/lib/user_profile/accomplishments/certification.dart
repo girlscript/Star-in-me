@@ -5,6 +5,7 @@ import 'package:star_in_me_app/user_profile/accomplishments/patent.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/publication.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/work_exp.dart';
 
+import 'accomplishments_button.dart';
 import 'awards.dart';
 
 class Certification extends StatefulWidget {
@@ -71,47 +72,7 @@ class _CertificationState extends State<Certification> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 15.0),
-                  child: Row(
-                    children: [
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, WorkExperience.workExperienceId);
-                        },
-                        child: SvgPicture.asset(
-                          'images/Job_line.svg',
-                          height: 45.0,
-                          width: 45.0,
-                        ),
-                        shape: CircleBorder(),
-                        // color: Colors.purple,
-                      ),
-                      FlatButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, Education.educationId);
-                          },
-                          child: SvgPicture.asset(
-                            'images/Education-line.svg',
-                            height: 45.0,
-                            width: 45.0,
-                          )),
-                      FlatButton(
-                          onPressed: null,
-                          child: SvgPicture.asset(
-                            'images/Certification-Line.svg',
-                            height: 45.0,
-                            width: 45.0,
-                          )),
-                      FlatButton(
-                          onPressed: (){
-                            Navigator.pushNamed(context, Awards.awardsId);
-                          },
-                          child: SvgPicture.asset(
-                            'images/Awards_line.svg',
-                            height: 45.0,
-                            width: 45.0,
-                          )),
-                    ],
-                  ),
+                  child: AccomplishmentButtons(),
                 ),
                 Row(
                     children: [

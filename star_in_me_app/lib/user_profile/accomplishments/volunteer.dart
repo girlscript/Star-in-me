@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:star_in_me_app/user_profile/accomplishments/accomplishments_button.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/awards.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/certification.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/work_exp.dart';
@@ -72,49 +73,7 @@ class _VolunteerState extends State<Volunteer> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 15.0),
-                  child: Row(
-                    children: [
-                      FlatButton(
-                        onPressed: () {
-                          setState(() {});
-                        },
-                        child: SvgPicture.asset(
-                          'images/Job_line.svg',
-                          height: 45.0,
-                          width: 45.0,
-                        ),
-                        shape: CircleBorder(),
-                        // color: Colors.purple,
-                      ),
-                      FlatButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, Education.educationId);
-                          },
-                          child: SvgPicture.asset(
-                            'images/Education-line.svg',
-                            height: 45.0,
-                            width: 45.0,
-                          )),
-                      FlatButton(
-                          onPressed: (){
-                            Navigator.pushNamed(context, Certification.certificationId);
-                          },
-                          child: SvgPicture.asset(
-                            'images/Certification-Line.svg',
-                            height: 45.0,
-                            width: 45.0,
-                          )),
-                      FlatButton(
-                          onPressed: (){
-                            Navigator.pushNamed(context, Awards.awardsId);
-                          },
-                          child: SvgPicture.asset(
-                            'images/Awards_line.svg',
-                            height: 45.0,
-                            width: 45.0,
-                          )),
-                    ],
-                  ),
+                  child: AccomplishmentButtons()
                 ),
                 Row(children: [
                   Flexible(

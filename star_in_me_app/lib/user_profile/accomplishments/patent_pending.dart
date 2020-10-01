@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:star_in_me_app/user_profile/accomplishments/accomplishments_button.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/certification.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/education.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/patent.dart';
@@ -68,47 +69,7 @@ class _PatentPendingState extends State<PatentPending> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 15.0),
-                  child: Row(
-                    children: [
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, WorkExperience.workExperienceId);
-                        },
-                        child: SvgPicture.asset(
-                          'images/Job_line.svg',
-                          height: 45.0,
-                          width: 45.0,
-                        ),
-                        shape: CircleBorder(),
-                        // color: Colors.purple,
-                      ),
-                      FlatButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, Education.educationId);
-                          },
-                          child: SvgPicture.asset(
-                            'images/Education-line.svg',
-                            height: 45.0,
-                            width: 45.0,
-                          )),
-                      FlatButton(
-                          onPressed: null,
-                          child: SvgPicture.asset(
-                            'images/Certification-Line.svg',
-                            height: 45.0,
-                            width: 45.0,
-                          )),
-                      FlatButton(
-                          onPressed: (){
-                            Navigator.pushNamed(context, Awards.awardsId);
-                          },
-                          child: SvgPicture.asset(
-                            'images/Awards_line.svg',
-                            height: 45.0,
-                            width: 45.0,
-                          )),
-                    ],
-                  ),
+                  child: AccomplishmentButtons()
                 ),
                 SizedBox(height: 19,),
                 Row(

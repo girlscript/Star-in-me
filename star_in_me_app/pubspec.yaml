@@ -28,11 +28,14 @@ dev_dependencies:
   linkedin_login: ^1.2.2
   dots_indicator: ^1.2.0
   dotted_border: ^1.0.6
+  file_picker: ^2.0.6
+  http: ^0.12.2
   
 
   firebase_core: ^0.5.0
   firebase_auth: ^0.18.0+1
   cloud_firestore: ^0.14.0+2
+  firebase_storage: ^4.0.1
 
 flutter:
   uses-material-design: true

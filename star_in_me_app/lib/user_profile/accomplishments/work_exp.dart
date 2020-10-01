@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:star_in_me_app/user_profile/accomplishments/awards.dart';
-import 'package:star_in_me_app/user_profile/accomplishments/certification.dart';
+import 'package:star_in_me_app/user_profile/accomplishments/accomplishments_button.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/education.dart';
 import 'package:star_in_me_app/user_profile/accomplishments/volunteer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class WorkExperience extends StatefulWidget {
   static final String workExperienceId = '/workExperience';
+
   @override
   _WorkExperienceState createState() => _WorkExperienceState();
 }
 
 class _WorkExperienceState extends State<WorkExperience> {
+  final db = FirebaseFirestore.instance;
   final _formKey = GlobalKey<FormState>();
   int selectedRadio;
   final designationController = TextEditingController();
@@ -22,15 +24,11 @@ class _WorkExperienceState extends State<WorkExperience> {
   final startDateController = TextEditingController();
   final endDateController = TextEditingController();
 
-  String designation,
-      organisation,
-      industry,
-      location,
-      description,
-      startDate,
-      endDate;
+
   bool _isChecked = false;
   bool navigateToPage=false;
+
+
   @override
   void initState() {
     super.initState();
@@ -75,49 +73,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 15.0),
-                    child: Row(
-                      children: [
-                        FlatButton(
-                          onPressed: () {
-                            setState(() {});
-                          },
-                          child: SvgPicture.asset(
-                            'images/Job_line.svg',
-                            height: 45.0,
-                            width: 45.0,
-                          ),
-                          shape: CircleBorder(),
-                          // color: Colors.purple,
-                        ),
-                        FlatButton(
-                            onPressed: (){
-                              Navigator.pushNamed(context, Education.educationId);
-                            },
-                            child: SvgPicture.asset(
-                              'images/Education-line.svg',
-                              height: 45.0,
-                              width: 45.0,
-                            )),
-                        FlatButton(
-                            onPressed: (){
-                              Navigator.pushNamed(context, Certification.certificationId);
-                            },
-                            child: SvgPicture.asset(
-                              'images/Certification-Line.svg',
-                              height: 45.0,
-                              width: 45.0,
-                            )),
-                        FlatButton(
-                            onPressed: (){
-                              Navigator.pushNamed(context, Awards.awardsId);
-                            },
-                            child: SvgPicture.asset(
-                              'images/Awards_line.svg',
-                              height: 45.0,
-                              width: 45.0,
-                            )),
-                      ],
-                    ),
+                    child: AccomplishmentButtons()
                   ),
                   Row(children: [
                     Flexible(
@@ -152,20 +108,17 @@ class _WorkExperienceState extends State<WorkExperience> {
                   ]),
                   Container(
                     width: 380.0,
-                    height: 40,
+                    height: 60,
                     child: TextFormField(
                       enableSuggestions: true,
                       controller: designationController,
                       keyboardType: TextInputType.text,
                       keyboardAppearance: Brightness.dark,
+                      // ignore: missing_return
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Enter Your Designation/Job Position";
                         }
-                        return null;
-                      },
-                      onChanged: (value) {
-                        designation = value;
                       },
                       decoration: InputDecoration(
                         labelText: "Designation/Job Position *",
@@ -176,20 +129,17 @@ class _WorkExperienceState extends State<WorkExperience> {
                   SizedBox(height: 10),
                   Container(
                     width: 380.0,
-                    height: 40,
+                    height: 60,
                     child: TextFormField(
                       enableSuggestions: true,
                       controller: organisationController,
                       keyboardType: TextInputType.text,
                       keyboardAppearance: Brightness.dark,
+                      // ignore: missing_return
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Enter Your Organisation/Company";
                         }
-                        return null;
-                      },
-                      onChanged: (value) {
-                        organisation = value;
                       },
                       decoration: InputDecoration(
                         labelText: "Organisation/Company *",
@@ -202,20 +152,17 @@ class _WorkExperienceState extends State<WorkExperience> {
                   ),
                   Container(
                     width: 380.0,
-                    height: 40,
+                    height: 60,
                     child: TextFormField(
                       enableSuggestions: true,
                       controller: industryController,
                       keyboardType: TextInputType.text,
                       keyboardAppearance: Brightness.dark,
+                      // ignore: missing_return
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Enter Your Industry";
                         }
-                        return null;
-                      },
-                      onChanged: (value) {
-                        industry = value;
                       },
                       decoration: InputDecoration(
                         labelText: "Industry *",
@@ -228,15 +175,12 @@ class _WorkExperienceState extends State<WorkExperience> {
                   ),
                   Container(
                     width: 380.0,
-                    height: 40,
+                    height: 60,
                     child: TextFormField(
                       enableSuggestions: true,
                       controller: locationController,
                       keyboardType: TextInputType.text,
                       keyboardAppearance: Brightness.dark,
-                      onChanged: (value) {
-                        location = value;
-                      },
                       decoration: InputDecoration(
                         labelText: "Location",
                         border: const OutlineInputBorder(),
@@ -252,20 +196,17 @@ class _WorkExperienceState extends State<WorkExperience> {
                       children: [
                         Container(
                           width: 185.0,
-                          height: 40,
+                          height: 60,
                           child: TextFormField(
                             enableSuggestions: true,
                             controller: startDateController,
-                            keyboardType: TextInputType.text,
+                            keyboardType: TextInputType.datetime,
                             keyboardAppearance: Brightness.dark,
+                            // ignore: missing_return
                             validator: (value) {
                               if (value.isEmpty) {
                                 return "Enter Start Date";
                               }
-                              return null;
-                            },
-                            onChanged: (value) {
-                              startDate = value;
                             },
                             decoration: InputDecoration(
                                 labelText: "Start Date *",
@@ -279,20 +220,17 @@ class _WorkExperienceState extends State<WorkExperience> {
                         ),
                         Container(
                           width: 185.0,
-                          height: 40,
+                          height: 60,
                           child: TextFormField(
                             enableSuggestions: true,
                             controller: endDateController,
-                            keyboardType: TextInputType.text,
+                            keyboardType: TextInputType.datetime,
                             keyboardAppearance: Brightness.dark,
+                            // ignore: missing_return
                             validator: (value) {
                               if (value.isEmpty) {
                                 return "Enter End Date";
                               }
-                              return null;
-                            },
-                            onChanged: (value) {
-                              endDate = value;
                             },
                             decoration: InputDecoration(
                                 labelText: "End Date *",
@@ -305,7 +243,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                     ),
                   ),
                   SizedBox(
-                    height: 18,
+                    height: 19,
                   ),
                   Row(
                     children: [
@@ -335,15 +273,12 @@ class _WorkExperienceState extends State<WorkExperience> {
                   ),
                   Container(
                     width: 380.0,
-                    height: 40,
+                    height: 60,
                     child: TextFormField(
                       enableSuggestions: true,
                       controller: descriptionController,
                       keyboardType: TextInputType.text,
                       keyboardAppearance: Brightness.dark,
-                      onChanged: (value) {
-                        description = value;
-                      },
                       decoration: InputDecoration(
                         labelText: "Description",
                         border: const OutlineInputBorder(),
@@ -398,7 +333,22 @@ class _WorkExperienceState extends State<WorkExperience> {
                     child: RaisedButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5)),
-                      onPressed: null,
+                      onPressed: ()  async {
+                          if(_formKey.currentState.validate()){
+                            await db.collection("work").add({
+                              'designation':designationController.text,
+                              'organisation':organisationController.text,
+                              'location':locationController.text,
+                              'industry':industryController.text,
+                              'description':designationController.text,
+                             'startDate':startDateController.text,
+                              'endDate':endDateController.text
+                            });
+                            Navigator.pushNamed(context, Education.educationId);
+                        }
+
+                      },
+                      color: Color.fromRGBO(79, 67, 154, 1),
                       child: Text(
                         'SUBMIT',
                         style: TextStyle(
