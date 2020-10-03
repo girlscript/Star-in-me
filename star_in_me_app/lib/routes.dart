@@ -1,6 +1,7 @@
 import 'package:star_in_me_app/authentication/forgot_password.dart';
 import 'package:star_in_me_app/onboarding/UI1.dart';
 import 'package:star_in_me_app/screens/UserProfile.dart';
+import 'package:star_in_me_app/screens/createpost.dart';
 import 'package:star_in_me_app/screens/landing.dart';
 
 import 'screens/thankyou_screen.dart';
@@ -21,6 +22,8 @@ Map<String, Widget Function(BuildContext)> routes = {
 
   //Onboarding Routes
   UI1.onboardingUi1: (context) => UI1(),
+
+  CreatePost.CreatePostId: (context) => CreatePost(),
 
   //User Profile Routes
   UserProfile.userProfileId: (context) => UserProfile(),
