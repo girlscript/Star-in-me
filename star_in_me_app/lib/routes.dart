@@ -1,6 +1,7 @@
 import 'package:star_in_me_app/authentication/forgot_password.dart';
 import 'package:star_in_me_app/onboarding/UI1.dart';
 import 'package:star_in_me_app/screens/UserProfile.dart';
+import 'package:star_in_me_app/screens/accomplishments/work_experience.dart';
 import 'package:star_in_me_app/screens/createpost.dart';
 import 'package:star_in_me_app/screens/landing.dart';
 
@@ -27,4 +28,7 @@ Map<String, Widget Function(BuildContext)> routes = {
 
   //User Profile Routes
   UserProfile.userProfileId: (context) => UserProfile(),
+
+  //Accomplishments Routes
+  WorkExperience.workExperienceId: (context) => WorkExperience(),
 };
