@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:star_in_me_app/screens/accomplishments/work_experience.dart';
 
+import 'certification.dart';
 import 'education.dart';
 
 
@@ -68,7 +69,7 @@ class _AccomplishmentButtonsState extends State<AccomplishmentButtons> {
               setState(() {
                 certification = 'images/Certification-Fill.svg';
               });
-              // Navigator.pushNamed(context, Certification.certificationId);
+              Navigator.pushNamed(context, Certification.certificationId);
             },
             child: SvgPicture.asset(
               certification,
