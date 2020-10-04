@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:star_in_me_app/screens/accomplishments/publication.dart';
 import 'accomplishments_button.dart';
 
 
@@ -94,7 +95,7 @@ class _CertificationState extends State<Certification> {
                           navigateToPage = true;
                         });
                         if (navigateToPage) {
-                          // Navigator.pushNamed(context, Publication.publicationId);
+                          Navigator.pushNamed(context, Publication.publicationId);
                         }
                       },
                     ),
