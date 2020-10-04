@@ -24,7 +24,6 @@ class _AccomplishmentButtonsState extends State<AccomplishmentButtons> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
      work = 'images/Job_line.svg';
     education = 'images/Education-line.svg';

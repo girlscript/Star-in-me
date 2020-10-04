@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:star_in_me_app/screens/accomplishments/volunteer.dart';
 
 import 'accomplishments_button.dart';
 
@@ -99,7 +100,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                               navigateToPage=true;
                             });
                             if (navigateToPage){
-                              // Navigator.pushNamed(context, Volunteer.volunteerId);
+                              Navigator.pushNamed(context, Volunteer.volunteerId);
                             }
                           },
                         ),
