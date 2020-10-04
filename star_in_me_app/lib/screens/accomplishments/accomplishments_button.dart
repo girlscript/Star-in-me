@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:star_in_me_app/screens/accomplishments/work_experience.dart';
 
+import 'education.dart';
+
 
 class AccomplishmentButtons extends StatefulWidget {
   @override
@@ -54,7 +56,7 @@ class _AccomplishmentButtonsState extends State<AccomplishmentButtons> {
               setState(() {
                 education = 'images/Education-line-fill.svg';
               });
-              // Navigator.pushNamed(context, Education.educationId);
+              Navigator.pushNamed(context, Education.educationId);
             },
             child: SvgPicture.asset(
               education,
