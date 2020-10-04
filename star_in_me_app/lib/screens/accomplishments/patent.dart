@@ -1,38 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:star_in_me_app/screens/accomplishments/patent.dart';
+import 'package:star_in_me_app/screens/accomplishments/publication.dart';
 
 import 'accomplishments_button.dart';
 import 'certification.dart';
 
-class Publication extends StatefulWidget {
-  static final String publicationId = '/publication';
+
+class Patent extends StatefulWidget {
+  static final String patentId = '/patent';
   @override
-  _PublicationState createState() => _PublicationState();
+  _PatentState createState() => _PatentState();
 }
 
-class _PublicationState extends State<Publication> {
+class _PatentState extends State<Patent> {
   final _formKey = GlobalKey<FormState>();
   int selectedRadio;
   final titleController = TextEditingController();
-  final publisherController = TextEditingController();
-  final authorController = TextEditingController();
-  final publicationUrlController = TextEditingController();
+  final officeController = TextEditingController();
+  final numberController = TextEditingController();
   final publicationDateController = TextEditingController();
   final descriptionController = TextEditingController();
 
   String title,
-      publisher,
-      authors,
-      publicationUrl,
+  office,
+  number,
       publicationDate,
       description;
-
+  bool _isChecked = false;
   bool navigateToPage = false;
   @override
   void initState() {
     super.initState();
-    selectedRadio = 2;
+    selectedRadio = 3;
   }
 
   setSelectedRadio(int val) {
@@ -60,7 +59,7 @@ class _PublicationState extends State<Publication> {
                   child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Add Publication',
+                        'Add Patent',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16.0,
@@ -71,6 +70,7 @@ class _PublicationState extends State<Publication> {
                   padding: EdgeInsets.only(top: 15.0),
                   child: AccomplishmentButtons()
                 ),
+                SizedBox(height: 19,),
                 Row(
                     children: [
                       Expanded(
@@ -85,9 +85,9 @@ class _PublicationState extends State<Publication> {
                                 navigateToPage = true;
                               });
                               if (navigateToPage) {
-                                 Navigator.pushNamed(context, Certification.certificationId);
+                                Navigator.pushNamed(context, Certification.certificationId);
                               }
-                            },
+                            }
                           )),
                       Expanded(
                         child: RadioListTile(
@@ -97,7 +97,12 @@ class _PublicationState extends State<Publication> {
                           activeColor: Color.fromRGBO(79, 67, 154, 1),
                           onChanged: (int value) {
                             setSelectedRadio(value);
-
+                            setState(() {
+                              navigateToPage = true;
+                            });
+                            if (navigateToPage) {
+                              Navigator.pushNamed(context, Publication.publicationId);
+                            }
                           },
                         ),
                       ),
@@ -109,17 +114,40 @@ class _PublicationState extends State<Publication> {
                           activeColor: Color.fromRGBO(79, 67, 154, 1),
                           onChanged: (int value) {
                             setSelectedRadio(value);
-                            setState(() {
-                              navigateToPage = true;
-                            });
-                            if (navigateToPage) {
-                              Navigator.pushNamed(context, Patent.patentId);
-                            }
+
                           },
                         ),
                       )
                     ]),
-                SizedBox(height: 14,),
+                SizedBox(height: 16,),
+                Row(
+                  children: [
+                    Theme(
+                      data: ThemeData(unselectedWidgetColor: Color.fromRGBO(79, 67, 154, 1),
+                      ),
+                      child: Checkbox(
+                        value: _isChecked,
+                        tristate: false,
+                        onChanged: (bool isChecked) {
+                          setState(() {
+                            _isChecked = isChecked;
+                          });
+                          // Navigator.pushNamed(context, PatentPending.patenPendingtId);
+                        },
+                        checkColor: Color.fromRGBO(79, 67, 154, 1),
+                        activeColor: Color.fromRGBO(79, 67, 154, 1),
+                      ),
+                    ),
+                    Text(
+                      'Pending',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        color: Colors.grey,
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(height: 18,),
                 Container(
                   width: 380.0,
                   height: 40,
@@ -130,7 +158,7 @@ class _PublicationState extends State<Publication> {
                     keyboardAppearance: Brightness.dark,
                     validator: (value) {
                       if (value.isEmpty) {
-                        return "Enter Title";
+                        return "Enter Your Patent Title";
                       }
                       return null;
                     },
@@ -138,7 +166,7 @@ class _PublicationState extends State<Publication> {
                       title = value;
                     },
                     decoration: InputDecoration(
-                      labelText: "Title*",
+                      labelText: "Patent Title *",
                       border: const OutlineInputBorder(),
                     ),
                   ),
@@ -149,14 +177,14 @@ class _PublicationState extends State<Publication> {
                   height: 40,
                   child: TextFormField(
                     enableSuggestions: true,
-                    controller: publisherController,
+                    controller: officeController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
                     onChanged: (value) {
-                      publisher = value;
+                      office = value;
                     },
                     decoration: InputDecoration(
-                      labelText: "Publisher",
+                      labelText: "Patent Office",
                       border: const OutlineInputBorder(),
                     ),
                   ),
@@ -169,34 +197,14 @@ class _PublicationState extends State<Publication> {
                   height: 40,
                   child: TextFormField(
                     enableSuggestions: true,
-                    controller: authorController,
+                    controller: numberController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
                     onChanged: (value) {
-                      authors = value;
+                      number = value;
                     },
                     decoration: InputDecoration(
-                      labelText: "Authors",
-                      border: const OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  width: 380.0,
-                  height: 40,
-                  child: TextFormField(
-                    enableSuggestions: true,
-                    controller: publicationUrlController,
-                    keyboardType: TextInputType.text,
-                    keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      publicationUrl= value;
-                    },
-                    decoration: InputDecoration(
-                      labelText: "Publication URL",
+                      labelText: "Patent Number",
                       border: const OutlineInputBorder(),
                     ),
                   ),
@@ -237,7 +245,7 @@ class _PublicationState extends State<Publication> {
                       description = value;
                     },
                     decoration: InputDecoration(
-                      labelText: "Description",
+                      labelText: "Description (Mention Patent URL,Etc)",
                       border: const OutlineInputBorder(),
                     ),
                   ),
@@ -260,7 +268,7 @@ class _PublicationState extends State<Publication> {
                   ),
                 ),
                 SizedBox(
-                  height: 110,
+                  height: 120,
                 )
               ])
             ])));
