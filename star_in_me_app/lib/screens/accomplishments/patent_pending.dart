@@ -3,36 +3,34 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
 import 'package:star_in_me_app/screens/accomplishments/certification.dart';
 import 'package:star_in_me_app/screens/accomplishments/patent.dart';
+import 'package:star_in_me_app/screens/accomplishments/publication.dart';
 
 
-class Publication extends StatefulWidget {
-  static final String publicationId = '/publication';
+
+class PatentPending extends StatefulWidget {
+  static final String patenPendingtId = '/patent_pending';
   @override
-  _PublicationState createState() => _PublicationState();
+  _PatentPendingState createState() => _PatentPendingState();
 }
 
-class _PublicationState extends State<Publication> {
+class _PatentPendingState extends State<PatentPending> {
   final _formKey = GlobalKey<FormState>();
   int selectedRadio;
   final titleController = TextEditingController();
-  final publisherController = TextEditingController();
-  final authorController = TextEditingController();
-  final publicationUrlController = TextEditingController();
-  final publicationDateController = TextEditingController();
+  final officeController = TextEditingController();
+  final numberController = TextEditingController();
   final descriptionController = TextEditingController();
 
   String title,
-      publisher,
-      authors,
-      publicationUrl,
-      publicationDate,
+      office,
+      number,
       description;
-
+  bool _isChecked = true;
   bool navigateToPage = false;
   @override
   void initState() {
     super.initState();
-    selectedRadio = 2;
+    selectedRadio = 3;
   }
 
   setSelectedRadio(int val) {
@@ -60,7 +58,7 @@ class _PublicationState extends State<Publication> {
                   child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Add Publication',
+                        'Add Patent',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16.0,
@@ -71,23 +69,24 @@ class _PublicationState extends State<Publication> {
                   padding: EdgeInsets.only(top: 15.0),
                   child: AccomplishmentButtons()
                 ),
+                SizedBox(height: 19,),
                 Row(
                     children: [
                       Expanded(
                           child: RadioListTile(
-                            value: 1,
-                            groupValue: selectedRadio,
-                            title: Text('Certification'),
-                            activeColor: Color.fromRGBO(79, 67, 154, 1),
-                            onChanged: (int value) {
-                              setSelectedRadio(value);
-                              setState(() {
-                                navigateToPage = true;
-                              });
-                              if (navigateToPage) {
-                                 Navigator.pushNamed(context, Certification.certificationId);
+                              value: 1,
+                              groupValue: selectedRadio,
+                              title: Text('Certification'),
+                              activeColor: Color.fromRGBO(79, 67, 154, 1),
+                              onChanged: (int value) {
+                                setSelectedRadio(value);
+                                setState(() {
+                                  navigateToPage = true;
+                                });
+                                if (navigateToPage) {
+                                  Navigator.pushNamed(context, Certification.certificationId);
+                                }
                               }
-                            },
                           )),
                       Expanded(
                         child: RadioListTile(
@@ -97,7 +96,12 @@ class _PublicationState extends State<Publication> {
                           activeColor: Color.fromRGBO(79, 67, 154, 1),
                           onChanged: (int value) {
                             setSelectedRadio(value);
-
+                            setState(() {
+                              navigateToPage = true;
+                            });
+                            if (navigateToPage) {
+                              Navigator.pushNamed(context, Publication.publicationId);
+                            }
                           },
                         ),
                       ),
@@ -109,17 +113,39 @@ class _PublicationState extends State<Publication> {
                           activeColor: Color.fromRGBO(79, 67, 154, 1),
                           onChanged: (int value) {
                             setSelectedRadio(value);
-                            setState(() {
-                              navigateToPage = true;
-                            });
-                            if (navigateToPage) {
-                              Navigator.pushNamed(context, Patent.patentId);
-                            }
                           },
                         ),
                       )
                     ]),
-                SizedBox(height: 14,),
+                SizedBox(height: 16,),
+                Row(
+                  children: [
+                    Theme(
+                      data: ThemeData(unselectedWidgetColor: Color.fromRGBO(79, 67, 154, 1),
+                      ),
+                      child: Checkbox(
+                        value: _isChecked,
+                        tristate: false,
+                        onChanged: (bool isChecked) {
+                          setState(() {
+                            _isChecked = isChecked;
+                          });
+                          Navigator.pushNamed(context, Patent.patentId);
+                        },
+                        checkColor: Color.fromRGBO(79, 67, 154, 1),
+                        activeColor: Color.fromRGBO(79, 67, 154, 1),
+                      ),
+                    ),
+                    Text(
+                      'Pending',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        color: Colors.grey,
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(height: 18,),
                 Container(
                   width: 380.0,
                   height: 40,
@@ -130,7 +156,7 @@ class _PublicationState extends State<Publication> {
                     keyboardAppearance: Brightness.dark,
                     validator: (value) {
                       if (value.isEmpty) {
-                        return "Enter Title";
+                        return "Enter Your Patent Title";
                       }
                       return null;
                     },
@@ -138,7 +164,7 @@ class _PublicationState extends State<Publication> {
                       title = value;
                     },
                     decoration: InputDecoration(
-                      labelText: "Title*",
+                      labelText: "Patent Title *",
                       border: const OutlineInputBorder(),
                     ),
                   ),
@@ -149,14 +175,14 @@ class _PublicationState extends State<Publication> {
                   height: 40,
                   child: TextFormField(
                     enableSuggestions: true,
-                    controller: publisherController,
+                    controller: officeController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
                     onChanged: (value) {
-                      publisher = value;
+                      office = value;
                     },
                     decoration: InputDecoration(
-                      labelText: "Publisher",
+                      labelText: "Patent Office",
                       border: const OutlineInputBorder(),
                     ),
                   ),
@@ -169,57 +195,16 @@ class _PublicationState extends State<Publication> {
                   height: 40,
                   child: TextFormField(
                     enableSuggestions: true,
-                    controller: authorController,
+                    controller: numberController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
                     onChanged: (value) {
-                      authors = value;
+                      number = value;
                     },
                     decoration: InputDecoration(
-                      labelText: "Authors",
+                      labelText: "Application Number",
                       border: const OutlineInputBorder(),
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  width: 380.0,
-                  height: 40,
-                  child: TextFormField(
-                    enableSuggestions: true,
-                    controller: publicationUrlController,
-                    keyboardType: TextInputType.text,
-                    keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      publicationUrl= value;
-                    },
-                    decoration: InputDecoration(
-                      labelText: "Publication URL",
-                      border: const OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  width: 380.0,
-                  height: 40,
-                  child: TextFormField(
-                    enableSuggestions: true,
-                    controller: publicationDateController,
-                    keyboardType: TextInputType.text,
-                    keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      publicationDate = value;
-                    },
-                    decoration: InputDecoration(
-                        labelText: "Publication Date",
-                        border: const OutlineInputBorder(),
-                        suffixIcon:
-                        Icon(Icons.calendar_today_outlined)),
                   ),
                 ),
                 SizedBox(
@@ -237,7 +222,7 @@ class _PublicationState extends State<Publication> {
                       description = value;
                     },
                     decoration: InputDecoration(
-                      labelText: "Description",
+                      labelText: "Description (Mention Patent URL,Etc)",
                       border: const OutlineInputBorder(),
                     ),
                   ),
@@ -260,7 +245,7 @@ class _PublicationState extends State<Publication> {
                   ),
                 ),
                 SizedBox(
-                  height: 110,
+                  height: 170,
                 )
               ])
             ])));

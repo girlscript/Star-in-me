@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
 
-import 'accomplishments_button.dart';
 
 class Education extends StatefulWidget {
   static final String educationId = '/education';

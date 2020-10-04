@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
+import 'package:star_in_me_app/screens/accomplishments/certification.dart';
+import 'package:star_in_me_app/screens/accomplishments/patent_pending.dart';
 import 'package:star_in_me_app/screens/accomplishments/publication.dart';
 
-import 'accomplishments_button.dart';
-import 'certification.dart';
 
 
 class Patent extends StatefulWidget {
@@ -132,7 +133,7 @@ class _PatentState extends State<Patent> {
                           setState(() {
                             _isChecked = isChecked;
                           });
-                          // Navigator.pushNamed(context, PatentPending.patenPendingtId);
+                          Navigator.pushNamed(context, PatentPending.patenPendingtId);
                         },
                         checkColor: Color.fromRGBO(79, 67, 154, 1),
                         activeColor: Color.fromRGBO(79, 67, 154, 1),

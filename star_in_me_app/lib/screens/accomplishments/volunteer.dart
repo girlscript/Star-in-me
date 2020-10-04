@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
 import 'package:star_in_me_app/screens/accomplishments/work_experience.dart';
-
-import 'accomplishments_button.dart';
 
 class Volunteer extends StatefulWidget {
   static final String volunteerId = '/volunteer';

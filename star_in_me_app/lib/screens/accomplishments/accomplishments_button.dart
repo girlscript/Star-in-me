@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:star_in_me_app/screens/accomplishments/certification.dart';
+import 'package:star_in_me_app/screens/accomplishments/education.dart';
 import 'package:star_in_me_app/screens/accomplishments/work_experience.dart';
-
-import 'certification.dart';
-import 'education.dart';
-
 
 class AccomplishmentButtons extends StatefulWidget {
   @override
@@ -66,8 +64,8 @@ class _AccomplishmentButtonsState extends State<AccomplishmentButtons> {
             )),
         FlatButton(
             onPressed: () {
-              setState(() {
-                certification = 'images/Certification-Fill.svg';
+              setState(()  {
+              certification = 'images/Certification-Fill.svg';
               });
               Navigator.pushNamed(context, Certification.certificationId);
             },
