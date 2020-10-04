@@ -1,6 +1,7 @@
 import 'package:star_in_me_app/authentication/forgot_password.dart';
 import 'package:star_in_me_app/onboarding/UI1.dart';
 import 'package:star_in_me_app/screens/UserProfile.dart';
+import 'package:star_in_me_app/screens/accomplishments/awards.dart';
 import 'package:star_in_me_app/screens/accomplishments/certification.dart';
 import 'package:star_in_me_app/screens/accomplishments/education.dart';
 import 'package:star_in_me_app/screens/accomplishments/patent.dart';
@@ -41,6 +42,7 @@ Map<String, Widget Function(BuildContext)> routes = {
   Education.educationId: (context) => Education(),
   Certification.certificationId: (context) => Certification(),
   Publication.publicationId: (context) => Publication(),
-  Patent.patentId: (context)=> Patent(),
-  PatentPending.patenPendingtId: (context)=> PatentPending()
+  Patent.patentId: (context) => Patent(),
+  PatentPending.patenPendingtId: (context) => PatentPending(),
+  Awards.awardsId: (context) => Awards()
 };

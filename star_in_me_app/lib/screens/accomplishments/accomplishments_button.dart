@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:star_in_me_app/screens/accomplishments/awards.dart';
 import 'package:star_in_me_app/screens/accomplishments/certification.dart';
 import 'package:star_in_me_app/screens/accomplishments/education.dart';
 import 'package:star_in_me_app/screens/accomplishments/work_experience.dart';
@@ -79,7 +80,7 @@ class _AccomplishmentButtonsState extends State<AccomplishmentButtons> {
               setState(() {
                 award = 'images/Awards-fill.svg';
               });
-              // Navigator.pushNamed(context, Awards.awardsId);
+              Navigator.pushNamed(context, Awards.awardsId);
             },
             child: SvgPicture.asset(
               award,
