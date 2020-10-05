@@ -74,7 +74,15 @@ class _EducationState extends State<Education> {
                     },
                     decoration: InputDecoration(
                       labelText: "School/College/Institute *",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),
@@ -92,7 +100,15 @@ class _EducationState extends State<Education> {
                     },
                     decoration: InputDecoration(
                       labelText: "Degree",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),
@@ -110,7 +126,15 @@ class _EducationState extends State<Education> {
                     },
                     decoration: InputDecoration(
                       labelText: "Field of Study",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),
@@ -122,19 +146,30 @@ class _EducationState extends State<Education> {
                       Container(
                         width: 185.0,
                         height: 60,
-                        child: TextFormField(
-                          enableSuggestions: true,
-                          controller: startDateController,
-                          keyboardType: TextInputType.text,
-                          keyboardAppearance: Brightness.dark,
-                          onChanged: (value) {
-                            startDate = value;
-                          },
-                          decoration: InputDecoration(
-                              labelText: "Start Date",
-                              border: const OutlineInputBorder(),
-                              suffixIcon:
-                              Icon(Icons.calendar_today_outlined)),
+                        child: Theme(
+                          data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
+                          child: TextFormField(
+                            enableSuggestions: true,
+                            controller: startDateController,
+                            keyboardType: TextInputType.text,
+                            keyboardAppearance: Brightness.dark,
+                            onChanged: (value) {
+                              startDate = value;
+                            },
+                            decoration: InputDecoration(
+                                labelText: "Start Date",
+                                labelStyle:TextStyle(
+                                    color: Colors.grey
+                                ),
+                                border: const OutlineInputBorder(),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Color.fromRGBO(79, 67, 154, 1)
+                                    )
+                                ),
+                                suffixIcon:
+                                Icon(Icons.calendar_today_outlined)),
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -143,19 +178,30 @@ class _EducationState extends State<Education> {
                       Container(
                         width: 185.0,
                         height: 60,
-                        child: TextFormField(
-                          enableSuggestions: true,
-                          controller: endDateController,
-                          keyboardType: TextInputType.text,
-                          keyboardAppearance: Brightness.dark,
-                          onChanged: (value) {
-                            endDate = value;
-                          },
-                          decoration: InputDecoration(
-                              labelText: "End Date",
-                              border: const OutlineInputBorder(),
-                              suffixIcon:
-                              Icon(Icons.calendar_today_outlined)),
+                        child: Theme(
+                          data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
+                          child: TextFormField(
+                            enableSuggestions: true,
+                            controller: endDateController,
+                            keyboardType: TextInputType.text,
+                            keyboardAppearance: Brightness.dark,
+                            onChanged: (value) {
+                              endDate = value;
+                            },
+                            decoration: InputDecoration(
+                                labelText: "End Date",
+                                labelStyle:TextStyle(
+                                    color: Colors.grey
+                                ),
+                                border: const OutlineInputBorder(),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Color.fromRGBO(79, 67, 154, 1)
+                                    )
+                                ),
+                                suffixIcon:
+                                Icon(Icons.calendar_today_outlined)),
+                          ),
                         ),
                       ),
                     ],
@@ -177,7 +223,15 @@ class _EducationState extends State<Education> {
                     },
                     decoration: InputDecoration(
                       labelText: "Description",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),

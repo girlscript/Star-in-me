@@ -73,36 +73,60 @@ class _VolunteerState extends State<Volunteer> {
                 Padding(
                     padding: EdgeInsets.only(top: 15.0),
                     child: AccomplishmentButtons()),
-                Row(children: [
-                  Flexible(
-                      child: RadioListTile(
-                    value: 1,
-                    groupValue: selectedRadio,
-                    title: Text('Work'),
-                    activeColor: Color.fromRGBO(79, 67, 154, 1),
-                    onChanged: (int value) {
-                      setSelectedRadio(value);
-                      setState(() {
-                        navigateToPage = true;
-                      });
-                      if (navigateToPage) {
-                        Navigator.pushNamed(
-                            context, WorkExperience.workExperienceId);
-                      }
-                    },
-                  )),
-                  Flexible(
-                    child: RadioListTile(
-                      value: 2,
-                      groupValue: selectedRadio,
-                      title: Text('Volunteer'),
-                      activeColor: Color.fromRGBO(79, 67, 154, 1),
-                      onChanged: (int value) {
-                        setSelectedRadio(value);
-                      },
+                Row(
+                  children: [
+                    Row(
+                      children: [
+                        Theme(
+                          data: ThemeData(
+                              unselectedWidgetColor:
+                              Color.fromRGBO(79, 67, 154, 1)),
+                          child: Radio(
+                            value: 1,
+                            groupValue: selectedRadio,
+                            onChanged: (int value) {
+                              setSelectedRadio(value);
+                              setState(() {
+                                navigateToPage = true;
+                              });
+                              if (navigateToPage) {
+                                Navigator.pushNamed(
+                                    context, WorkExperience.workExperienceId);
+                              }
+                            },
+                            activeColor: Color.fromRGBO(79, 67, 154, 1),
+                          ),
+                        ),
+                        Text(
+                          'Work',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
                     ),
-                  )
-                ]),
+                    Row(
+                      children: [
+                        Theme(
+                          data: ThemeData(
+                              unselectedWidgetColor:
+                              Color.fromRGBO(79, 67, 154, 1)),
+                          child: Radio(
+                            value: 2,
+                            groupValue: selectedRadio,
+                            onChanged: (int value) {
+                              setSelectedRadio(value);
+                            },
+                            activeColor: Color.fromRGBO(79, 67, 154, 1),
+                          ),
+                        ),
+                        Text(
+                          'Volunteer',
+                          style: TextStyle(color: Color.fromRGBO(79, 67, 154, 1)),
+                        ),
+                      ],
+                    ),
+
+                  ],
+                ),
                 Container(
                   width: 380.0,
                   height: 60,
@@ -122,7 +146,15 @@ class _VolunteerState extends State<Volunteer> {
                     },
                     decoration: InputDecoration(
                       labelText: "Organisation/Company *",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),
@@ -140,7 +172,15 @@ class _VolunteerState extends State<Volunteer> {
                     },
                     decoration: InputDecoration(
                       labelText: "Volunteer Role",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),
@@ -158,7 +198,15 @@ class _VolunteerState extends State<Volunteer> {
                     },
                     decoration: InputDecoration(
                       labelText: "Cause",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),
@@ -176,7 +224,15 @@ class _VolunteerState extends State<Volunteer> {
                     },
                     decoration: InputDecoration(
                       labelText: "Location",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),
@@ -190,18 +246,29 @@ class _VolunteerState extends State<Volunteer> {
                       Container(
                         width: 185.0,
                         height: 60,
-                        child: TextFormField(
-                          enableSuggestions: true,
-                          controller: startDateController,
-                          keyboardType: TextInputType.text,
-                          keyboardAppearance: Brightness.dark,
-                          onChanged: (value) {
-                            startDate = value;
-                          },
-                          decoration: InputDecoration(
-                              labelText: "Start Date",
-                              border: const OutlineInputBorder(),
-                              suffixIcon: Icon(Icons.calendar_today_outlined)),
+                        child: Theme(
+                          data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
+                          child: TextFormField(
+                            enableSuggestions: true,
+                            controller: startDateController,
+                            keyboardType: TextInputType.text,
+                            keyboardAppearance: Brightness.dark,
+                            onChanged: (value) {
+                              startDate = value;
+                            },
+                            decoration: InputDecoration(
+                                labelText: "Start Date",
+                                labelStyle:TextStyle(
+                                    color: Colors.grey
+                                ),
+                                border: const OutlineInputBorder(),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Color.fromRGBO(79, 67, 154, 1)
+                                    )
+                                ),
+                                suffixIcon: Icon(Icons.calendar_today_outlined)),
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -210,18 +277,29 @@ class _VolunteerState extends State<Volunteer> {
                       Container(
                         width: 185.0,
                         height: 60,
-                        child: TextFormField(
-                          enableSuggestions: true,
-                          controller: endDateController,
-                          keyboardType: TextInputType.text,
-                          keyboardAppearance: Brightness.dark,
-                          onChanged: (value) {
-                            endDate = value;
-                          },
-                          decoration: InputDecoration(
-                              labelText: "End Date",
-                              border: const OutlineInputBorder(),
-                              suffixIcon: Icon(Icons.calendar_today_outlined)),
+                        child: Theme(
+                          data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
+                          child: TextFormField(
+                            enableSuggestions: true,
+                            controller: endDateController,
+                            keyboardType: TextInputType.text,
+                            keyboardAppearance: Brightness.dark,
+                            onChanged: (value) {
+                              endDate = value;
+                            },
+                            decoration: InputDecoration(
+                                labelText: "End Date",
+                                labelStyle:TextStyle(
+                                    color: Colors.grey
+                                ),
+                                border: const OutlineInputBorder(),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Color.fromRGBO(79, 67, 154, 1)
+                                    )
+                                ),
+                                suffixIcon: Icon(Icons.calendar_today_outlined)),
+                          ),
                         ),
                       ),
                     ],
@@ -271,7 +349,15 @@ class _VolunteerState extends State<Volunteer> {
                     },
                     decoration: InputDecoration(
                       labelText: "Description",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),

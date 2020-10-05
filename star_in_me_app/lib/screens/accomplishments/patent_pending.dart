@@ -74,53 +74,86 @@ class _PatentPendingState extends State<PatentPending> {
                 ),
                 SizedBox(height: 19,),
                 Row(
-                    children: [
-                      Expanded(
-                          child: RadioListTile(
-                              value: 1,
-                              groupValue: selectedRadio,
-                              title: Text('Certification'),
-                              activeColor: Color.fromRGBO(79, 67, 154, 1),
-                              onChanged: (int value) {
-                                setSelectedRadio(value);
-                                setState(() {
-                                  navigateToPage = true;
-                                });
-                                if (navigateToPage) {
-                                  Navigator.pushNamed(context, Certification.certificationId);
-                                }
+                  children: [
+                    Row(
+                      children: [
+                        Theme(
+                          data: ThemeData(
+                              unselectedWidgetColor:
+                              Color.fromRGBO(79, 67, 154, 1)),
+                          child: Radio(
+                            value: 1,
+                            groupValue: selectedRadio,
+                            onChanged: (int value) {
+                              setSelectedRadio(value);
+                              setState(() {
+                                navigateToPage = true;
+                              });
+                              if (navigateToPage) {
+                                Navigator.pushNamed(context, Certification.certificationId);
                               }
-                          )),
-                      Expanded(
-                        child: RadioListTile(
-                          value: 2,
-                          groupValue: selectedRadio,
-                          title: Text('Publication'),
-                          activeColor: Color.fromRGBO(79, 67, 154, 1),
-                          onChanged: (int value) {
-                            setSelectedRadio(value);
-                            setState(() {
-                              navigateToPage = true;
-                            });
-                            if (navigateToPage) {
-                              Navigator.pushNamed(context, Publication.publicationId);
-                            }
-                          },
+                            },
+                            activeColor: Color.fromRGBO(79, 67, 154, 1),
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: RadioListTile(
-                          value: 3,
-                          groupValue: selectedRadio,
-                          title: Text('Patent'),
-                          activeColor: Color.fromRGBO(79, 67, 154, 1),
-                          onChanged: (int value) {
-                            setSelectedRadio(value);
-                          },
+                        Text(
+                          'Certification',
+                          style: TextStyle(color: Colors.grey),
                         ),
-                      )
-                    ]),
-                SizedBox(height: 16,),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Theme(
+                          data: ThemeData(
+                              unselectedWidgetColor:
+                              Color.fromRGBO(79, 67, 154, 1)),
+                          child: Radio(
+                            value: 2,
+                            groupValue: selectedRadio,
+                            onChanged: (int value) {
+                              setSelectedRadio(value);
+                              setState(() {
+                                navigateToPage = true;
+                              });
+                              if (navigateToPage) {
+                                Navigator.pushNamed(
+                                    context, Publication.publicationId);
+                              }
+                            },
+                            activeColor: Color.fromRGBO(79, 67, 154, 1),
+                          ),
+                        ),
+                        Text(
+                          'Publication',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Theme(
+                          data: ThemeData(
+                              unselectedWidgetColor:
+                              Color.fromRGBO(79, 67, 154, 1)),
+                          child: Radio(
+                            value: 3,
+                            groupValue: selectedRadio,
+                            onChanged: (int value) {
+                              setSelectedRadio(value);
+
+                            },
+                            activeColor: Color.fromRGBO(79, 67, 154, 1),
+                          ),
+                        ),
+                        Text(
+                          'Patent',
+                          style: TextStyle(color:  Color.fromRGBO(79, 67, 154, 1)),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
                 Row(
                   children: [
                     Theme(
@@ -168,7 +201,15 @@ class _PatentPendingState extends State<PatentPending> {
                     },
                     decoration: InputDecoration(
                       labelText: "Patent Title *",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),
@@ -186,7 +227,15 @@ class _PatentPendingState extends State<PatentPending> {
                     },
                     decoration: InputDecoration(
                       labelText: "Patent Office",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),
@@ -206,7 +255,15 @@ class _PatentPendingState extends State<PatentPending> {
                     },
                     decoration: InputDecoration(
                       labelText: "Application Number",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),
@@ -226,7 +283,15 @@ class _PatentPendingState extends State<PatentPending> {
                     },
                     decoration: InputDecoration(
                       labelText: "Description (Mention Patent URL,Etc)",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),

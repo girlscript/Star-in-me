@@ -6,8 +6,6 @@ import 'package:star_in_me_app/screens/accomplishments/awards.dart';
 import 'package:star_in_me_app/screens/accomplishments/patent.dart';
 import 'package:star_in_me_app/screens/accomplishments/publication.dart';
 
-
-
 class Certification extends StatefulWidget {
   static final String certificationId = '/certification';
   @override
@@ -44,6 +42,7 @@ class _CertificationState extends State<Certification> {
       selectedRadio = val;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,54 +75,88 @@ class _CertificationState extends State<Certification> {
                   child: AccomplishmentButtons(),
                 ),
                 Row(
-                    children: [
-                  Expanded(
-                      child: RadioListTile(
-                        value: 1,
-                        groupValue: selectedRadio,
-                        title: Text('Certification'),
-                        activeColor: Color.fromRGBO(79, 67, 154, 1),
-                        onChanged: (int value) {
-                          setSelectedRadio(value);
-                        },
-                        selected: selectedRadio == 1,
-                      )),
-                  Expanded(
-                    child: RadioListTile(
-                      value: 2,
-                      groupValue: selectedRadio,
-                      title: Text('Publication'),
-                      activeColor: Color.fromRGBO(79, 67, 154, 1),
-                      onChanged: (int value) {
-                        setSelectedRadio(value);
-                        setState(() {
-                          navigateToPage = true;
-                        });
-                        if (navigateToPage) {
-                          Navigator.pushNamed(context, Publication.publicationId);
-                        }
-                      },
+                  children: [
+                    Row(
+                      children: [
+                        Theme(
+                          data: ThemeData(
+                              unselectedWidgetColor:
+                                  Color.fromRGBO(79, 67, 154, 1)),
+                          child: Radio(
+                            value: 1,
+                            groupValue: selectedRadio,
+                            onChanged: (int value) {
+                              setSelectedRadio(value);
+                            },
+                            activeColor: Color.fromRGBO(79, 67, 154, 1),
+                          ),
+                        ),
+                        Text(
+                          'Certification',
+                          style: TextStyle(color: Color.fromRGBO(79, 67, 154, 1)),
+                        ),
+                      ],
                     ),
-                  ),
-                  Expanded(
-                    child: RadioListTile(
-                      value: 3,
-                      groupValue: selectedRadio,
-                      title: Text('Patent'),
-                      activeColor: Color.fromRGBO(79, 67, 154, 1),
-                      onChanged: (int value) {
-                        setSelectedRadio(value);
-                        setState(() {
-                          navigateToPage = true;
-                        });
-                        if (navigateToPage) {
-                          Navigator.pushNamed(context, Patent.patentId);
-                        }
-                      },
+                    Row(
+                      children: [
+                        Theme(
+                          data: ThemeData(
+                              unselectedWidgetColor:
+                                  Color.fromRGBO(79, 67, 154, 1)),
+                          child: Radio(
+                            value: 2,
+                            groupValue: selectedRadio,
+                            onChanged: (int value) {
+                              setSelectedRadio(value);
+                              setState(() {
+                                navigateToPage = true;
+                              });
+                              if (navigateToPage) {
+                                Navigator.pushNamed(
+                                    context, Publication.publicationId);
+                              }
+                            },
+                            activeColor: Color.fromRGBO(79, 67, 154, 1),
+                          ),
+                        ),
+                        Text(
+                          'Publication',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
                     ),
-                  )
-                ]),
-                SizedBox(height: 14,),
+                    Row(
+                      children: [
+                        Theme(
+                          data: ThemeData(
+                              unselectedWidgetColor:
+                                  Color.fromRGBO(79, 67, 154, 1)),
+                          child: Radio(
+                            value: 3,
+                            groupValue: selectedRadio,
+                            onChanged: (int value) {
+                              setSelectedRadio(value);
+                              setState(() {
+                                navigateToPage = true;
+                              });
+                              if (navigateToPage) {
+                                Navigator.pushNamed(context, Patent.patentId);
+                              }
+                            },
+                            activeColor: Color.fromRGBO(79, 67, 154, 1),
+                          ),
+                        ),
+                        Text(
+                          'Patent',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 14,
+                ),
                 Container(
                   width: 380.0,
                   height: 60,
@@ -143,7 +176,15 @@ class _CertificationState extends State<Certification> {
                     },
                     decoration: InputDecoration(
                       labelText: "Certification/Course Name *",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),
@@ -166,8 +207,16 @@ class _CertificationState extends State<Certification> {
                       organisation = value;
                     },
                     decoration: InputDecoration(
-                      labelText: "Issuing Organisation/Institute*",
+                      labelText: "Issuing Organisation/Institute *",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),
@@ -187,7 +236,15 @@ class _CertificationState extends State<Certification> {
                     },
                     decoration: InputDecoration(
                       labelText: "Certificate ID",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),
@@ -203,11 +260,19 @@ class _CertificationState extends State<Certification> {
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
                     onChanged: (value) {
-                      certificateUrl= value;
+                      certificateUrl = value;
                     },
                     decoration: InputDecoration(
                       labelText: "Certificate URL",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),
@@ -221,19 +286,29 @@ class _CertificationState extends State<Certification> {
                       Container(
                         width: 185.0,
                         height: 60,
-                        child: TextFormField(
-                          enableSuggestions: true,
-                          controller: issueDateController,
-                          keyboardType: TextInputType.text,
-                          keyboardAppearance: Brightness.dark,
-                          onChanged: (value) {
-                            issueDate = value;
-                          },
-                          decoration: InputDecoration(
-                              labelText: "Issue Date",
-                              border: const OutlineInputBorder(),
-                              suffixIcon:
-                              Icon(Icons.calendar_today_outlined)),
+                        child: Theme(
+                          data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
+                          child: TextFormField(
+                            enableSuggestions: true,
+                            controller: issueDateController,
+                            keyboardType: TextInputType.text,
+                            keyboardAppearance: Brightness.dark,
+                            onChanged: (value) {
+                              issueDate = value;
+                            },
+                            decoration: InputDecoration(
+                                labelText: "Issue Date",
+                                labelStyle:TextStyle(
+                                    color: Colors.grey
+                                ),
+                                border: const OutlineInputBorder(),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Color.fromRGBO(79, 67, 154, 1)
+                                    )
+                                ),
+                                suffixIcon: Icon(Icons.calendar_today_outlined)),
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -242,19 +317,29 @@ class _CertificationState extends State<Certification> {
                       Container(
                         width: 185.0,
                         height: 60,
-                        child: TextFormField(
-                          enableSuggestions: true,
-                          controller: expiryDateController,
-                          keyboardType: TextInputType.text,
-                          keyboardAppearance: Brightness.dark,
-                          onChanged: (value) {
-                            expiryDate = value;
-                          },
-                          decoration: InputDecoration(
-                              labelText: "Expiry Date",
-                              border: const OutlineInputBorder(),
-                              suffixIcon:
-                              Icon(Icons.calendar_today_outlined)),
+                        child: Theme(
+                          data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
+                          child: TextFormField(
+                            enableSuggestions: true,
+                            controller: expiryDateController,
+                            keyboardType: TextInputType.text,
+                            keyboardAppearance: Brightness.dark,
+                            onChanged: (value) {
+                              expiryDate = value;
+                            },
+                            decoration: InputDecoration(
+                                labelText: "Expiry Date",
+                                labelStyle:TextStyle(
+                                    color: Colors.grey
+                                ),
+                                border: const OutlineInputBorder(),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Color.fromRGBO(79, 67, 154, 1)
+                                    )
+                                ),
+                                suffixIcon: Icon(Icons.calendar_today_outlined)),
+                          ),
                         ),
                       ),
                     ],
@@ -266,7 +351,9 @@ class _CertificationState extends State<Certification> {
                 Row(
                   children: [
                     Theme(
-                      data: ThemeData(unselectedWidgetColor: Color.fromRGBO(79, 67, 154, 1)),
+                      data: ThemeData(
+                          unselectedWidgetColor:
+                              Color.fromRGBO(79, 67, 154, 1)),
                       child: Checkbox(
                         value: _isChecked,
                         tristate: false,
@@ -286,7 +373,6 @@ class _CertificationState extends State<Certification> {
                     )
                   ],
                 ),
-
                 SizedBox(
                   height: 15,
                 ),
@@ -298,14 +384,14 @@ class _CertificationState extends State<Certification> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
                     onPressed: () async {
-                      if(_formKey.currentState.validate()){
+                      if (_formKey.currentState.validate()) {
                         await db.collection("certification").add({
-                          'certification':certificateController.text,
-                          'issuing_organisation':organisationController.text,
-                          'certificated_id':certificateIdController.text,
-                          'certificate_url':certificateUrlController.text,
-                          'issue_date':issueDateController.text,
-                          'expiry_date':expiryDateController.text
+                          'certification': certificateController.text,
+                          'issuing_organisation': organisationController.text,
+                          'certificated_id': certificateIdController.text,
+                          'certificate_url': certificateUrlController.text,
+                          'issue_date': issueDateController.text,
+                          'expiry_date': expiryDateController.text
                         });
                         Navigator.pushNamed(context, Awards.awardsId);
                       }

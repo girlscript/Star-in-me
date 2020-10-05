@@ -76,7 +76,15 @@ class _AwardsState extends State<Awards> {
                     },
                     decoration: InputDecoration(
                       labelText: "Honor/Award Title *",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),
@@ -94,7 +102,15 @@ class _AwardsState extends State<Awards> {
                     },
                     decoration: InputDecoration(
                       labelText: "Issuer",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),
@@ -104,19 +120,31 @@ class _AwardsState extends State<Awards> {
                 Container(
                   width: 380.0,
                   height: 60,
-                  child: TextFormField(
-                    enableSuggestions: true,
-                    controller: issueDateController,
-                    keyboardType: TextInputType.text,
-                    keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                     issueDate = value;
-                    },
-                    decoration: InputDecoration(
-                        labelText: "Issue Date",
-                        border: const OutlineInputBorder(),
-                        suffixIcon:
-                        Icon(Icons.calendar_today_outlined)),
+                  child: Theme(
+                    data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
+
+                    child: TextFormField(
+                      enableSuggestions: true,
+                      controller: issueDateController,
+                      keyboardType: TextInputType.text,
+                      keyboardAppearance: Brightness.dark,
+                      onChanged: (value) {
+                       issueDate = value;
+                      },
+                      decoration: InputDecoration(
+                          labelText: "Issue Date",
+                          labelStyle:TextStyle(
+                              color: Colors.grey
+                          ),
+                          border: const OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromRGBO(79, 67, 154, 1)
+                              )
+                          ),
+                          suffixIcon:
+                          Icon(Icons.calendar_today_outlined)),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -135,7 +163,15 @@ class _AwardsState extends State<Awards> {
                     },
                     decoration: InputDecoration(
                       labelText: "Description",
+                      labelStyle:TextStyle(
+                          color: Colors.grey
+                      ),
                       border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(79, 67, 154, 1)
+                          )
+                      ),
                     ),
                   ),
                 ),
