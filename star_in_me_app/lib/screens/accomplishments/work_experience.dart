@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
 import 'package:star_in_me_app/screens/accomplishments/education.dart';
 import 'package:star_in_me_app/screens/accomplishments/volunteer.dart';
-
-
 
 class WorkExperience extends StatefulWidget {
   static final String workExperienceId = '/workExperience';
@@ -26,19 +25,17 @@ class _WorkExperienceState extends State<WorkExperience> {
   final startDateController = TextEditingController();
   final endDateController = TextEditingController();
 
-
-
   bool _isChecked = false;
-  bool navigateToPage=false;
-
+  bool navigateToPage = false;
 
   @override
   void initState() {
     super.initState();
     selectedRadio = 1;
   }
+
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
   }
 
@@ -47,7 +44,6 @@ class _WorkExperienceState extends State<WorkExperience> {
       selectedRadio = val;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +58,10 @@ class _WorkExperienceState extends State<WorkExperience> {
                     padding:
                         EdgeInsets.only(left: 331.0, right: 19.0, top: 30.0),
                     child: FlatButton(
-                        onPressed: null,
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, UserProfile.userProfileId);
+                        },
                         child: SvgPicture.asset(
                           "images/Cancel_line.svg",
                         )),
@@ -80,9 +79,8 @@ class _WorkExperienceState extends State<WorkExperience> {
                         )),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 15.0),
-                    child: AccomplishmentButtons()
-                  ),
+                      padding: EdgeInsets.only(top: 15.0),
+                      child: AccomplishmentButtons()),
                   Row(
                     children: [
                       Row(
@@ -90,7 +88,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                           Theme(
                             data: ThemeData(
                                 unselectedWidgetColor:
-                                Color.fromRGBO(79, 67, 154, 1)),
+                                    Color.fromRGBO(79, 67, 154, 1)),
                             child: Radio(
                               value: 1,
                               groupValue: selectedRadio,
@@ -102,7 +100,8 @@ class _WorkExperienceState extends State<WorkExperience> {
                           ),
                           Text(
                             'Work',
-                            style: TextStyle(color: Color.fromRGBO(79, 67, 154, 1)),
+                            style: TextStyle(
+                                color: Color.fromRGBO(79, 67, 154, 1)),
                           ),
                         ],
                       ),
@@ -111,7 +110,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                           Theme(
                             data: ThemeData(
                                 unselectedWidgetColor:
-                                Color.fromRGBO(79, 67, 154, 1)),
+                                    Color.fromRGBO(79, 67, 154, 1)),
                             child: Radio(
                               value: 2,
                               groupValue: selectedRadio,
@@ -134,7 +133,6 @@ class _WorkExperienceState extends State<WorkExperience> {
                           ),
                         ],
                       ),
-
                     ],
                   ),
                   Container(
@@ -153,15 +151,11 @@ class _WorkExperienceState extends State<WorkExperience> {
                       },
                       decoration: InputDecoration(
                         labelText: "Designation/Job Position *",
-                        labelStyle:TextStyle(
-                          color:Colors.grey
-                        ),
+                        labelStyle: TextStyle(color: Colors.grey),
                         border: const OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                        ),
+                            borderSide: BorderSide(
+                                color: Color.fromRGBO(79, 67, 154, 1))),
                       ),
                     ),
                   ),
@@ -182,15 +176,11 @@ class _WorkExperienceState extends State<WorkExperience> {
                       },
                       decoration: InputDecoration(
                         labelText: "Organisation/Company *",
-                        labelStyle:TextStyle(
-                            color: Colors.grey
-                        ),
+                        labelStyle: TextStyle(color: Colors.grey),
                         border: const OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                                color: Color.fromRGBO(79, 67, 154, 1)
-                            )
-                        ),
+                                color: Color.fromRGBO(79, 67, 154, 1))),
                       ),
                     ),
                   ),
@@ -213,15 +203,11 @@ class _WorkExperienceState extends State<WorkExperience> {
                       },
                       decoration: InputDecoration(
                         labelText: "Industry *",
-                        labelStyle:TextStyle(
-                            color: Colors.grey
-                        ),
+                        labelStyle: TextStyle(color: Colors.grey),
                         border: const OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                                color: Color.fromRGBO(79, 67, 154, 1)
-                            )
-                        ),
+                                color: Color.fromRGBO(79, 67, 154, 1))),
                       ),
                     ),
                   ),
@@ -238,15 +224,11 @@ class _WorkExperienceState extends State<WorkExperience> {
                       keyboardAppearance: Brightness.dark,
                       decoration: InputDecoration(
                         labelText: "Location",
-                        labelStyle:TextStyle(
-                            color: Colors.grey
-                        ),
+                        labelStyle: TextStyle(color: Colors.grey),
                         border: const OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                                color: Color.fromRGBO(79, 67, 154, 1)
-                            )
-                        ),
+                                color: Color.fromRGBO(79, 67, 154, 1))),
                       ),
                     ),
                   ),
@@ -261,7 +243,8 @@ class _WorkExperienceState extends State<WorkExperience> {
                           width: 185.0,
                           height: 60,
                           child: Theme(
-                            data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
+                            data: Theme.of(context).copyWith(
+                                primaryColor: Color.fromRGBO(79, 67, 154, 1)),
                             child: TextFormField(
                               enableSuggestions: true,
                               controller: startDateController,
@@ -275,15 +258,12 @@ class _WorkExperienceState extends State<WorkExperience> {
                               },
                               decoration: InputDecoration(
                                   labelText: "Start Date *",
-                                  labelStyle:TextStyle(
-                                      color: Colors.grey
-                                  ),
+                                  labelStyle: TextStyle(color: Colors.grey),
                                   border: const OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                          color: Color.fromRGBO(79, 67, 154, 1)
-                                      )
-                                  ),
+                                          color:
+                                              Color.fromRGBO(79, 67, 154, 1))),
                                   suffixIcon:
                                       Icon(Icons.calendar_today_outlined)),
                             ),
@@ -296,31 +276,29 @@ class _WorkExperienceState extends State<WorkExperience> {
                           width: 185.0,
                           height: 60,
                           child: Theme(
-                            data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
+                            data: Theme.of(context).copyWith(
+                                primaryColor: Color.fromRGBO(79, 67, 154, 1)),
                             child: TextFormField(
+                              enabled: !_isChecked,
                               enableSuggestions: true,
                               controller: endDateController,
                               keyboardType: TextInputType.datetime,
                               keyboardAppearance: Brightness.dark,
                               validator: (value) {
-                                if (value.isEmpty) {
+                                if (value.isEmpty && !_isChecked) {
                                   return "Enter End Date";
                                 }
                                 return null;
                               },
                               decoration: InputDecoration(
-                                  labelText: "End Date *",
-                                  labelStyle:TextStyle(
-                                      color: Colors.grey
-                                  ),
-                                  border: const OutlineInputBorder(),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Color.fromRGBO(79, 67, 154, 1)
-                                      )
-                                  ),
-                                  suffixIcon:
-                                      Icon(Icons.calendar_today_outlined),),
+                                labelText: "End Date *",
+                                labelStyle: TextStyle(color: Colors.grey),
+                                border: const OutlineInputBorder(),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Color.fromRGBO(79, 67, 154, 1))),
+                                suffixIcon: Icon(Icons.calendar_today_outlined),
+                              ),
                             ),
                           ),
                         ),
@@ -333,7 +311,9 @@ class _WorkExperienceState extends State<WorkExperience> {
                   Row(
                     children: [
                       Theme(
-                        data: ThemeData(unselectedWidgetColor: Color.fromRGBO(79, 67, 154, 1)),
+                        data: ThemeData(
+                            unselectedWidgetColor:
+                                Color.fromRGBO(79, 67, 154, 1)),
                         child: Checkbox(
                           value: _isChecked,
                           tristate: false,
@@ -366,15 +346,11 @@ class _WorkExperienceState extends State<WorkExperience> {
                       keyboardAppearance: Brightness.dark,
                       decoration: InputDecoration(
                         labelText: "Description",
-                        labelStyle:TextStyle(
-                            color: Colors.grey
-                        ),
+                        labelStyle: TextStyle(color: Colors.grey),
                         border: const OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                                color: Color.fromRGBO(79, 67, 154, 1)
-                            )
-                        ),
+                                color: Color.fromRGBO(79, 67, 154, 1))),
                       ),
                     ),
                   ),
@@ -410,7 +386,8 @@ class _WorkExperienceState extends State<WorkExperience> {
                             ),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
-                            borderSide: BorderSide(color: Color.fromRGBO(79, 67, 154, 1)),
+                            borderSide: BorderSide(
+                                color: Color.fromRGBO(79, 67, 154, 1)),
                           ),
                         ),
                       ),
@@ -426,20 +403,20 @@ class _WorkExperienceState extends State<WorkExperience> {
                     child: RaisedButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5)),
-                      onPressed: ()  async {
-                          if(_formKey.currentState.validate()){
-                            await db.collection("work").add({
-                              'designation':designationController.text,
-                              'organisation':organisationController.text,
-                              'location':locationController.text,
-                              'industry':industryController.text,
-                              'description':designationController.text,
-                             'startDate':startDateController.text,
-                              'endDate':endDateController.text
-                            });
-                            Navigator.pushNamed(context, Education.educationId);
+                      onPressed: () async {
+                        if (_formKey.currentState.validate()) {
+                          await db.collection("work").add({
+                            'designation': designationController.text,
+                            'organisation': organisationController.text,
+                            'location': locationController.text,
+                            'industry': industryController.text,
+                            'description': designationController.text,
+                            'startDate': startDateController.text,
+                            'endDate': endDateController.text,
+                            'currently_working':_isChecked
+                          });
+                          Navigator.pushNamed(context, Education.educationId);
                         }
-
                       },
                       color: Color.fromRGBO(79, 67, 154, 1),
                       child: Text(

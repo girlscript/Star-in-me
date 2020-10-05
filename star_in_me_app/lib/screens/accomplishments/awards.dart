@@ -35,7 +35,10 @@ class _AwardsState extends State<Awards> {
                 Padding(
                   padding: EdgeInsets.only(left: 331.0, right: 19.0, top: 30.0),
                   child: FlatButton(
-                      onPressed: null,
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, UserProfile.userProfileId);
+                      },
                       child: SvgPicture.asset(
                         "images/Cancel_line.svg",
                       )),

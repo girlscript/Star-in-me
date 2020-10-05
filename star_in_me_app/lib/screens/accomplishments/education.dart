@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
 import 'package:star_in_me_app/screens/accomplishments/certification.dart';
 
@@ -33,7 +34,10 @@ class _EducationState extends State<Education> {
                 Padding(
                   padding: EdgeInsets.only(left: 331.0, right: 19.0, top: 30.0),
                   child: FlatButton(
-                      onPressed: null,
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, UserProfile.userProfileId);
+                      },
                       child: SvgPicture.asset(
                         "images/Cancel_line.svg",
                       )),
@@ -181,6 +185,7 @@ class _EducationState extends State<Education> {
                         child: Theme(
                           data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
                           child: TextFormField(
+                            enabled: !_isChecked,
                             enableSuggestions: true,
                             controller: endDateController,
                             keyboardType: TextInputType.text,
@@ -317,7 +322,8 @@ class _EducationState extends State<Education> {
                           'field_of_study':studyController.text,
                           'start_date':startDateController.text,
                           'end_date':endDateController.text,
-                          'description':descriptionController.text
+                          'description':descriptionController.text,
+                          'highlight':_isChecked
                         });
                         Navigator.pushNamed(context, Certification.certificationId);
                       }

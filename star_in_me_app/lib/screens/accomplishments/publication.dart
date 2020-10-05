@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
 import 'package:star_in_me_app/screens/accomplishments/awards.dart';
 import 'package:star_in_me_app/screens/accomplishments/certification.dart';
@@ -53,7 +54,10 @@ class _PublicationState extends State<Publication> {
                 Padding(
                   padding: EdgeInsets.only(left: 331.0, right: 19.0, top: 30.0),
                   child: FlatButton(
-                      onPressed: null,
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, UserProfile.userProfileId);
+                      },
                       child: SvgPicture.asset(
                         "images/Cancel_line.svg",
                       )),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
 import 'package:star_in_me_app/screens/accomplishments/education.dart';
 import 'package:star_in_me_app/screens/accomplishments/work_experience.dart';
@@ -53,7 +54,10 @@ class _VolunteerState extends State<Volunteer> {
                 Padding(
                   padding: EdgeInsets.only(left: 331.0, right: 19.0, top: 30.0),
                   child: FlatButton(
-                      onPressed: null,
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, UserProfile.userProfileId);
+                      },
                       child: SvgPicture.asset(
                         "images/Cancel_line.svg",
                       )),
@@ -280,6 +284,7 @@ class _VolunteerState extends State<Volunteer> {
                         child: Theme(
                           data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
                           child: TextFormField(
+                            enabled: !_isChecked,
                             enableSuggestions: true,
                             controller: endDateController,
                             keyboardType: TextInputType.text,
@@ -419,7 +424,8 @@ class _VolunteerState extends State<Volunteer> {
                           'location':locationController.text,
                           'start_date':startDateController.text,
                           'end_date':endDateController.text,
-                          'description':descriptionController.text
+                          'description':descriptionController.text,
+                          'currently_working':_isChecked
                         });
                         Navigator.pushNamed(context, Education.educationId);
                       }
