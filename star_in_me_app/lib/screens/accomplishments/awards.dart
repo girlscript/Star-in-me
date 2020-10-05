@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
 
 
@@ -11,6 +13,7 @@ class Awards extends StatefulWidget {
 }
 
 class _AwardsState extends State<Awards> {
+  final db = FirebaseFirestore.instance;
   final _formKey = GlobalKey<FormState>();
   final titleController = TextEditingController();
   final issuerController = TextEditingController();
@@ -56,7 +59,7 @@ class _AwardsState extends State<Awards> {
                 SizedBox(height: 53,),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: titleController,
@@ -80,7 +83,7 @@ class _AwardsState extends State<Awards> {
                 SizedBox(height: 10),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: issuerController,
@@ -100,7 +103,7 @@ class _AwardsState extends State<Awards> {
                 ),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: issueDateController,
@@ -121,7 +124,7 @@ class _AwardsState extends State<Awards> {
                 ),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: descriptionController,
@@ -144,7 +147,18 @@ class _AwardsState extends State<Awards> {
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
-                    onPressed: null,
+                    onPressed: () async {
+                      if(_formKey.currentState.validate()){
+                        await db.collection("awards").add({
+                          'award_title':titleController.text,
+                          'issuer':issuerController.text,
+                          'issue_date':issueDateController.text,
+                          'description':descriptionController.text
+                        });
+                        Navigator.pushNamed(context, UserProfile.userProfileId);
+                      }
+                    },
+                    color: Color.fromRGBO(79, 67, 154, 1),
                     child: Text(
                       'SUBMIT',
                       style: TextStyle(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
+import 'package:star_in_me_app/screens/accomplishments/awards.dart';
 import 'package:star_in_me_app/screens/accomplishments/certification.dart';
 import 'package:star_in_me_app/screens/accomplishments/patent.dart';
 import 'package:star_in_me_app/screens/accomplishments/publication.dart';
@@ -14,6 +16,7 @@ class PatentPending extends StatefulWidget {
 }
 
 class _PatentPendingState extends State<PatentPending> {
+  final db = FirebaseFirestore.instance;
   final _formKey = GlobalKey<FormState>();
   int selectedRadio;
   final titleController = TextEditingController();
@@ -148,7 +151,7 @@ class _PatentPendingState extends State<PatentPending> {
                 SizedBox(height: 18,),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: titleController,
@@ -172,7 +175,7 @@ class _PatentPendingState extends State<PatentPending> {
                 SizedBox(height: 10),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: officeController,
@@ -192,7 +195,7 @@ class _PatentPendingState extends State<PatentPending> {
                 ),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: numberController,
@@ -212,7 +215,7 @@ class _PatentPendingState extends State<PatentPending> {
                 ),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: descriptionController,
@@ -235,7 +238,18 @@ class _PatentPendingState extends State<PatentPending> {
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
-                    onPressed: null,
+                    onPressed: () async {
+                      if(_formKey.currentState.validate()){
+                        await db.collection("patent_pending").add({
+                          'patent_title':titleController.text,
+                          'patent_office':officeController.text,
+                          'application_number':numberController.text,
+                          'description':descriptionController.text
+                        });
+                        Navigator.pushNamed(context, Awards.awardsId);
+                      }
+                    },
+                    color: Color.fromRGBO(79, 67, 154, 1),
                     child: Text(
                       'SUBMIT',
                       style: TextStyle(

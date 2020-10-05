@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
+import 'package:star_in_me_app/screens/accomplishments/certification.dart';
 
 
 class Education extends StatefulWidget {
@@ -10,6 +12,7 @@ class Education extends StatefulWidget {
 }
 
 class _EducationState extends State<Education> {
+  final db = FirebaseFirestore.instance;
   final _formKey = GlobalKey<FormState>();
   final schoolController = TextEditingController();
   final degreeController = TextEditingController();
@@ -54,7 +57,7 @@ class _EducationState extends State<Education> {
                 SizedBox(height: 53,),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: schoolController,
@@ -78,7 +81,7 @@ class _EducationState extends State<Education> {
                 SizedBox(height: 10),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: degreeController,
@@ -96,7 +99,7 @@ class _EducationState extends State<Education> {
                 SizedBox(height: 10),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: studyController,
@@ -118,7 +121,7 @@ class _EducationState extends State<Education> {
                     children: [
                       Container(
                         width: 185.0,
-                        height: 40,
+                        height: 60,
                         child: TextFormField(
                           enableSuggestions: true,
                           controller: startDateController,
@@ -139,7 +142,7 @@ class _EducationState extends State<Education> {
                       ),
                       Container(
                         width: 185.0,
-                        height: 40,
+                        height: 60,
                         child: TextFormField(
                           enableSuggestions: true,
                           controller: endDateController,
@@ -163,7 +166,7 @@ class _EducationState extends State<Education> {
                 ),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: descriptionController,
@@ -252,7 +255,20 @@ class _EducationState extends State<Education> {
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
-                    onPressed: null,
+                    onPressed: () async {
+                      if(_formKey.currentState.validate()){
+                        await db.collection("education").add({
+                          'school':schoolController.text,
+                          'degree':descriptionController.text,
+                          'field_of_study':studyController.text,
+                          'start_date':startDateController.text,
+                          'end_date':endDateController.text,
+                          'description':descriptionController.text
+                        });
+                        Navigator.pushNamed(context, Certification.certificationId);
+                      }
+                    },
+                    color: Color.fromRGBO(79, 67, 154, 1),
                     child: Text(
                       'SUBMIT',
                       style: TextStyle(

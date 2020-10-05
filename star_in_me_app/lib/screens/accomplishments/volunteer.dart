@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
+import 'package:star_in_me_app/screens/accomplishments/education.dart';
 import 'package:star_in_me_app/screens/accomplishments/work_experience.dart';
 
 class Volunteer extends StatefulWidget {
@@ -10,6 +12,7 @@ class Volunteer extends StatefulWidget {
 }
 
 class _VolunteerState extends State<Volunteer> {
+  final db = FirebaseFirestore.instance;
   final _formKey = GlobalKey<FormState>();
   final organisationController = TextEditingController();
   final volunteerController = TextEditingController();
@@ -102,7 +105,7 @@ class _VolunteerState extends State<Volunteer> {
                 ]),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: organisationController,
@@ -126,7 +129,7 @@ class _VolunteerState extends State<Volunteer> {
                 SizedBox(height: 10),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: volunteerController,
@@ -144,7 +147,7 @@ class _VolunteerState extends State<Volunteer> {
                 SizedBox(height: 10),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: causeController,
@@ -162,7 +165,7 @@ class _VolunteerState extends State<Volunteer> {
                 SizedBox(height: 10),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: locationController,
@@ -186,7 +189,7 @@ class _VolunteerState extends State<Volunteer> {
                     children: [
                       Container(
                         width: 185.0,
-                        height: 40,
+                        height: 60,
                         child: TextFormField(
                           enableSuggestions: true,
                           controller: startDateController,
@@ -206,7 +209,7 @@ class _VolunteerState extends State<Volunteer> {
                       ),
                       Container(
                         width: 185.0,
-                        height: 40,
+                        height: 60,
                         child: TextFormField(
                           enableSuggestions: true,
                           controller: endDateController,
@@ -257,7 +260,7 @@ class _VolunteerState extends State<Volunteer> {
                 ),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: descriptionController,
@@ -321,7 +324,21 @@ class _VolunteerState extends State<Volunteer> {
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
-                    onPressed: null,
+                    onPressed: () async {
+                      if(_formKey.currentState.validate()){
+                        await db.collection("volunteer").add({
+                          'organisation':organisationController.text,
+                          'volunteer_role':volunteerController.text,
+                          'cause':causeController.text,
+                          'location':locationController.text,
+                          'start_date':startDateController.text,
+                          'end_date':endDateController.text,
+                          'description':descriptionController.text
+                        });
+                        Navigator.pushNamed(context, Education.educationId);
+                      }
+                    },
+                    color: Color.fromRGBO(79, 67, 154, 1),
                     child: Text(
                       'SUBMIT',
                       style: TextStyle(

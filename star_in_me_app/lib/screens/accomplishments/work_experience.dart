@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
+import 'package:star_in_me_app/screens/accomplishments/education.dart';
 import 'package:star_in_me_app/screens/accomplishments/volunteer.dart';
 
 
@@ -115,11 +116,11 @@ class _WorkExperienceState extends State<WorkExperience> {
                       controller: designationController,
                       keyboardType: TextInputType.text,
                       keyboardAppearance: Brightness.dark,
-                      // ignore: missing_return
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Enter Your Designation/Job Position";
                         }
+                        return null;
                       },
                       decoration: InputDecoration(
                         labelText: "Designation/Job Position *",
@@ -136,11 +137,11 @@ class _WorkExperienceState extends State<WorkExperience> {
                       controller: organisationController,
                       keyboardType: TextInputType.text,
                       keyboardAppearance: Brightness.dark,
-                      // ignore: missing_return
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Enter Your Organisation/Company";
                         }
+                        return null;
                       },
                       decoration: InputDecoration(
                         labelText: "Organisation/Company *",
@@ -159,11 +160,11 @@ class _WorkExperienceState extends State<WorkExperience> {
                       controller: industryController,
                       keyboardType: TextInputType.text,
                       keyboardAppearance: Brightness.dark,
-                      // ignore: missing_return
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Enter Your Industry";
                         }
+                        return null;
                       },
                       decoration: InputDecoration(
                         labelText: "Industry *",
@@ -203,11 +204,11 @@ class _WorkExperienceState extends State<WorkExperience> {
                             controller: startDateController,
                             keyboardType: TextInputType.datetime,
                             keyboardAppearance: Brightness.dark,
-                            // ignore: missing_return
                             validator: (value) {
                               if (value.isEmpty) {
                                 return "Enter Start Date";
                               }
+                              return null;
                             },
                             decoration: InputDecoration(
                                 labelText: "Start Date *",
@@ -227,11 +228,11 @@ class _WorkExperienceState extends State<WorkExperience> {
                             controller: endDateController,
                             keyboardType: TextInputType.datetime,
                             keyboardAppearance: Brightness.dark,
-                            // ignore: missing_return
                             validator: (value) {
                               if (value.isEmpty) {
                                 return "Enter End Date";
                               }
+                              return null;
                             },
                             decoration: InputDecoration(
                                 labelText: "End Date *",
@@ -345,7 +346,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                              'startDate':startDateController.text,
                               'endDate':endDateController.text
                             });
-                            // Navigator.pushNamed(context, Education.educationId);
+                            Navigator.pushNamed(context, Education.educationId);
                         }
 
                       },

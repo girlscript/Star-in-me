@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
+import 'package:star_in_me_app/screens/accomplishments/awards.dart';
 import 'package:star_in_me_app/screens/accomplishments/certification.dart';
 import 'package:star_in_me_app/screens/accomplishments/patent.dart';
 
@@ -12,6 +14,7 @@ class Publication extends StatefulWidget {
 }
 
 class _PublicationState extends State<Publication> {
+  final db = FirebaseFirestore.instance;
   final _formKey = GlobalKey<FormState>();
   int selectedRadio;
   final titleController = TextEditingController();
@@ -122,7 +125,7 @@ class _PublicationState extends State<Publication> {
                 SizedBox(height: 14,),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: titleController,
@@ -146,7 +149,7 @@ class _PublicationState extends State<Publication> {
                 SizedBox(height: 10),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: publisherController,
@@ -166,7 +169,7 @@ class _PublicationState extends State<Publication> {
                 ),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: authorController,
@@ -186,7 +189,7 @@ class _PublicationState extends State<Publication> {
                 ),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: publicationUrlController,
@@ -206,7 +209,7 @@ class _PublicationState extends State<Publication> {
                 ),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: publicationDateController,
@@ -227,7 +230,7 @@ class _PublicationState extends State<Publication> {
                 ),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: descriptionController,
@@ -250,7 +253,20 @@ class _PublicationState extends State<Publication> {
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
-                    onPressed: null,
+                    onPressed: () async {
+                      if(_formKey.currentState.validate()){
+                        await db.collection("publication").add({
+                          'title':titleController.text,
+                          'publisher':publisherController.text,
+                          'authors':authorController.text,
+                          'publication_url':publicationUrlController.text,
+                          'publication_date':publicationDateController.text,
+                          'description':descriptionController.text
+                        });
+                        Navigator.pushNamed(context, Awards.awardsId);
+                      }
+                    },
+                    color: Color.fromRGBO(79, 67, 154, 1),
                     child: Text(
                       'SUBMIT',
                       style: TextStyle(

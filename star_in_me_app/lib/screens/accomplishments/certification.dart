@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
+import 'package:star_in_me_app/screens/accomplishments/awards.dart';
 import 'package:star_in_me_app/screens/accomplishments/patent.dart';
 import 'package:star_in_me_app/screens/accomplishments/publication.dart';
 
@@ -13,6 +15,7 @@ class Certification extends StatefulWidget {
 }
 
 class _CertificationState extends State<Certification> {
+  final db = FirebaseFirestore.instance;
   final _formKey = GlobalKey<FormState>();
   int selectedRadio;
   final certificateController = TextEditingController();
@@ -123,7 +126,7 @@ class _CertificationState extends State<Certification> {
                 SizedBox(height: 14,),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: certificateController,
@@ -147,7 +150,7 @@ class _CertificationState extends State<Certification> {
                 SizedBox(height: 10),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: organisationController,
@@ -173,7 +176,7 @@ class _CertificationState extends State<Certification> {
                 ),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: certificateIdController,
@@ -193,7 +196,7 @@ class _CertificationState extends State<Certification> {
                 ),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: certificateUrlController,
@@ -217,7 +220,7 @@ class _CertificationState extends State<Certification> {
                     children: [
                       Container(
                         width: 185.0,
-                        height: 40,
+                        height: 60,
                         child: TextFormField(
                           enableSuggestions: true,
                           controller: issueDateController,
@@ -238,7 +241,7 @@ class _CertificationState extends State<Certification> {
                       ),
                       Container(
                         width: 185.0,
-                        height: 40,
+                        height: 60,
                         child: TextFormField(
                           enableSuggestions: true,
                           controller: expiryDateController,
@@ -294,7 +297,20 @@ class _CertificationState extends State<Certification> {
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
-                    onPressed: null,
+                    onPressed: () async {
+                      if(_formKey.currentState.validate()){
+                        await db.collection("certification").add({
+                          'certification':certificateController.text,
+                          'issuing_organisation':organisationController.text,
+                          'certificated_id':certificateIdController.text,
+                          'certificate_url':certificateUrlController.text,
+                          'issue_date':issueDateController.text,
+                          'expiry_date':expiryDateController.text
+                        });
+                        Navigator.pushNamed(context, Awards.awardsId);
+                      }
+                    },
+                    color: Color.fromRGBO(79, 67, 154, 1),
                     child: Text(
                       'SUBMIT',
                       style: TextStyle(

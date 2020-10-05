@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
+import 'package:star_in_me_app/screens/accomplishments/awards.dart';
 import 'package:star_in_me_app/screens/accomplishments/certification.dart';
 import 'package:star_in_me_app/screens/accomplishments/patent_pending.dart';
 import 'package:star_in_me_app/screens/accomplishments/publication.dart';
@@ -14,18 +16,19 @@ class Patent extends StatefulWidget {
 }
 
 class _PatentState extends State<Patent> {
+  final db = FirebaseFirestore.instance;
   final _formKey = GlobalKey<FormState>();
   int selectedRadio;
   final titleController = TextEditingController();
   final officeController = TextEditingController();
   final numberController = TextEditingController();
-  final publicationDateController = TextEditingController();
+  final issueDateController = TextEditingController();
   final descriptionController = TextEditingController();
 
   String title,
   office,
   number,
-      publicationDate,
+      issueDate,
       description;
   bool _isChecked = false;
   bool navigateToPage = false;
@@ -151,7 +154,7 @@ class _PatentState extends State<Patent> {
                 SizedBox(height: 18,),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: titleController,
@@ -175,7 +178,7 @@ class _PatentState extends State<Patent> {
                 SizedBox(height: 10),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: officeController,
@@ -195,7 +198,7 @@ class _PatentState extends State<Patent> {
                 ),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: numberController,
@@ -215,17 +218,17 @@ class _PatentState extends State<Patent> {
                 ),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
-                    controller: publicationDateController,
+                    controller: issueDateController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
                     onChanged: (value) {
-                      publicationDate = value;
+                      issueDate = value;
                     },
                     decoration: InputDecoration(
-                        labelText: "Publication Date",
+                        labelText: "Issue Date",
                         border: const OutlineInputBorder(),
                         suffixIcon:
                         Icon(Icons.calendar_today_outlined)),
@@ -236,7 +239,7 @@ class _PatentState extends State<Patent> {
                 ),
                 Container(
                   width: 380.0,
-                  height: 40,
+                  height: 60,
                   child: TextFormField(
                     enableSuggestions: true,
                     controller: descriptionController,
@@ -259,7 +262,19 @@ class _PatentState extends State<Patent> {
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
-                    onPressed: null,
+                    onPressed: () async {
+                      if(_formKey.currentState.validate()){
+                        await db.collection("patent").add({
+                        'patent_title':titleController.text,
+                          'patent_office':officeController.text,
+                          'patent_number':numberController.text,
+                          'issue_date':issueDateController.text,
+                          'description':descriptionController.text
+                        });
+                        Navigator.pushNamed(context, Awards.awardsId);
+                      }
+                    },
+                    color: Color.fromRGBO(79, 67, 154, 1),
                     child: Text(
                       'SUBMIT',
                       style: TextStyle(
