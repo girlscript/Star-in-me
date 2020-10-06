@@ -4,8 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
 
-
-
 class Awards extends StatefulWidget {
   static final String awardsId = '/awards';
   @override
@@ -20,11 +18,18 @@ class _AwardsState extends State<Awards> {
   final issueDateController = TextEditingController();
   final descriptionController = TextEditingController();
 
-  String title,
-     issuer,
-      issueDate,
-      description;
+  List<FocusNode> _focusNode;
   bool navigateToPage = false;
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = new List(6);
+    _focusNode[0] = FocusNode();
+    _focusNode[1] = FocusNode();
+    _focusNode[2] = FocusNode();
+    _focusNode[3] = FocusNode();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +41,7 @@ class _AwardsState extends State<Awards> {
                   padding: EdgeInsets.only(left: 331.0, right: 19.0, top: 30.0),
                   child: FlatButton(
                       onPressed: () {
-                        Navigator.pushNamed(
-                            context, UserProfile.userProfileId);
+                        Navigator.pushNamed(context, UserProfile.userProfileId);
                       },
                       child: SvgPicture.asset(
                         "images/Cancel_line.svg",
@@ -56,14 +60,16 @@ class _AwardsState extends State<Awards> {
                       )),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 15.0),
-                  child: AccomplishmentButtons()
+                    padding: EdgeInsets.only(top: 15.0),
+                    child: AccomplishmentButtons()),
+                SizedBox(
+                  height: 53,
                 ),
-                SizedBox(height: 53,),
                 Container(
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[0],
                     enableSuggestions: true,
                     controller: titleController,
                     keyboardType: TextInputType.text,
@@ -74,20 +80,21 @@ class _AwardsState extends State<Awards> {
                       }
                       return null;
                     },
-                    onChanged: (value) {
-                      title = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[0]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Honor/Award Title *",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[0].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -96,24 +103,26 @@ class _AwardsState extends State<Awards> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[1],
                     enableSuggestions: true,
                     controller: issuerController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      issuer = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[1]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Issuer",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[1].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -124,29 +133,30 @@ class _AwardsState extends State<Awards> {
                   width: 380.0,
                   height: 60,
                   child: Theme(
-                    data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
-
+                    data: Theme.of(context)
+                        .copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
                     child: TextFormField(
+                      focusNode: _focusNode[2],
                       enableSuggestions: true,
                       controller: issueDateController,
                       keyboardType: TextInputType.text,
                       keyboardAppearance: Brightness.dark,
-                      onChanged: (value) {
-                       issueDate = value;
+                      onTap: () {
+                        setState(() {
+                          FocusScope.of(context).requestFocus(_focusNode[2]);
+                        });
                       },
                       decoration: InputDecoration(
                           labelText: "Issue Date",
-                          labelStyle:TextStyle(
-                              color: Colors.grey
-                          ),
+                          labelStyle: TextStyle(
+                              color: _focusNode[2].hasFocus
+                                  ? Color.fromRGBO(79, 67, 154, 1)
+                                  : Colors.grey),
                           border: const OutlineInputBorder(),
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Color.fromRGBO(79, 67, 154, 1)
-                              )
-                          ),
-                          suffixIcon:
-                          Icon(Icons.calendar_today_outlined)),
+                                  color: Color.fromRGBO(79, 67, 154, 1))),
+                          suffixIcon: Icon(Icons.calendar_today_outlined)),
                     ),
                   ),
                 ),
@@ -157,28 +167,32 @@ class _AwardsState extends State<Awards> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[3],
                     enableSuggestions: true,
                     controller: descriptionController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      description = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[3]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Description",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[3].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
-                SizedBox(height: 15,),
+                SizedBox(
+                  height: 15,
+                ),
                 Container(
                   width: 380,
                   height: 40,
@@ -187,12 +201,12 @@ class _AwardsState extends State<Awards> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
                     onPressed: () async {
-                      if(_formKey.currentState.validate()){
+                      if (_formKey.currentState.validate()) {
                         await db.collection("awards").add({
-                          'award_title':titleController.text,
-                          'issuer':issuerController.text,
-                          'issue_date':issueDateController.text,
-                          'description':descriptionController.text
+                          'award_title': titleController.text,
+                          'issuer': issuerController.text,
+                          'issue_date': issueDateController.text,
+                          'description': descriptionController.text
                         });
                         Navigator.pushNamed(context, UserProfile.userProfileId);
                       }

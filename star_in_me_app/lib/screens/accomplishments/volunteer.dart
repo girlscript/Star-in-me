@@ -22,13 +22,7 @@ class _VolunteerState extends State<Volunteer> {
   final descriptionController = TextEditingController();
   final startDateController = TextEditingController();
   final endDateController = TextEditingController();
-  String organisation,
-      volunteer,
-      cause,
-      location,
-      description,
-      startDate,
-      endDate;
+  List<FocusNode> _focusNode;
   bool _isChecked = false;
   int selectedRadio;
   bool navigateToPage = false;
@@ -36,6 +30,14 @@ class _VolunteerState extends State<Volunteer> {
   void initState() {
     super.initState();
     selectedRadio = 2;
+    _focusNode = new List(7);
+    _focusNode[0] = FocusNode();
+    _focusNode[1] = FocusNode();
+    _focusNode[2] = FocusNode();
+    _focusNode[3] = FocusNode();
+    _focusNode[4] = FocusNode();
+    _focusNode[5] = FocusNode();
+    _focusNode[6] = FocusNode();
   }
 
   setSelectedRadio(int val) {
@@ -55,8 +57,7 @@ class _VolunteerState extends State<Volunteer> {
                   padding: EdgeInsets.only(left: 331.0, right: 19.0, top: 30.0),
                   child: FlatButton(
                       onPressed: () {
-                        Navigator.pushNamed(
-                            context, UserProfile.userProfileId);
+                        Navigator.pushNamed(context, UserProfile.userProfileId);
                       },
                       child: SvgPicture.asset(
                         "images/Cancel_line.svg",
@@ -84,7 +85,7 @@ class _VolunteerState extends State<Volunteer> {
                         Theme(
                           data: ThemeData(
                               unselectedWidgetColor:
-                              Color.fromRGBO(79, 67, 154, 1)),
+                                  Color.fromRGBO(79, 67, 154, 1)),
                           child: Radio(
                             value: 1,
                             groupValue: selectedRadio,
@@ -112,7 +113,7 @@ class _VolunteerState extends State<Volunteer> {
                         Theme(
                           data: ThemeData(
                               unselectedWidgetColor:
-                              Color.fromRGBO(79, 67, 154, 1)),
+                                  Color.fromRGBO(79, 67, 154, 1)),
                           child: Radio(
                             value: 2,
                             groupValue: selectedRadio,
@@ -124,17 +125,18 @@ class _VolunteerState extends State<Volunteer> {
                         ),
                         Text(
                           'Volunteer',
-                          style: TextStyle(color: Color.fromRGBO(79, 67, 154, 1)),
+                          style:
+                              TextStyle(color: Color.fromRGBO(79, 67, 154, 1)),
                         ),
                       ],
                     ),
-
                   ],
                 ),
                 Container(
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[0],
                     enableSuggestions: true,
                     controller: organisationController,
                     keyboardType: TextInputType.text,
@@ -145,20 +147,21 @@ class _VolunteerState extends State<Volunteer> {
                       }
                       return null;
                     },
-                    onChanged: (value) {
-                      organisation = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[0]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Organisation/Company *",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[0].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -167,24 +170,26 @@ class _VolunteerState extends State<Volunteer> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[1],
                     enableSuggestions: true,
                     controller: volunteerController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      volunteer = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[1]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Volunteer Role",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[1].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -193,24 +198,26 @@ class _VolunteerState extends State<Volunteer> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[2],
                     enableSuggestions: true,
                     controller: causeController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      cause = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[2]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Cause",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[2].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -219,24 +226,26 @@ class _VolunteerState extends State<Volunteer> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[3],
                     enableSuggestions: true,
                     controller: locationController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      location = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[3]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Location",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[3].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -251,27 +260,32 @@ class _VolunteerState extends State<Volunteer> {
                         width: 185.0,
                         height: 60,
                         child: Theme(
-                          data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
+                          data: Theme.of(context).copyWith(
+                              primaryColor: Color.fromRGBO(79, 67, 154, 1)),
                           child: TextFormField(
+                            focusNode: _focusNode[4],
                             enableSuggestions: true,
                             controller: startDateController,
                             keyboardType: TextInputType.text,
                             keyboardAppearance: Brightness.dark,
-                            onChanged: (value) {
-                              startDate = value;
+                            onTap: () {
+                              setState(() {
+                                FocusScope.of(context)
+                                    .requestFocus(_focusNode[4]);
+                              });
                             },
                             decoration: InputDecoration(
                                 labelText: "Start Date",
-                                labelStyle:TextStyle(
-                                    color: Colors.grey
-                                ),
+                                labelStyle: TextStyle(
+                                    color: _focusNode[4].hasFocus
+                                        ? Color.fromRGBO(79, 67, 154, 1)
+                                        : Colors.grey),
                                 border: const OutlineInputBorder(),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: Color.fromRGBO(79, 67, 154, 1)
-                                    )
-                                ),
-                                suffixIcon: Icon(Icons.calendar_today_outlined)),
+                                        color: Color.fromRGBO(79, 67, 154, 1))),
+                                suffixIcon:
+                                    Icon(Icons.calendar_today_outlined)),
                           ),
                         ),
                       ),
@@ -282,28 +296,33 @@ class _VolunteerState extends State<Volunteer> {
                         width: 185.0,
                         height: 60,
                         child: Theme(
-                          data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
+                          data: Theme.of(context).copyWith(
+                              primaryColor: Color.fromRGBO(79, 67, 154, 1)),
                           child: TextFormField(
+                            focusNode: _focusNode[5],
                             enabled: !_isChecked,
                             enableSuggestions: true,
                             controller: endDateController,
                             keyboardType: TextInputType.text,
                             keyboardAppearance: Brightness.dark,
-                            onChanged: (value) {
-                              endDate = value;
+                            onTap: () {
+                              setState(() {
+                                FocusScope.of(context)
+                                    .requestFocus(_focusNode[5]);
+                              });
                             },
                             decoration: InputDecoration(
                                 labelText: "End Date",
-                                labelStyle:TextStyle(
-                                    color: Colors.grey
-                                ),
+                                labelStyle: TextStyle(
+                                    color: _focusNode[5].hasFocus
+                                        ? Color.fromRGBO(79, 67, 154, 1)
+                                        : Colors.grey),
                                 border: const OutlineInputBorder(),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: Color.fromRGBO(79, 67, 154, 1)
-                                    )
-                                ),
-                                suffixIcon: Icon(Icons.calendar_today_outlined)),
+                                        color: Color.fromRGBO(79, 67, 154, 1))),
+                                suffixIcon:
+                                    Icon(Icons.calendar_today_outlined)),
                           ),
                         ),
                       ),
@@ -345,24 +364,26 @@ class _VolunteerState extends State<Volunteer> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[6],
                     enableSuggestions: true,
                     controller: descriptionController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      description = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[6]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Description",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[6].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -416,16 +437,16 @@ class _VolunteerState extends State<Volunteer> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
                     onPressed: () async {
-                      if(_formKey.currentState.validate()){
+                      if (_formKey.currentState.validate()) {
                         await db.collection("volunteer").add({
-                          'organisation':organisationController.text,
-                          'volunteer_role':volunteerController.text,
-                          'cause':causeController.text,
-                          'location':locationController.text,
-                          'start_date':startDateController.text,
-                          'end_date':endDateController.text,
-                          'description':descriptionController.text,
-                          'currently_working':_isChecked
+                          'organisation': organisationController.text,
+                          'volunteer_role': volunteerController.text,
+                          'cause': causeController.text,
+                          'location': locationController.text,
+                          'start_date': startDateController.text,
+                          'end_date': endDateController.text,
+                          'description': descriptionController.text,
+                          'currently_working': _isChecked
                         });
                         Navigator.pushNamed(context, Education.educationId);
                       }

@@ -7,7 +7,6 @@ import 'package:star_in_me_app/screens/accomplishments/awards.dart';
 import 'package:star_in_me_app/screens/accomplishments/certification.dart';
 import 'package:star_in_me_app/screens/accomplishments/patent.dart';
 
-
 class Publication extends StatefulWidget {
   static final String publicationId = '/publication';
   @override
@@ -25,18 +24,20 @@ class _PublicationState extends State<Publication> {
   final publicationDateController = TextEditingController();
   final descriptionController = TextEditingController();
 
-  String title,
-      publisher,
-      authors,
-      publicationUrl,
-      publicationDate,
-      description;
+  List<FocusNode> _focusNode;
 
   bool navigateToPage = false;
   @override
   void initState() {
     super.initState();
     selectedRadio = 2;
+    _focusNode = new List(6);
+    _focusNode[0] = FocusNode();
+    _focusNode[1] = FocusNode();
+    _focusNode[2] = FocusNode();
+    _focusNode[3] = FocusNode();
+    _focusNode[4] = FocusNode();
+    _focusNode[5] = FocusNode();
   }
 
   setSelectedRadio(int val) {
@@ -44,6 +45,7 @@ class _PublicationState extends State<Publication> {
       selectedRadio = val;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,8 +57,7 @@ class _PublicationState extends State<Publication> {
                   padding: EdgeInsets.only(left: 331.0, right: 19.0, top: 30.0),
                   child: FlatButton(
                       onPressed: () {
-                        Navigator.pushNamed(
-                            context, UserProfile.userProfileId);
+                        Navigator.pushNamed(context, UserProfile.userProfileId);
                       },
                       child: SvgPicture.asset(
                         "images/Cancel_line.svg",
@@ -75,9 +76,8 @@ class _PublicationState extends State<Publication> {
                       )),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 15.0),
-                  child: AccomplishmentButtons()
-                ),
+                    padding: EdgeInsets.only(top: 15.0),
+                    child: AccomplishmentButtons()),
                 Row(
                   children: [
                     Row(
@@ -85,7 +85,7 @@ class _PublicationState extends State<Publication> {
                         Theme(
                           data: ThemeData(
                               unselectedWidgetColor:
-                              Color.fromRGBO(79, 67, 154, 1)),
+                                  Color.fromRGBO(79, 67, 154, 1)),
                           child: Radio(
                             value: 1,
                             groupValue: selectedRadio,
@@ -113,7 +113,7 @@ class _PublicationState extends State<Publication> {
                         Theme(
                           data: ThemeData(
                               unselectedWidgetColor:
-                              Color.fromRGBO(79, 67, 154, 1)),
+                                  Color.fromRGBO(79, 67, 154, 1)),
                           child: Radio(
                             value: 2,
                             groupValue: selectedRadio,
@@ -125,7 +125,8 @@ class _PublicationState extends State<Publication> {
                         ),
                         Text(
                           'Publication',
-                          style: TextStyle(color: Color.fromRGBO(79, 67, 154, 1)),
+                          style:
+                              TextStyle(color: Color.fromRGBO(79, 67, 154, 1)),
                         ),
                       ],
                     ),
@@ -134,7 +135,7 @@ class _PublicationState extends State<Publication> {
                         Theme(
                           data: ThemeData(
                               unselectedWidgetColor:
-                              Color.fromRGBO(79, 67, 154, 1)),
+                                  Color.fromRGBO(79, 67, 154, 1)),
                           child: Radio(
                             value: 3,
                             groupValue: selectedRadio,
@@ -158,11 +159,14 @@ class _PublicationState extends State<Publication> {
                     )
                   ],
                 ),
-                SizedBox(height: 14,),
+                SizedBox(
+                  height: 14,
+                ),
                 Container(
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[0],
                     enableSuggestions: true,
                     controller: titleController,
                     keyboardType: TextInputType.text,
@@ -173,20 +177,21 @@ class _PublicationState extends State<Publication> {
                       }
                       return null;
                     },
-                    onChanged: (value) {
-                      title = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[0]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Title *",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[0].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -195,24 +200,26 @@ class _PublicationState extends State<Publication> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[1],
                     enableSuggestions: true,
                     controller: publisherController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      publisher = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[1]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Publisher",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[1].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -223,24 +230,26 @@ class _PublicationState extends State<Publication> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[2],
                     enableSuggestions: true,
                     controller: authorController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      authors = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[2]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Authors",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[2].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -251,24 +260,26 @@ class _PublicationState extends State<Publication> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[3],
                     enableSuggestions: true,
                     controller: publicationUrlController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      publicationUrl= value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[3]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Publication URL",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[3].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -279,28 +290,30 @@ class _PublicationState extends State<Publication> {
                   width: 380.0,
                   height: 60,
                   child: Theme(
-                    data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
+                    data: Theme.of(context)
+                        .copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
                     child: TextFormField(
+                      focusNode: _focusNode[4],
                       enableSuggestions: true,
                       controller: publicationDateController,
                       keyboardType: TextInputType.text,
                       keyboardAppearance: Brightness.dark,
-                      onChanged: (value) {
-                        publicationDate = value;
+                      onTap: () {
+                        setState(() {
+                          FocusScope.of(context).requestFocus(_focusNode[4]);
+                        });
                       },
                       decoration: InputDecoration(
                           labelText: "Publication Date",
-                          labelStyle:TextStyle(
-                              color: Colors.grey
-                          ),
+                          labelStyle: TextStyle(
+                              color: _focusNode[4].hasFocus
+                                  ? Color.fromRGBO(79, 67, 154, 1)
+                                  : Colors.grey),
                           border: const OutlineInputBorder(),
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Color.fromRGBO(79, 67, 154, 1)
-                              )
-                          ),
-                          suffixIcon:
-                          Icon(Icons.calendar_today_outlined)),
+                                  color: Color.fromRGBO(79, 67, 154, 1))),
+                          suffixIcon: Icon(Icons.calendar_today_outlined)),
                     ),
                   ),
                 ),
@@ -311,28 +324,32 @@ class _PublicationState extends State<Publication> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[5],
                     enableSuggestions: true,
                     controller: descriptionController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      description = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[5]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Description",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[5].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
-                SizedBox(height: 15,),
+                SizedBox(
+                  height: 15,
+                ),
                 Container(
                   width: 380,
                   height: 40,
@@ -341,14 +358,14 @@ class _PublicationState extends State<Publication> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
                     onPressed: () async {
-                      if(_formKey.currentState.validate()){
+                      if (_formKey.currentState.validate()) {
                         await db.collection("publication").add({
-                          'title':titleController.text,
-                          'publisher':publisherController.text,
-                          'authors':authorController.text,
-                          'publication_url':publicationUrlController.text,
-                          'publication_date':publicationDateController.text,
-                          'description':descriptionController.text
+                          'title': titleController.text,
+                          'publisher': publisherController.text,
+                          'authors': authorController.text,
+                          'publication_url': publicationUrlController.text,
+                          'publication_date': publicationDateController.text,
+                          'description': descriptionController.text
                         });
                         Navigator.pushNamed(context, Awards.awardsId);
                       }

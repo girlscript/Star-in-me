@@ -24,6 +24,7 @@ class _WorkExperienceState extends State<WorkExperience> {
   final descriptionController = TextEditingController();
   final startDateController = TextEditingController();
   final endDateController = TextEditingController();
+  List<FocusNode> _focusNode;
 
   bool _isChecked = false;
   bool navigateToPage = false;
@@ -32,6 +33,14 @@ class _WorkExperienceState extends State<WorkExperience> {
   void initState() {
     super.initState();
     selectedRadio = 1;
+    _focusNode = new List(7);
+    _focusNode[0] = FocusNode();
+    _focusNode[1] = FocusNode();
+    _focusNode[2] = FocusNode();
+    _focusNode[3] = FocusNode();
+    _focusNode[4] = FocusNode();
+    _focusNode[5] = FocusNode();
+    _focusNode[6] = FocusNode();
   }
 
   @override
@@ -139,10 +148,16 @@ class _WorkExperienceState extends State<WorkExperience> {
                     width: 380.0,
                     height: 60,
                     child: TextFormField(
+                      focusNode: _focusNode[0],
                       enableSuggestions: true,
                       controller: designationController,
                       keyboardType: TextInputType.text,
                       keyboardAppearance: Brightness.dark,
+                      onTap: () {
+                        setState(() {
+                          FocusScope.of(context).requestFocus(_focusNode[0]);
+                        });
+                      },
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Enter Your Designation/Job Position";
@@ -151,7 +166,10 @@ class _WorkExperienceState extends State<WorkExperience> {
                       },
                       decoration: InputDecoration(
                         labelText: "Designation/Job Position *",
-                        labelStyle: TextStyle(color: Colors.grey),
+                        labelStyle: TextStyle(
+                            color: _focusNode[0].hasFocus
+                                ? Color.fromRGBO(79, 67, 154, 1)
+                                : Colors.grey),
                         border: const OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -164,10 +182,16 @@ class _WorkExperienceState extends State<WorkExperience> {
                     width: 380.0,
                     height: 60,
                     child: TextFormField(
+                      focusNode: _focusNode[1],
                       enableSuggestions: true,
                       controller: organisationController,
                       keyboardType: TextInputType.text,
                       keyboardAppearance: Brightness.dark,
+                      onTap: () {
+                        setState(() {
+                          FocusScope.of(context).requestFocus(_focusNode[1]);
+                        });
+                      },
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Enter Your Organisation/Company";
@@ -176,7 +200,10 @@ class _WorkExperienceState extends State<WorkExperience> {
                       },
                       decoration: InputDecoration(
                         labelText: "Organisation/Company *",
-                        labelStyle: TextStyle(color: Colors.grey),
+                        labelStyle: TextStyle(
+                            color: _focusNode[1].hasFocus
+                                ? Color.fromRGBO(79, 67, 154, 1)
+                                : Colors.grey),
                         border: const OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -191,10 +218,16 @@ class _WorkExperienceState extends State<WorkExperience> {
                     width: 380.0,
                     height: 60,
                     child: TextFormField(
+                      focusNode: _focusNode[2],
                       enableSuggestions: true,
                       controller: industryController,
                       keyboardType: TextInputType.text,
                       keyboardAppearance: Brightness.dark,
+                      onTap: () {
+                        setState(() {
+                          FocusScope.of(context).requestFocus(_focusNode[2]);
+                        });
+                      },
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Enter Your Industry";
@@ -203,7 +236,10 @@ class _WorkExperienceState extends State<WorkExperience> {
                       },
                       decoration: InputDecoration(
                         labelText: "Industry *",
-                        labelStyle: TextStyle(color: Colors.grey),
+                        labelStyle: TextStyle(
+                            color: _focusNode[2].hasFocus
+                                ? Color.fromRGBO(79, 67, 154, 1)
+                                : Colors.grey),
                         border: const OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -218,13 +254,22 @@ class _WorkExperienceState extends State<WorkExperience> {
                     width: 380.0,
                     height: 60,
                     child: TextFormField(
+                      focusNode: _focusNode[3],
                       enableSuggestions: true,
                       controller: locationController,
                       keyboardType: TextInputType.text,
                       keyboardAppearance: Brightness.dark,
+                      onTap: () {
+                        setState(() {
+                          FocusScope.of(context).requestFocus(_focusNode[3]);
+                        });
+                      },
                       decoration: InputDecoration(
                         labelText: "Location",
-                        labelStyle: TextStyle(color: Colors.grey),
+                        labelStyle: TextStyle(
+                            color: _focusNode[3].hasFocus
+                                ? Color.fromRGBO(79, 67, 154, 1)
+                                : Colors.grey),
                         border: const OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -246,10 +291,17 @@ class _WorkExperienceState extends State<WorkExperience> {
                             data: Theme.of(context).copyWith(
                                 primaryColor: Color.fromRGBO(79, 67, 154, 1)),
                             child: TextFormField(
+                              focusNode: _focusNode[4],
                               enableSuggestions: true,
                               controller: startDateController,
                               keyboardType: TextInputType.datetime,
                               keyboardAppearance: Brightness.dark,
+                              onTap: () {
+                                setState(() {
+                                  FocusScope.of(context)
+                                      .requestFocus(_focusNode[4]);
+                                });
+                              },
                               validator: (value) {
                                 if (value.isEmpty) {
                                   return "Enter Start Date";
@@ -258,7 +310,10 @@ class _WorkExperienceState extends State<WorkExperience> {
                               },
                               decoration: InputDecoration(
                                   labelText: "Start Date *",
-                                  labelStyle: TextStyle(color: Colors.grey),
+                                  labelStyle: TextStyle(
+                                      color: _focusNode[4].hasFocus
+                                          ? Color.fromRGBO(79, 67, 154, 1)
+                                          : Colors.grey),
                                   border: const OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -280,10 +335,17 @@ class _WorkExperienceState extends State<WorkExperience> {
                                 primaryColor: Color.fromRGBO(79, 67, 154, 1)),
                             child: TextFormField(
                               enabled: !_isChecked,
+                              focusNode: _focusNode[5],
                               enableSuggestions: true,
                               controller: endDateController,
                               keyboardType: TextInputType.datetime,
                               keyboardAppearance: Brightness.dark,
+                              onTap: () {
+                                setState(() {
+                                  FocusScope.of(context)
+                                      .requestFocus(_focusNode[5]);
+                                });
+                              },
                               validator: (value) {
                                 if (value.isEmpty && !_isChecked) {
                                   return "Enter End Date";
@@ -292,7 +354,10 @@ class _WorkExperienceState extends State<WorkExperience> {
                               },
                               decoration: InputDecoration(
                                 labelText: "End Date *",
-                                labelStyle: TextStyle(color: Colors.grey),
+                                labelStyle: TextStyle(
+                                    color: _focusNode[5].hasFocus
+                                        ? Color.fromRGBO(79, 67, 154, 1)
+                                        : Colors.grey),
                                 border: const OutlineInputBorder(),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
@@ -340,13 +405,22 @@ class _WorkExperienceState extends State<WorkExperience> {
                     width: 380.0,
                     height: 60,
                     child: TextFormField(
+                      focusNode: _focusNode[6],
                       enableSuggestions: true,
                       controller: descriptionController,
                       keyboardType: TextInputType.text,
                       keyboardAppearance: Brightness.dark,
+                      onTap: () {
+                        setState(() {
+                          FocusScope.of(context).requestFocus(_focusNode[6]);
+                        });
+                      },
                       decoration: InputDecoration(
                         labelText: "Description",
-                        labelStyle: TextStyle(color: Colors.grey),
+                        labelStyle: TextStyle(
+                            color: _focusNode[6].hasFocus
+                                ? Color.fromRGBO(79, 67, 154, 1)
+                                : Colors.grey),
                         border: const OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -410,10 +484,10 @@ class _WorkExperienceState extends State<WorkExperience> {
                             'organisation': organisationController.text,
                             'location': locationController.text,
                             'industry': industryController.text,
-                            'description': designationController.text,
+                            'description': descriptionController.text,
                             'startDate': startDateController.text,
                             'endDate': endDateController.text,
-                            'currently_working':_isChecked
+                            'currently_working': _isChecked
                           });
                           Navigator.pushNamed(context, Education.educationId);
                         }

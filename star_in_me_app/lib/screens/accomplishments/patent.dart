@@ -8,8 +8,6 @@ import 'package:star_in_me_app/screens/accomplishments/certification.dart';
 import 'package:star_in_me_app/screens/accomplishments/patent_pending.dart';
 import 'package:star_in_me_app/screens/accomplishments/publication.dart';
 
-
-
 class Patent extends StatefulWidget {
   static final String patentId = '/patent';
   @override
@@ -26,17 +24,19 @@ class _PatentState extends State<Patent> {
   final issueDateController = TextEditingController();
   final descriptionController = TextEditingController();
 
-  String title,
-  office,
-  number,
-      issueDate,
-      description;
+  List<FocusNode> _focusNode;
   bool _isChecked = false;
   bool navigateToPage = false;
   @override
   void initState() {
     super.initState();
     selectedRadio = 3;
+    _focusNode = new List(5);
+    _focusNode[0] = FocusNode();
+    _focusNode[1] = FocusNode();
+    _focusNode[2] = FocusNode();
+    _focusNode[3] = FocusNode();
+    _focusNode[4] = FocusNode();
   }
 
   setSelectedRadio(int val) {
@@ -44,6 +44,7 @@ class _PatentState extends State<Patent> {
       selectedRadio = val;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,8 +56,7 @@ class _PatentState extends State<Patent> {
                   padding: EdgeInsets.only(left: 331.0, right: 19.0, top: 30.0),
                   child: FlatButton(
                       onPressed: () {
-                        Navigator.pushNamed(
-                            context, UserProfile.userProfileId);
+                        Navigator.pushNamed(context, UserProfile.userProfileId);
                       },
                       child: SvgPicture.asset(
                         "images/Cancel_line.svg",
@@ -75,10 +75,11 @@ class _PatentState extends State<Patent> {
                       )),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 15.0),
-                  child: AccomplishmentButtons()
+                    padding: EdgeInsets.only(top: 15.0),
+                    child: AccomplishmentButtons()),
+                SizedBox(
+                  height: 19,
                 ),
-                SizedBox(height: 19,),
                 Row(
                   children: [
                     Row(
@@ -86,7 +87,7 @@ class _PatentState extends State<Patent> {
                         Theme(
                           data: ThemeData(
                               unselectedWidgetColor:
-                              Color.fromRGBO(79, 67, 154, 1)),
+                                  Color.fromRGBO(79, 67, 154, 1)),
                           child: Radio(
                             value: 1,
                             groupValue: selectedRadio,
@@ -96,7 +97,8 @@ class _PatentState extends State<Patent> {
                                 navigateToPage = true;
                               });
                               if (navigateToPage) {
-                                Navigator.pushNamed(context, Certification.certificationId);
+                                Navigator.pushNamed(
+                                    context, Certification.certificationId);
                               }
                             },
                             activeColor: Color.fromRGBO(79, 67, 154, 1),
@@ -113,7 +115,7 @@ class _PatentState extends State<Patent> {
                         Theme(
                           data: ThemeData(
                               unselectedWidgetColor:
-                              Color.fromRGBO(79, 67, 154, 1)),
+                                  Color.fromRGBO(79, 67, 154, 1)),
                           child: Radio(
                             value: 2,
                             groupValue: selectedRadio,
@@ -141,20 +143,20 @@ class _PatentState extends State<Patent> {
                         Theme(
                           data: ThemeData(
                               unselectedWidgetColor:
-                              Color.fromRGBO(79, 67, 154, 1)),
+                                  Color.fromRGBO(79, 67, 154, 1)),
                           child: Radio(
                             value: 3,
                             groupValue: selectedRadio,
                             onChanged: (int value) {
                               setSelectedRadio(value);
-
                             },
                             activeColor: Color.fromRGBO(79, 67, 154, 1),
                           ),
                         ),
                         Text(
                           'Patent',
-                          style: TextStyle(color:  Color.fromRGBO(79, 67, 154, 1)),
+                          style:
+                              TextStyle(color: Color.fromRGBO(79, 67, 154, 1)),
                         ),
                       ],
                     )
@@ -163,7 +165,8 @@ class _PatentState extends State<Patent> {
                 Row(
                   children: [
                     Theme(
-                      data: ThemeData(unselectedWidgetColor: Color.fromRGBO(79, 67, 154, 1),
+                      data: ThemeData(
+                        unselectedWidgetColor: Color.fromRGBO(79, 67, 154, 1),
                       ),
                       child: Checkbox(
                         value: _isChecked,
@@ -172,7 +175,8 @@ class _PatentState extends State<Patent> {
                           setState(() {
                             _isChecked = isChecked;
                           });
-                          Navigator.pushNamed(context, PatentPending.patenPendingtId);
+                          Navigator.pushNamed(
+                              context, PatentPending.patenPendingtId);
                         },
                         checkColor: Color.fromRGBO(79, 67, 154, 1),
                         activeColor: Color.fromRGBO(79, 67, 154, 1),
@@ -187,11 +191,14 @@ class _PatentState extends State<Patent> {
                     )
                   ],
                 ),
-                SizedBox(height: 18,),
+                SizedBox(
+                  height: 18,
+                ),
                 Container(
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[0],
                     enableSuggestions: true,
                     controller: titleController,
                     keyboardType: TextInputType.text,
@@ -202,20 +209,21 @@ class _PatentState extends State<Patent> {
                       }
                       return null;
                     },
-                    onChanged: (value) {
-                      title = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[0]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Patent Title *",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[0].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -224,24 +232,26 @@ class _PatentState extends State<Patent> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[1],
                     enableSuggestions: true,
                     controller: officeController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      office = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[1]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Patent Office",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[1].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -252,24 +262,26 @@ class _PatentState extends State<Patent> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[2],
                     enableSuggestions: true,
                     controller: numberController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      number = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[2]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Patent Number",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[2].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -280,28 +292,30 @@ class _PatentState extends State<Patent> {
                   width: 380.0,
                   height: 60,
                   child: Theme(
-                    data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
+                    data: Theme.of(context)
+                        .copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
                     child: TextFormField(
+                      focusNode: _focusNode[3],
                       enableSuggestions: true,
                       controller: issueDateController,
                       keyboardType: TextInputType.text,
                       keyboardAppearance: Brightness.dark,
-                      onChanged: (value) {
-                        issueDate = value;
+                      onTap: () {
+                        setState(() {
+                          FocusScope.of(context).requestFocus(_focusNode[3]);
+                        });
                       },
                       decoration: InputDecoration(
                           labelText: "Issue Date",
-                          labelStyle:TextStyle(
-                              color: Colors.grey
-                          ),
+                          labelStyle: TextStyle(
+                              color: _focusNode[3].hasFocus
+                                  ? Color.fromRGBO(79, 67, 154, 1)
+                                  : Colors.grey),
                           border: const OutlineInputBorder(),
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Color.fromRGBO(79, 67, 154, 1)
-                              )
-                          ),
-                          suffixIcon:
-                          Icon(Icons.calendar_today_outlined)),
+                                  color: Color.fromRGBO(79, 67, 154, 1))),
+                          suffixIcon: Icon(Icons.calendar_today_outlined)),
                     ),
                   ),
                 ),
@@ -312,28 +326,32 @@ class _PatentState extends State<Patent> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[4],
                     enableSuggestions: true,
                     controller: descriptionController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      description = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[4]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Description (Mention Patent URL,Etc)",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[4].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
-                SizedBox(height: 15,),
+                SizedBox(
+                  height: 15,
+                ),
                 Container(
                   width: 380,
                   height: 40,
@@ -342,14 +360,14 @@ class _PatentState extends State<Patent> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
                     onPressed: () async {
-                      if(_formKey.currentState.validate()){
+                      if (_formKey.currentState.validate()) {
                         await db.collection("patent").add({
-                        'patent_title':titleController.text,
-                          'patent_office':officeController.text,
-                          'patent_number':numberController.text,
-                          'issue_date':issueDateController.text,
-                          'description':descriptionController.text,
-                          'patent_pending':_isChecked
+                          'patent_title': titleController.text,
+                          'patent_office': officeController.text,
+                          'patent_number': numberController.text,
+                          'issue_date': issueDateController.text,
+                          'description': descriptionController.text,
+                          'patent_pending': _isChecked
                         });
                         Navigator.pushNamed(context, Awards.awardsId);
                       }

@@ -24,18 +24,20 @@ class _CertificationState extends State<Certification> {
   final issueDateController = TextEditingController();
   final expiryDateController = TextEditingController();
 
-  String certificate,
-      organisation,
-      certificateId,
-      certificateUrl,
-      issueDate,
-      expiryDate;
+  List<FocusNode> _focusNode;
   bool _isChecked = false;
   bool navigateToPage = false;
   @override
   void initState() {
     super.initState();
     selectedRadio = 1;
+    _focusNode = new List(6);
+    _focusNode[0] = FocusNode();
+    _focusNode[1] = FocusNode();
+    _focusNode[2] = FocusNode();
+    _focusNode[3] = FocusNode();
+    _focusNode[4] = FocusNode();
+    _focusNode[5] = FocusNode();
   }
 
   setSelectedRadio(int val) {
@@ -55,8 +57,7 @@ class _CertificationState extends State<Certification> {
                   padding: EdgeInsets.only(left: 331.0, right: 19.0, top: 30.0),
                   child: FlatButton(
                       onPressed: () {
-                        Navigator.pushNamed(
-                            context, UserProfile.userProfileId);
+                        Navigator.pushNamed(context, UserProfile.userProfileId);
                       },
                       child: SvgPicture.asset(
                         "images/Cancel_line.svg",
@@ -97,7 +98,8 @@ class _CertificationState extends State<Certification> {
                         ),
                         Text(
                           'Certification',
-                          style: TextStyle(color: Color.fromRGBO(79, 67, 154, 1)),
+                          style:
+                              TextStyle(color: Color.fromRGBO(79, 67, 154, 1)),
                         ),
                       ],
                     ),
@@ -165,6 +167,7 @@ class _CertificationState extends State<Certification> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[0],
                     enableSuggestions: true,
                     controller: certificateController,
                     keyboardType: TextInputType.text,
@@ -175,20 +178,21 @@ class _CertificationState extends State<Certification> {
                       }
                       return null;
                     },
-                    onChanged: (value) {
-                      certificate = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[0]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Certification/Course Name *",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[0].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -197,6 +201,7 @@ class _CertificationState extends State<Certification> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[1],
                     enableSuggestions: true,
                     controller: organisationController,
                     keyboardType: TextInputType.text,
@@ -207,20 +212,21 @@ class _CertificationState extends State<Certification> {
                       }
                       return null;
                     },
-                    onChanged: (value) {
-                      organisation = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[1]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Issuing Organisation/Institute *",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[1].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -231,24 +237,26 @@ class _CertificationState extends State<Certification> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[2],
                     enableSuggestions: true,
                     controller: certificateIdController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      certificateId = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[2]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Certificate ID",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[2].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -259,24 +267,26 @@ class _CertificationState extends State<Certification> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[3],
                     enableSuggestions: true,
                     controller: certificateUrlController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      certificateUrl = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[3]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Certificate URL",
-                      labelStyle:TextStyle(
-                          color: Colors.grey
-                      ),
+                      labelStyle: TextStyle(
+                          color: _focusNode[3].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -291,27 +301,32 @@ class _CertificationState extends State<Certification> {
                         width: 185.0,
                         height: 60,
                         child: Theme(
-                          data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
+                          data: Theme.of(context).copyWith(
+                              primaryColor: Color.fromRGBO(79, 67, 154, 1)),
                           child: TextFormField(
+                            focusNode: _focusNode[4],
                             enableSuggestions: true,
                             controller: issueDateController,
                             keyboardType: TextInputType.text,
                             keyboardAppearance: Brightness.dark,
-                            onChanged: (value) {
-                              issueDate = value;
+                            onTap: () {
+                              setState(() {
+                                FocusScope.of(context)
+                                    .requestFocus(_focusNode[4]);
+                              });
                             },
                             decoration: InputDecoration(
                                 labelText: "Issue Date",
-                                labelStyle:TextStyle(
-                                    color: Colors.grey
-                                ),
+                                labelStyle: TextStyle(
+                                    color: _focusNode[4].hasFocus
+                                        ? Color.fromRGBO(79, 67, 154, 1)
+                                        : Colors.grey),
                                 border: const OutlineInputBorder(),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: Color.fromRGBO(79, 67, 154, 1)
-                                    )
-                                ),
-                                suffixIcon: Icon(Icons.calendar_today_outlined)),
+                                        color: Color.fromRGBO(79, 67, 154, 1))),
+                                suffixIcon:
+                                    Icon(Icons.calendar_today_outlined)),
                           ),
                         ),
                       ),
@@ -322,28 +337,33 @@ class _CertificationState extends State<Certification> {
                         width: 185.0,
                         height: 60,
                         child: Theme(
-                          data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
+                          data: Theme.of(context).copyWith(
+                              primaryColor: Color.fromRGBO(79, 67, 154, 1)),
                           child: TextFormField(
-                            enabled: _isChecked,
+                            focusNode: _focusNode[5],
+                            enabled: !_isChecked,
                             enableSuggestions: true,
                             controller: expiryDateController,
                             keyboardType: TextInputType.text,
                             keyboardAppearance: Brightness.dark,
-                            onChanged: (value) {
-                              expiryDate = value;
+                            onTap: () {
+                              setState(() {
+                                FocusScope.of(context)
+                                    .requestFocus(_focusNode[5]);
+                              });
                             },
                             decoration: InputDecoration(
                                 labelText: "Expiry Date",
-                                labelStyle:TextStyle(
-                                    color: Colors.grey
-                                ),
+                                labelStyle: TextStyle(
+                                    color: _focusNode[5].hasFocus
+                                        ? Color.fromRGBO(79, 67, 154, 1)
+                                        : Colors.grey),
                                 border: const OutlineInputBorder(),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: Color.fromRGBO(79, 67, 154, 1)
-                                    )
-                                ),
-                                suffixIcon: Icon(Icons.calendar_today_outlined)),
+                                        color: Color.fromRGBO(79, 67, 154, 1))),
+                                suffixIcon:
+                                    Icon(Icons.calendar_today_outlined)),
                           ),
                         ),
                       ),
@@ -397,7 +417,7 @@ class _CertificationState extends State<Certification> {
                           'certificate_url': certificateUrlController.text,
                           'issue_date': issueDateController.text,
                           'expiry_date': expiryDateController.text,
-                          'no_expiry_date':_isChecked
+                          'no_expiry_date': _isChecked
                         });
                         Navigator.pushNamed(context, Awards.awardsId);
                       }

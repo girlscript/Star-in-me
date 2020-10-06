@@ -22,8 +22,19 @@ class _EducationState extends State<Education> {
   final startDateController = TextEditingController();
   final endDateController = TextEditingController();
 
-  String school, degree, study, description, startDate, endDate;
+  List<FocusNode> _focusNode;
   bool _isChecked = false;
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = new List(6);
+    _focusNode[0] = FocusNode();
+    _focusNode[1] = FocusNode();
+    _focusNode[2] = FocusNode();
+    _focusNode[3] = FocusNode();
+    _focusNode[4] = FocusNode();
+    _focusNode[5] = FocusNode();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +74,7 @@ class _EducationState extends State<Education> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[0],
                     enableSuggestions: true,
                     controller: schoolController,
                     keyboardType: TextInputType.text,
@@ -73,13 +85,17 @@ class _EducationState extends State<Education> {
                       }
                       return null;
                     },
-                    onChanged: (value) {
-                      school = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[0]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "School/College/Institute *",
                       labelStyle:TextStyle(
-                          color: Colors.grey
+                          color: _focusNode[0].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              :Colors.grey
                       ),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
@@ -95,17 +111,22 @@ class _EducationState extends State<Education> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[1],
                     enableSuggestions: true,
                     controller: degreeController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      degree = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[1]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Degree",
                       labelStyle:TextStyle(
-                          color: Colors.grey
+                          color: _focusNode[1].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              :Colors.grey
                       ),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
@@ -121,17 +142,22 @@ class _EducationState extends State<Education> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[2],
                     enableSuggestions: true,
                     controller: studyController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                     study = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[2]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Field of Study",
                       labelStyle:TextStyle(
-                          color: Colors.grey
+                          color: _focusNode[2].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              :Colors.grey
                       ),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
@@ -153,17 +179,22 @@ class _EducationState extends State<Education> {
                         child: Theme(
                           data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
                           child: TextFormField(
+                            focusNode: _focusNode[3],
                             enableSuggestions: true,
                             controller: startDateController,
                             keyboardType: TextInputType.text,
                             keyboardAppearance: Brightness.dark,
-                            onChanged: (value) {
-                              startDate = value;
+                            onTap: () {
+                              setState(() {
+                                FocusScope.of(context).requestFocus(_focusNode[3]);
+                              });
                             },
                             decoration: InputDecoration(
                                 labelText: "Start Date",
                                 labelStyle:TextStyle(
-                                    color: Colors.grey
+                                    color:_focusNode[3].hasFocus
+                                        ? Color.fromRGBO(79, 67, 154, 1)
+                                        : Colors.grey
                                 ),
                                 border: const OutlineInputBorder(),
                                 focusedBorder: OutlineInputBorder(
@@ -185,18 +216,23 @@ class _EducationState extends State<Education> {
                         child: Theme(
                           data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
                           child: TextFormField(
+                            focusNode: _focusNode[4],
                             enabled: !_isChecked,
                             enableSuggestions: true,
                             controller: endDateController,
                             keyboardType: TextInputType.text,
                             keyboardAppearance: Brightness.dark,
-                            onChanged: (value) {
-                              endDate = value;
+                            onTap: () {
+                              setState(() {
+                                FocusScope.of(context).requestFocus(_focusNode[4]);
+                              });
                             },
                             decoration: InputDecoration(
                                 labelText: "End Date",
                                 labelStyle:TextStyle(
-                                    color: Colors.grey
+                                    color: _focusNode[4].hasFocus
+                                        ? Color.fromRGBO(79, 67, 154, 1)
+                                        :Colors.grey
                                 ),
                                 border: const OutlineInputBorder(),
                                 focusedBorder: OutlineInputBorder(
@@ -219,17 +255,22 @@ class _EducationState extends State<Education> {
                   width: 380.0,
                   height: 60,
                   child: TextFormField(
+                    focusNode: _focusNode[5],
                     enableSuggestions: true,
                     controller: descriptionController,
                     keyboardType: TextInputType.text,
                     keyboardAppearance: Brightness.dark,
-                    onChanged: (value) {
-                      description = value;
+                    onTap: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(_focusNode[5]);
+                      });
                     },
                     decoration: InputDecoration(
                       labelText: "Description",
                       labelStyle:TextStyle(
-                          color: Colors.grey
+                          color: _focusNode[5].hasFocus
+                              ? Color.fromRGBO(79, 67, 154, 1)
+                              :Colors.grey
                       ),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
