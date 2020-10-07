@@ -1,6 +1,15 @@
 import 'package:star_in_me_app/authentication/forgot_password.dart';
 import 'package:star_in_me_app/onboarding/UI1.dart';
 import 'package:star_in_me_app/screens/UserProfile.dart';
+import 'package:star_in_me_app/screens/accomplishments/awards.dart';
+import 'package:star_in_me_app/screens/accomplishments/certification.dart';
+import 'package:star_in_me_app/screens/accomplishments/education.dart';
+import 'package:star_in_me_app/screens/accomplishments/patent.dart';
+import 'package:star_in_me_app/screens/accomplishments/patent_pending.dart';
+import 'package:star_in_me_app/screens/accomplishments/publication.dart';
+import 'package:star_in_me_app/screens/accomplishments/volunteer.dart';
+import 'package:star_in_me_app/screens/accomplishments/work_experience.dart';
+import 'package:star_in_me_app/screens/createpost.dart';
 import 'package:star_in_me_app/screens/landing.dart';
 import 'package:star_in_me_app/resources.dart';
 
@@ -23,9 +32,23 @@ Map<String, Widget Function(BuildContext)> routes = {
   //Onboarding Routes
   UI1.onboardingUi1: (context) => UI1(),
 
+  CreatePost.CreatePostId: (context) => CreatePost(),
+
   //User Profile Routes
   UserProfile.userProfileId: (context) => UserProfile(),
 
+
   //Blog or resources Routes
   Resources.ResourcesId: (context) => Resources(),
+
+  //Accomplishments Routes
+  WorkExperience.workExperienceId: (context) => WorkExperience(),
+  Volunteer.volunteerId: (context) => Volunteer(),
+  Education.educationId: (context) => Education(),
+  Certification.certificationId: (context) => Certification(),
+  Publication.publicationId: (context) => Publication(),
+  Patent.patentId: (context) => Patent(),
+  PatentPending.patenPendingtId: (context) => PatentPending(),
+  Awards.awardsId: (context) => Awards()
+
 };

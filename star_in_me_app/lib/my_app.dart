@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
           } else if (snapshot.connectionState == ConnectionState.done) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              initialRoute: '/',
+              initialRoute: '/workExperience',
               routes: routes,
             );
           }

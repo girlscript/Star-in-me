@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Job line</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Job-line" stroke="none" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd">
+        <g id="job">
+            <g id="Group-11">
+                <circle id="Oval" stroke="none" stroke-width="2.5" fill="#4F439A" cx="20" cy="20" r="18.75"></circle>
+                <path d="M17.7777778,20 L17.7777778,18.9 L22.2222222,18.9 L22.2222222,20 L30,20 L30,15.6 C30,14.9924868 29.5025386,14.5 28.8888889,14.5 L23.3333333,14.5 L23.3333333,12.3 C23.3333333,11.6924868 22.8358719,11.2 22.2222222,11.2 L17.7777778,11.2 C17.1641281,11.2 16.6666667,11.6924868 16.6666667,12.3 L16.6666667,14.5 L11.1111111,14.5 C10.4974614,14.5 10,14.9924868 10,15.6 L10,20 L17.7777778,20 Z M17.7777778,12.3 L22.2222222,12.3 L22.2222222,14.5 L17.7777778,14.5 L17.7777778,12.3 Z M30,21.65 L30,27.7 C30,28.3075132 29.5025386,28.8 28.8888889,28.8 L11.1111111,28.8 C10.4974614,28.8 10,28.3075132 10,27.7 L10,21.65 L17.7777778,21.65 L17.7777778,22.75 L22.2222222,22.75 L22.2222222,21.65 L30,21.65 Z" id="Shape" fill="#fff" fill-rule="nonzero"></path>
+            </g>
+            <g id="noun_Work_1923532" transform="translate(9.600000, 11.200000)"></g>
+        </g>
+    </g>
+</svg>
