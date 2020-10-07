@@ -11,6 +11,7 @@ import 'package:star_in_me_app/screens/accomplishments/volunteer.dart';
 import 'package:star_in_me_app/screens/accomplishments/work_experience.dart';
 import 'package:star_in_me_app/screens/createpost.dart';
 import 'package:star_in_me_app/screens/landing.dart';
+import 'package:star_in_me_app/resources.dart';
 
 import 'screens/thankyou_screen.dart';
 import 'dart:core';
@@ -36,6 +37,10 @@ Map<String, Widget Function(BuildContext)> routes = {
   //User Profile Routes
   UserProfile.userProfileId: (context) => UserProfile(),
 
+
+  //Blog or resources Routes
+  Resources.ResourcesId: (context) => Resources(),
+
   //Accomplishments Routes
   WorkExperience.workExperienceId: (context) => WorkExperience(),
   Volunteer.volunteerId: (context) => Volunteer(),
@@ -45,4 +50,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   Patent.patentId: (context) => Patent(),
   PatentPending.patenPendingtId: (context) => PatentPending(),
   Awards.awardsId: (context) => Awards()
+
 };
