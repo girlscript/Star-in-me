@@ -61,7 +61,7 @@ class _PatentPendingState extends State<PatentPending> {
                       )),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
+                  padding: const EdgeInsets.only(left: 20.0),
                   child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -74,7 +74,12 @@ class _PatentPendingState extends State<PatentPending> {
                 ),
                 Padding(
                     padding: EdgeInsets.only(top: 15.0),
-                    child: AccomplishmentButtons()),
+                    child: AccomplishmentButtons(
+                      work: 'images/Job_line.svg',
+                      education: 'images/Education-line.svg',
+                      certification: 'images/Certification-Fill.svg',
+                      awards: 'images/Awards_line.svg',
+                    )),
                 SizedBox(
                   height: 19,
                 ),

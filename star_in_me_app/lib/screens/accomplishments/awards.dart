@@ -48,7 +48,7 @@ class _AwardsState extends State<Awards> {
                       )),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
+                  padding: const EdgeInsets.only(left: 20.0),
                   child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -61,7 +61,11 @@ class _AwardsState extends State<Awards> {
                 ),
                 Padding(
                     padding: EdgeInsets.only(top: 15.0),
-                    child: AccomplishmentButtons()),
+                    child: AccomplishmentButtons(
+                      work: 'images/Job_line.svg',
+                      education: 'images/Education-line.svg',
+                      certification: 'images/Certification-Line.svg',
+                      awards: 'images/Awards-fill.svg',)),
                 SizedBox(
                   height: 53,
                 ),

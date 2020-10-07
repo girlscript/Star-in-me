@@ -64,7 +64,7 @@ class _CertificationState extends State<Certification> {
                       )),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
+                  padding: const EdgeInsets.only(left: 20.0),
                   child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -77,7 +77,12 @@ class _CertificationState extends State<Certification> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 15.0),
-                  child: AccomplishmentButtons(),
+                  child: AccomplishmentButtons(
+                    work: 'images/Job_line.svg',
+                    education: 'images/Education-line.svg',
+                    certification: 'images/Certification-Fill.svg',
+                    awards: 'images/Awards_line.svg',
+                  ),
                 ),
                 Row(
                   children: [

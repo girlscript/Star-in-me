@@ -26,6 +26,7 @@ class _WorkExperienceState extends State<WorkExperience> {
   final endDateController = TextEditingController();
   List<FocusNode> _focusNode;
 
+
   bool _isChecked = false;
   bool navigateToPage = false;
 
@@ -56,6 +57,11 @@ class _WorkExperienceState extends State<WorkExperience> {
 
   @override
   Widget build(BuildContext context) {
+    // final Map arguments = ModalRoute.of(context).settings.arguments as Map;
+    // if(arguments!=null && arguments['selected']){
+    //   arguments['work']='images/job-line-blue-fill.svg';
+    //   print(arguments['work']);
+    // }
     return Scaffold(
       body: Form(
           key: _formKey,
@@ -76,7 +82,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                         )),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 16.0),
+                    padding: const EdgeInsets.only(left: 20.0),
                     child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -89,7 +95,12 @@ class _WorkExperienceState extends State<WorkExperience> {
                   ),
                   Padding(
                       padding: EdgeInsets.only(top: 15.0),
-                      child: AccomplishmentButtons()),
+                      child: AccomplishmentButtons(
+                        work: 'images/job-line-blue-fill.svg',
+                        education: 'images/Education-line.svg',
+                        certification: 'images/Certification-Line.svg',
+                        awards: 'images/Awards_line.svg',
+                      )),
                   Row(
                     children: [
                       Row(

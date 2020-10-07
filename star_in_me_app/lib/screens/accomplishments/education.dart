@@ -54,7 +54,7 @@ class _EducationState extends State<Education> {
                       )),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
+                  padding: const EdgeInsets.only(left: 20.0),
                   child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -67,7 +67,12 @@ class _EducationState extends State<Education> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 15.0),
-                  child: AccomplishmentButtons()
+                  child: AccomplishmentButtons(
+                    work: 'images/Job_line.svg',
+                    education: 'images/Education-line-fill.svg',
+                    certification: 'images/Certification-Line.svg',
+                    awards: 'images/Awards_line.svg',
+                  )
                 ),
                 SizedBox(height: 53,),
                 Container(

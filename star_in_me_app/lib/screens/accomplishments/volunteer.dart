@@ -64,7 +64,7 @@ class _VolunteerState extends State<Volunteer> {
                       )),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
+                  padding: const EdgeInsets.only(left: 20.0),
                   child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -77,7 +77,12 @@ class _VolunteerState extends State<Volunteer> {
                 ),
                 Padding(
                     padding: EdgeInsets.only(top: 15.0),
-                    child: AccomplishmentButtons()),
+                    child: AccomplishmentButtons(
+                      work: 'images/job-line-blue-fill.svg',
+                      education: 'images/Education-line.svg',
+                      certification: 'images/Certification-Line.svg',
+                      awards: 'images/Awards_line.svg',
+                    )),
                 Row(
                   children: [
                     Row(
