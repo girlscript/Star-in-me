@@ -65,7 +65,8 @@ class _AwardsState extends State<Awards> {
                       work: 'images/Job_line.svg',
                       education: 'images/Education-line.svg',
                       certification: 'images/Certification-Line.svg',
-                      awards: 'images/Awards-fill.svg',)),
+                      awards: 'images/Awards-fill.svg',
+                    )),
                 SizedBox(
                   height: 53,
                 ),
@@ -160,7 +161,7 @@ class _AwardsState extends State<Awards> {
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                   color: Color.fromRGBO(79, 67, 154, 1))),
-                          suffixIcon: Icon(Icons.calendar_today_outlined)),
+                          suffixIcon: Icon(Icons.calendar_today)),
                     ),
                   ),
                 ),

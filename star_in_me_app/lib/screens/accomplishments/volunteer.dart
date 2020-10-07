@@ -289,8 +289,7 @@ class _VolunteerState extends State<Volunteer> {
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Color.fromRGBO(79, 67, 154, 1))),
-                                suffixIcon:
-                                    Icon(Icons.calendar_today_outlined)),
+                                suffixIcon: Icon(Icons.calendar_today)),
                           ),
                         ),
                       ),
@@ -326,8 +325,7 @@ class _VolunteerState extends State<Volunteer> {
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Color.fromRGBO(79, 67, 154, 1))),
-                                suffixIcon:
-                                    Icon(Icons.calendar_today_outlined)),
+                                suffixIcon: Icon(Icons.calendar_today)),
                           ),
                         ),
                       ),

@@ -5,7 +5,6 @@ import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'package:star_in_me_app/screens/accomplishments/accomplishments_button.dart';
 import 'package:star_in_me_app/screens/accomplishments/certification.dart';
 
-
 class Education extends StatefulWidget {
   static final String educationId = '/education';
   @override
@@ -35,6 +34,7 @@ class _EducationState extends State<Education> {
     _focusNode[4] = FocusNode();
     _focusNode[5] = FocusNode();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,8 +46,7 @@ class _EducationState extends State<Education> {
                   padding: EdgeInsets.only(left: 331.0, right: 19.0, top: 30.0),
                   child: FlatButton(
                       onPressed: () {
-                        Navigator.pushNamed(
-                            context, UserProfile.userProfileId);
+                        Navigator.pushNamed(context, UserProfile.userProfileId);
                       },
                       child: SvgPicture.asset(
                         "images/Cancel_line.svg",
@@ -66,15 +65,16 @@ class _EducationState extends State<Education> {
                       )),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 15.0),
-                  child: AccomplishmentButtons(
-                    work: 'images/Job_line.svg',
-                    education: 'images/Education-line-fill.svg',
-                    certification: 'images/Certification-Line.svg',
-                    awards: 'images/Awards_line.svg',
-                  )
+                    padding: EdgeInsets.only(top: 15.0),
+                    child: AccomplishmentButtons(
+                      work: 'images/Job_line.svg',
+                      education: 'images/Education-line-fill.svg',
+                      certification: 'images/Certification-Line.svg',
+                      awards: 'images/Awards_line.svg',
+                    )),
+                SizedBox(
+                  height: 53,
                 ),
-                SizedBox(height: 53,),
                 Container(
                   width: 380.0,
                   height: 60,
@@ -97,17 +97,14 @@ class _EducationState extends State<Education> {
                     },
                     decoration: InputDecoration(
                       labelText: "School/College/Institute *",
-                      labelStyle:TextStyle(
+                      labelStyle: TextStyle(
                           color: _focusNode[0].hasFocus
                               ? Color.fromRGBO(79, 67, 154, 1)
-                              :Colors.grey
-                      ),
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -128,17 +125,14 @@ class _EducationState extends State<Education> {
                     },
                     decoration: InputDecoration(
                       labelText: "Degree",
-                      labelStyle:TextStyle(
+                      labelStyle: TextStyle(
                           color: _focusNode[1].hasFocus
                               ? Color.fromRGBO(79, 67, 154, 1)
-                              :Colors.grey
-                      ),
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -159,17 +153,14 @@ class _EducationState extends State<Education> {
                     },
                     decoration: InputDecoration(
                       labelText: "Field of Study",
-                      labelStyle:TextStyle(
+                      labelStyle: TextStyle(
                           color: _focusNode[2].hasFocus
                               ? Color.fromRGBO(79, 67, 154, 1)
-                              :Colors.grey
-                      ),
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -182,7 +173,8 @@ class _EducationState extends State<Education> {
                         width: 185.0,
                         height: 60,
                         child: Theme(
-                          data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
+                          data: Theme.of(context).copyWith(
+                              primaryColor: Color.fromRGBO(79, 67, 154, 1)),
                           child: TextFormField(
                             focusNode: _focusNode[3],
                             enableSuggestions: true,
@@ -191,24 +183,21 @@ class _EducationState extends State<Education> {
                             keyboardAppearance: Brightness.dark,
                             onTap: () {
                               setState(() {
-                                FocusScope.of(context).requestFocus(_focusNode[3]);
+                                FocusScope.of(context)
+                                    .requestFocus(_focusNode[3]);
                               });
                             },
                             decoration: InputDecoration(
                                 labelText: "Start Date",
-                                labelStyle:TextStyle(
-                                    color:_focusNode[3].hasFocus
+                                labelStyle: TextStyle(
+                                    color: _focusNode[3].hasFocus
                                         ? Color.fromRGBO(79, 67, 154, 1)
-                                        : Colors.grey
-                                ),
+                                        : Colors.grey),
                                 border: const OutlineInputBorder(),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: Color.fromRGBO(79, 67, 154, 1)
-                                    )
-                                ),
-                                suffixIcon:
-                                Icon(Icons.calendar_today_outlined)),
+                                        color: Color.fromRGBO(79, 67, 154, 1))),
+                                suffixIcon: Icon(Icons.calendar_today)),
                           ),
                         ),
                       ),
@@ -219,7 +208,8 @@ class _EducationState extends State<Education> {
                         width: 185.0,
                         height: 60,
                         child: Theme(
-                          data: Theme.of(context).copyWith(primaryColor: Color.fromRGBO(79, 67, 154, 1)),
+                          data: Theme.of(context).copyWith(
+                              primaryColor: Color.fromRGBO(79, 67, 154, 1)),
                           child: TextFormField(
                             focusNode: _focusNode[4],
                             enabled: !_isChecked,
@@ -229,24 +219,21 @@ class _EducationState extends State<Education> {
                             keyboardAppearance: Brightness.dark,
                             onTap: () {
                               setState(() {
-                                FocusScope.of(context).requestFocus(_focusNode[4]);
+                                FocusScope.of(context)
+                                    .requestFocus(_focusNode[4]);
                               });
                             },
                             decoration: InputDecoration(
                                 labelText: "End Date",
-                                labelStyle:TextStyle(
+                                labelStyle: TextStyle(
                                     color: _focusNode[4].hasFocus
                                         ? Color.fromRGBO(79, 67, 154, 1)
-                                        :Colors.grey
-                                ),
+                                        : Colors.grey),
                                 border: const OutlineInputBorder(),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: Color.fromRGBO(79, 67, 154, 1)
-                                    )
-                                ),
-                                suffixIcon:
-                                Icon(Icons.calendar_today_outlined)),
+                                        color: Color.fromRGBO(79, 67, 154, 1))),
+                                suffixIcon: Icon(Icons.calendar_today)),
                           ),
                         ),
                       ),
@@ -272,17 +259,14 @@ class _EducationState extends State<Education> {
                     },
                     decoration: InputDecoration(
                       labelText: "Description",
-                      labelStyle:TextStyle(
+                      labelStyle: TextStyle(
                           color: _focusNode[5].hasFocus
                               ? Color.fromRGBO(79, 67, 154, 1)
-                              :Colors.grey
-                      ),
+                              : Colors.grey),
                       border: const OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(79, 67, 154, 1)
-                          )
-                      ),
+                              color: Color.fromRGBO(79, 67, 154, 1))),
                     ),
                   ),
                 ),
@@ -318,7 +302,8 @@ class _EducationState extends State<Education> {
                           ),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0)),
-                          borderSide: BorderSide(color: Color.fromRGBO(79, 67, 154, 1)),
+                          borderSide:
+                              BorderSide(color: Color.fromRGBO(79, 67, 154, 1)),
                         ),
                       ),
                     ),
@@ -330,7 +315,9 @@ class _EducationState extends State<Education> {
                 Row(
                   children: [
                     Theme(
-                      data: ThemeData(unselectedWidgetColor: Color.fromRGBO(79, 67, 154, 1)),
+                      data: ThemeData(
+                          unselectedWidgetColor:
+                              Color.fromRGBO(79, 67, 154, 1)),
                       child: Checkbox(
                         value: _isChecked,
                         tristate: false,
@@ -361,17 +348,18 @@ class _EducationState extends State<Education> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
                     onPressed: () async {
-                      if(_formKey.currentState.validate()){
+                      if (_formKey.currentState.validate()) {
                         await db.collection("education").add({
-                          'school':schoolController.text,
-                          'degree':descriptionController.text,
-                          'field_of_study':studyController.text,
-                          'start_date':startDateController.text,
-                          'end_date':endDateController.text,
-                          'description':descriptionController.text,
-                          'highlight':_isChecked
+                          'school': schoolController.text,
+                          'degree': descriptionController.text,
+                          'field_of_study': studyController.text,
+                          'start_date': startDateController.text,
+                          'end_date': endDateController.text,
+                          'description': descriptionController.text,
+                          'highlight': _isChecked
                         });
-                        Navigator.pushNamed(context, Certification.certificationId);
+                        Navigator.pushNamed(
+                            context, Certification.certificationId);
                       }
                     },
                     color: Color.fromRGBO(79, 67, 154, 1),

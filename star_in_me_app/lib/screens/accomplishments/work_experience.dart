@@ -26,7 +26,6 @@ class _WorkExperienceState extends State<WorkExperience> {
   final endDateController = TextEditingController();
   List<FocusNode> _focusNode;
 
-
   bool _isChecked = false;
   bool navigateToPage = false;
 
@@ -330,8 +329,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                                       borderSide: BorderSide(
                                           color:
                                               Color.fromRGBO(79, 67, 154, 1))),
-                                  suffixIcon:
-                                      Icon(Icons.calendar_today_outlined)),
+                                  suffixIcon: Icon(Icons.calendar_today)),
                             ),
                           ),
                         ),
@@ -373,7 +371,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Color.fromRGBO(79, 67, 154, 1))),
-                                suffixIcon: Icon(Icons.calendar_today_outlined),
+                                suffixIcon: Icon(Icons.calendar_today),
                               ),
                             ),
                           ),

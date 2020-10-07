@@ -5,6 +5,7 @@ import 'package:loading/indicator/ball_pulse_indicator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'routes.dart';
+import 'resources.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
           } else if (snapshot.connectionState == ConnectionState.done) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              initialRoute: '/workExperience',
+              initialRoute: Resources.ResourcesId,
               routes: routes,
             );
           }
