@@ -2,6 +2,7 @@ import 'package:star_in_me_app/authentication/forgot_password.dart';
 import 'package:star_in_me_app/onboarding/UI1.dart';
 import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'package:star_in_me_app/screens/landing.dart';
+import 'package:star_in_me_app/resources.dart';
 
 import 'screens/thankyou_screen.dart';
 import 'dart:core';
@@ -24,4 +25,7 @@ Map<String, Widget Function(BuildContext)> routes = {
 
   //User Profile Routes
   UserProfile.userProfileId: (context) => UserProfile(),
+
+  //Blog or resources Routes
+  Resources.ResourcesId: (context) => Resources(),
 };
