@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:linkedin_login/linkedin_login.dart';
 import 'package:star_in_me_app/screens/thankyou_screen.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 
 final _auth = FirebaseAuth.instance;
 final _firestore = FirebaseFirestore.instance;
@@ -109,6 +110,17 @@ class _SignupPageState extends State<SignupPage> {
                               ],
                             ),
                             SizedBox(height: 10.0),
+
+                            DropdownSearch<String>(
+                            hint:"Please select your country",
+                            mode: Mode.MENU,
+                            showSelectedItem: true,
+                            items: ["India","Indonesia","Brazil", "Italy", "Tunisia", 'Canada'],
+                            
+                            onChanged: print,
+                            ),
+                            SizedBox(height: 10.0),
+                            
                             Row(
                               children: <Widget>[
                                 Expanded(
