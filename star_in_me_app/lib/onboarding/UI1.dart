@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'dart:core';
-import 'UI2.dart';
+import 'package:star_in_me_app/onboarding/UI2.dart';
 import 'UI3.dart';
 
 class UI1 extends StatefulWidget {
@@ -16,11 +16,11 @@ class UI1 extends StatefulWidget {
 
 class _UI1State extends State<UI1> {
   int _currentPage = 0;
-  int _count = 0;
+  bool autoplay = true;
   List pageList = [
     UI1(),
-    UI1(),
-    UI1(),
+    UI2(),
+    UI3(),
   ];
 
   @override
@@ -54,16 +54,16 @@ class _UI1State extends State<UI1> {
                           height: height,
                           viewportFraction: 1.0,
                           enlargeCenterPage: false,
-                          autoPlay: true,
+                          autoPlay: autoplay,
                           pageSnapping: true,
                           pauseAutoPlayOnManualNavigate: true,
                           pauseAutoPlayOnTouch: true,
                           onPageChanged: (value, caourasalPageChangeResult) {
                             _currentPage = value;
-                            _count++;
-                            if (_count >= 3) {
-                              Navigator.pushNamed(
-                                  context, UserProfile.userProfileId);
+                            if (_currentPage == 2) {
+                              setState(() {
+                                autoplay = false;
+                              });
                             }
                           }),
                       items: pageList

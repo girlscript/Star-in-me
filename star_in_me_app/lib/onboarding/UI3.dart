@@ -2,13 +2,13 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class UI1 extends StatefulWidget {
-  static final onboardingUi1 = '/onboardingUI1';
+class UI3 extends StatefulWidget {
+  static final onboardingUi3 = '/onboardingUI3';
   @override
-  _UI1State createState() => _UI1State();
+  _UI3State createState() => _UI3State();
 }
 
-class _UI1State extends State<UI1> {
+class _UI3State extends State<UI3> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,7 +35,7 @@ class _UI1State extends State<UI1> {
                 color: Color(0xff4f439a),
                 height: 350,
                 child: Center(
-                  child: Image.asset('images/UI1.png',
+                  child: Image.asset('images/UI3.png',
                       height: 280.0, width: 280.0),
                 ),
               ),
