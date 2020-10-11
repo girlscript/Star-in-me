@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:star_in_me_app/onboarding/UI1.dart';
+import 'package:star_in_me_app/onboarding/UI4.dart';
 import 'constants.dart';
 import 'package:loading/loading.dart';
 import 'package:loading/indicator/ball_pulse_indicator.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
               initialRoute: UI1.onboardingUi1,
+              //initialRoute: UI4.onboardingUi4,
               routes: routes,
             );
           }
