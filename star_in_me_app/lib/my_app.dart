@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/landing.dart';
-import 'package:star_in_me_app/onboarding/UI1.dart';
-import 'package:star_in_me_app/onboarding/UI4.dart';
+import 'package:star_in_me_app/onboarding/onbordingPage.dart';
 import 'constants.dart';
 import 'package:loading/loading.dart';
 import 'package:loading/indicator/ball_pulse_indicator.dart';
@@ -9,8 +8,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'routes.dart';
 import 'resources.dart';
+import 'package:star_in_me_app/Events/EventsHomePage.dart';
 import 'package:animated_splash/animated_splash.dart';
-import 'screens/thankyou_screen.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -27,13 +26,7 @@ class MyApp extends StatelessWidget {
           } else if (snapshot.connectionState == ConnectionState.done) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-
-           //   initialRoute: UI1.onboardingUi1,
-              initialRoute: UI4.onboardingUi4,
-
-              //LandingPage.landingPageId
-            //  initialRoute: ThankYou.thankYouPage,
-
+              initialRoute: LandingPage.landingPageId,
               routes: routes,
             );
           }
