@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:star_in_me_app/authentication/forgot_password.dart';
 import 'package:star_in_me_app/onboarding/UI1.dart';
 import 'package:star_in_me_app/onboarding/UI2.dart';
@@ -14,8 +16,8 @@ import 'package:star_in_me_app/screens/accomplishments/volunteer.dart';
 import 'package:star_in_me_app/screens/accomplishments/work_experience.dart';
 import 'package:star_in_me_app/screens/createpost.dart';
 import 'package:star_in_me_app/screens/landing.dart';
+import 'package:star_in_me_app/Events/EventsHomePage.dart';
 import 'package:star_in_me_app/resources.dart';
-
 import 'onboarding/UI3.dart';
 import 'screens/thankyou_screen.dart';
 import 'dart:core';
