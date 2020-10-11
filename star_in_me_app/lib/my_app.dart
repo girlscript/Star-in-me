@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/landing.dart';
 import 'package:star_in_me_app/onboarding/UI1.dart';
 import 'package:star_in_me_app/onboarding/UI4.dart';
 import 'constants.dart';
@@ -8,6 +9,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'routes.dart';
 import 'resources.dart';
+import 'package:animated_splash/animated_splash.dart';
+import 'screens/thankyou_screen.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -24,8 +27,13 @@ class MyApp extends StatelessWidget {
           } else if (snapshot.connectionState == ConnectionState.done) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              initialRoute: UI1.onboardingUi1,
-              //initialRoute: UI4.onboardingUi4,
+
+           //   initialRoute: UI1.onboardingUi1,
+              initialRoute: UI4.onboardingUi4,
+
+              //LandingPage.landingPageId
+            //  initialRoute: ThankYou.thankYouPage,
+
               routes: routes,
             );
           }
@@ -34,3 +42,5 @@ class MyApp extends StatelessWidget {
         });
   }
 }
+
+// ThankYou.thankYouPage
