@@ -11,7 +11,7 @@ class Slide {
       @required this.description});
 }
 
-final SlideList = [
+final slideList = [
   Slide(
       imageURL: 'images/assets/Build-your-profile.jpg',
       title: 'Create your best profile',
@@ -33,16 +33,3 @@ final SlideList = [
       description:
           'Continuous learning and skill enhancement are critical to advance one’s career.')
 ];
-
-
-
-
-
-
-
-
-
-
-
-
-

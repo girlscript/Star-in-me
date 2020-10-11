@@ -29,17 +29,25 @@ dev_dependencies:
   carousel_pro: ^1.0.0
   font_awesome_flutter: 8.10.0
   
+
+  dotted_border: ^1.0.6
+  carousel_slider: ^2.3.1
+  http: ^0.12.2
+  flutter_svg: ^0.19.0
+
   
 
   firebase_core: ^0.5.0
   firebase_auth: ^0.18.0+1
   cloud_firestore: ^0.14.0+2
+  firebase_storage: ^4.0.1
 
 flutter:
   uses-material-design: true
 
   assets:
-    - images/images/assets/Build-your-profile.jpg
+    - images/
+    - images/assets/Build-your-profile.jpg
     - images/assets/Events.jpg
     - images/assets/newImage.jpg
     - images/assets/Seek-guidance.jpg
