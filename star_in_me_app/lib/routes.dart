@@ -1,5 +1,7 @@
 import 'package:star_in_me_app/authentication/forgot_password.dart';
 import 'package:star_in_me_app/onboarding/UI1.dart';
+import 'package:star_in_me_app/onboarding/UI2.dart';
+import 'package:star_in_me_app/onboarding/UI3.dart';
 import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'package:star_in_me_app/screens/accomplishments/awards.dart';
 import 'package:star_in_me_app/screens/accomplishments/certification.dart';
@@ -31,12 +33,13 @@ Map<String, Widget Function(BuildContext)> routes = {
 
   //Onboarding Routes
   UI1.onboardingUi1: (context) => UI1(),
+  UI2.onboardingUi2: (context) => UI2(),
+  UI3.onboardingUi3: (context) => UI3(),
 
   CreatePost.CreatePostId: (context) => CreatePost(),
 
   //User Profile Routes
   UserProfile.userProfileId: (context) => UserProfile(),
-
 
   //Blog or resources Routes
   Resources.ResourcesId: (context) => Resources(),
@@ -50,5 +53,4 @@ Map<String, Widget Function(BuildContext)> routes = {
   Patent.patentId: (context) => Patent(),
   PatentPending.patenPendingtId: (context) => PatentPending(),
   Awards.awardsId: (context) => Awards()
-
 };
