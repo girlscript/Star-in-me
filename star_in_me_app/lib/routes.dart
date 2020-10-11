@@ -1,6 +1,9 @@
+import 'dart:js';
+
 import 'package:star_in_me_app/authentication/forgot_password.dart';
 import 'package:star_in_me_app/onboarding/UI1.dart';
 import 'package:star_in_me_app/screens/landing.dart';
+import 'package:star_in_me_app/Events/EventsHomePage.dart';
 
 import 'screens/thankyou_screen.dart';
 import 'home.dart';
