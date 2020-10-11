@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:star_in_me_app/onboarding/UI4.dart';
 import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'dart:core';
 import 'package:star_in_me_app/onboarding/UI2.dart';
@@ -21,6 +22,7 @@ class _UI1State extends State<UI1> {
     UI1(),
     UI2(),
     UI3(),
+    UI4(),
   ];
 
   @override
@@ -60,7 +62,7 @@ class _UI1State extends State<UI1> {
                           pauseAutoPlayOnTouch: true,
                           onPageChanged: (value, caourasalPageChangeResult) {
                             _currentPage = value;
-                            if (_currentPage == 2) {
+                            if (_currentPage == 3) {
                               setState(() {
                                 autoplay = false;
                               });

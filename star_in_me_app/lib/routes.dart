@@ -2,6 +2,7 @@ import 'package:star_in_me_app/authentication/forgot_password.dart';
 import 'package:star_in_me_app/onboarding/UI1.dart';
 import 'package:star_in_me_app/onboarding/UI2.dart';
 import 'package:star_in_me_app/onboarding/UI3.dart';
+import 'package:star_in_me_app/onboarding/UI4.dart';
 import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'package:star_in_me_app/screens/accomplishments/awards.dart';
 import 'package:star_in_me_app/screens/accomplishments/certification.dart';
@@ -15,11 +16,14 @@ import 'package:star_in_me_app/screens/createpost.dart';
 import 'package:star_in_me_app/screens/landing.dart';
 import 'package:star_in_me_app/resources.dart';
 
+import 'onboarding/UI3.dart';
 import 'screens/thankyou_screen.dart';
 import 'dart:core';
 import 'package:flutter/material.dart';
 import 'authentication/login.dart';
 import 'authentication/signup.dart';
+
+
 
 Map<String, Widget Function(BuildContext)> routes = {
   //index Page Routes
@@ -35,6 +39,8 @@ Map<String, Widget Function(BuildContext)> routes = {
   UI1.onboardingUi1: (context) => UI1(),
   UI2.onboardingUi2: (context) => UI2(),
   UI3.onboardingUi3: (context) => UI3(),
+
+  UI4.onboardingUi4: (context) => UI4(),
 
   CreatePost.CreatePostId: (context) => CreatePost(),
 
