@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:star_in_me_app/onboarding/UI1.dart';
-import 'package:star_in_me_app/screens/UserProfile.dart';
+import 'package:star_in_me_app/onboarding/onbordingPage.dart';
 
 class ThankYou extends StatefulWidget {
   static final String thankYouPage = '/login/thankyou';
@@ -11,9 +10,15 @@ class ThankYou extends StatefulWidget {
 }
 
 class _ThankYouState extends State<ThankYou> {
-  String name = FirebaseAuth.instance.currentUser.displayName ?? "Anonymous";
+  // String name = "Pratiksha!";
+  String name;
   @override
   Widget build(BuildContext context) {
+    final Map arguments = ModalRoute.of(context).settings.arguments as Map;
+
+    if (arguments != null) {
+      name=arguments['name'];
+    }
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -23,46 +28,71 @@ class _ThankYouState extends State<ThankYou> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                Center(
-                  child: Row(children: <Widget>[
-                    Text('Welcome to ',
-                        style: TextStyle(
-                            color: Colors.purpleAccent[700], fontSize: 20.0)),
+                Row(children: <Widget>[
+                  Text('Welcome to ',
+                      style:
+                          TextStyle(color: Colors.purple[700], fontSize: 25.0)),
+                  Text(
+                    'The star in me,',
+                    style: TextStyle(color: Colors.purple[300], fontSize: 25.0),
+                  )
+                ]),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Text(name,
+                          style: TextStyle(
+                              color: Colors.purple[700], fontSize: 25.0)),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 15.0),
+                Row(
+                  children: [
                     Text(
-                      'The star in me,',
-                      style: TextStyle(color: Colors.pink[600], fontSize: 20.0),
-                    )
-                  ]),
-                ),
-                Text(name,
-                    style: TextStyle(
-                        color: Colors.purpleAccent[700], fontSize: 20.0)),
-                SizedBox(height: 15.0),
-                Text(
-                  "You're almost done",
-                  style: TextStyle(color: Colors.grey),
+                      "You're almost done",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 15.0),
-                Text(
-                  "Thank you for joining.We may reach out to you for",
-                  style: TextStyle(color: Colors.grey),
+                Row(
+                  children: [
+                    Text(
+                      "Thank you for joining.We may reach out to you for",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
                 ),
-                Text(
-                  "additional validation,if required",
-                  style: TextStyle(color: Colors.grey),
+                Row(
+                  children: [
+                    Text(
+                      "additional validation, if required .",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 15.0),
-                Text(
-                  "Let us help you create an outstanding profile",
-                  style: TextStyle(color: Colors.grey),
+                Row(
+                  children: [
+                    Text(
+                      "Let us help you create an outstanding profile",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
                 ),
+                SizedBox(height: 20.0),
                 RaisedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, UI1.onboardingUi1);
+                    Navigator.pushNamed(context, onboardingPage.onboarding);
                   },
                   color: Colors.purple[700],
                   splashColor: Colors.blueAccent,
-                  child: Text('START BUILDING YOUR PROFILE'),
+                  child: Text(
+                    'START BUILDING YOUR PROFILE',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 )
               ])),
         ),
