@@ -296,11 +296,6 @@ class _LoginPageState extends State<LoginPage> {
                                       print(user.displayName);
                                       Navigator.pushNamed(
                                           context, ThankYou.thankYouPage, arguments: {'name':user.displayName});
-                                      // setState(() {
-                                      //   // isFacebookLoginIn = true;
-                                      //   successMessage =
-                                      //   'Logged in successfully.\nEmail : ${user.email}\nYou can now navigate to Home Page.';
-                                      // });
                                     } else {
                                       print('Error while Login.');
                                     }
@@ -361,47 +356,10 @@ Future<User> _signInWithGoogle() async {
   }
 }
 
-// Future<User> signUpWithFacebook() async{
-//   try {
-//     var facebookLogin = new FacebookLogin();
-//     var result = await facebookLogin.logIn(['email']);
-//
-//     if(result.status == FacebookLoginStatus.loggedIn) {
-//       String accessToken=result.accessToken.token;
-//       final AuthCredential credential = FacebookAuthProvider.credential(accessToken);
-//       final FirebaseUser user = (await FirebaseAuth.instance.signInWithCredential(credential)).user;
-//       print('signed in ' + user.displayName);
-//       return user;
-//     }
-//   }catch (e) {
-//     print(e.message);
-//   }
-// }
-// Future<User> signUpWithFacebook() async {
-//   try {
-//     FacebookLogin facebookLogin = FacebookLogin();
-//
-//     final result = await facebookLogin.logIn(['email']);
-//     final token = result.accessToken.token;
-//     final graphResponse = await http.get(
-//         'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name&access_token=$token');
-//     // print(graphResponse.body);
-//     if (result.status == FacebookLoginStatus.loggedIn) {
-//       final credential = FacebookAuthProvider.getCredential(token);
-//       final User user = (await _auth.signInWithCredential(credential))
-//           .user;
-//       print(user.email);
-//       return user;
-//     }
-//   }
-//   catch(e){
-//     print(e.message);
-//   }
-// }
 Future<User> facebookLogin(BuildContext context) async {
   User currentUser;
   // fbLogin.loginBehavior = FacebookLoginBehavior.webViewOnly;
-  // if you remove above comment then facebook login will take username and pasword for login in Webview
+  // remove above comment then facebook login will take username and pasword for login in Webview
   try {
     final FacebookLoginResult facebookLoginResult =
     await fbLogin.logIn(['email', 'public_profile']);
@@ -411,12 +369,12 @@ Future<User> facebookLogin(BuildContext context) async {
       final AuthCredential credential = FacebookAuthProvider.getCredential(
            facebookAccessToken.token);
       final User user = (await _auth.signInWithCredential(credential)).user;
-     // assert(user.email != null);
-     //  assert(user.displayName != null);
-     //  assert(!user.isAnonymous);
-     //  assert(await user.getIdToken() != null);
+     assert(user.email != null);
+      assert(user.displayName != null);
+      assert(!user.isAnonymous);
+      assert(await user.getIdToken() != null);
       currentUser = _auth.currentUser;
-      // assert(user.uid == currentUser.uid);
+      assert(user.uid == currentUser.uid);
       return currentUser;
     }
   } catch (e) {
