@@ -5,14 +5,16 @@ import 'animations/fadeanimations.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:email_validator/email_validator.dart';
 import 'forgot_password.dart';
-
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart' as http;
 
 final _auth = FirebaseAuth.instance;
 final _firestore = FirebaseFirestore.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
+final FacebookLogin fbLogin = new FacebookLogin();
 
 class LoginPage extends StatefulWidget {
   static final String loginPageId = '/login';
@@ -286,7 +288,24 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               SizedBox(width: 8.0),
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  //TODO: generate a release key hash from developers.facebook.com for production
+                                  facebookLogin(context).then((user) {
+                                    if (user != null) {
+                                      print('Logged in successfully.');
+                                      print(user.displayName);
+                                      Navigator.pushNamed(
+                                          context, ThankYou.thankYouPage, arguments: {'name':user.displayName});
+                                      // setState(() {
+                                      //   // isFacebookLoginIn = true;
+                                      //   successMessage =
+                                      //   'Logged in successfully.\nEmail : ${user.email}\nYou can now navigate to Home Page.';
+                                      // });
+                                    } else {
+                                      print('Error while Login.');
+                                    }
+                                  });
+                                },
                                 child: Container(
                                   height: 30.0,
                                   child: FittedBox(
@@ -340,4 +359,68 @@ Future<User> _signInWithGoogle() async {
 
     return user;
   }
+}
+
+// Future<User> signUpWithFacebook() async{
+//   try {
+//     var facebookLogin = new FacebookLogin();
+//     var result = await facebookLogin.logIn(['email']);
+//
+//     if(result.status == FacebookLoginStatus.loggedIn) {
+//       String accessToken=result.accessToken.token;
+//       final AuthCredential credential = FacebookAuthProvider.credential(accessToken);
+//       final FirebaseUser user = (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+//       print('signed in ' + user.displayName);
+//       return user;
+//     }
+//   }catch (e) {
+//     print(e.message);
+//   }
+// }
+// Future<User> signUpWithFacebook() async {
+//   try {
+//     FacebookLogin facebookLogin = FacebookLogin();
+//
+//     final result = await facebookLogin.logIn(['email']);
+//     final token = result.accessToken.token;
+//     final graphResponse = await http.get(
+//         'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name&access_token=$token');
+//     // print(graphResponse.body);
+//     if (result.status == FacebookLoginStatus.loggedIn) {
+//       final credential = FacebookAuthProvider.getCredential(token);
+//       final User user = (await _auth.signInWithCredential(credential))
+//           .user;
+//       print(user.email);
+//       return user;
+//     }
+//   }
+//   catch(e){
+//     print(e.message);
+//   }
+// }
+Future<User> facebookLogin(BuildContext context) async {
+  User currentUser;
+  // fbLogin.loginBehavior = FacebookLoginBehavior.webViewOnly;
+  // if you remove above comment then facebook login will take username and pasword for login in Webview
+  try {
+    final FacebookLoginResult facebookLoginResult =
+    await fbLogin.logIn(['email', 'public_profile']);
+    if (facebookLoginResult.status == FacebookLoginStatus.loggedIn) {
+      FacebookAccessToken facebookAccessToken =
+          facebookLoginResult.accessToken;
+      final AuthCredential credential = FacebookAuthProvider.getCredential(
+           facebookAccessToken.token);
+      final User user = (await _auth.signInWithCredential(credential)).user;
+     // assert(user.email != null);
+     //  assert(user.displayName != null);
+     //  assert(!user.isAnonymous);
+     //  assert(await user.getIdToken() != null);
+      currentUser = _auth.currentUser;
+      // assert(user.uid == currentUser.uid);
+      return currentUser;
+    }
+  } catch (e) {
+    print(e);
+  }
+  return currentUser;
 }

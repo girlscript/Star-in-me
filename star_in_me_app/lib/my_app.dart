@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           } else if (snapshot.connectionState == ConnectionState.done) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              initialRoute: LandingPage.landingPageId,
+              initialRoute: '/signup',
               routes: routes,
             );
           }
