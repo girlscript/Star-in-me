@@ -25,6 +25,8 @@ dev_dependencies:
   shared_preferences: ^0.5.10
   email_validator: ^1.0.5
   google_sign_in: ^4.5.3
+  flutter_facebook_login: ^3.0.0
+  provider: ^4.3.2+2
   linkedin_login: ^1.2.2
   dots_indicator: ^1.2.0
   carousel_pro: ^1.0.0
