@@ -10,10 +10,11 @@ import 'package:star_in_me_app/screens/accomplishments/patent_pending.dart';
 import 'package:star_in_me_app/screens/accomplishments/publication.dart';
 import 'package:star_in_me_app/screens/accomplishments/volunteer.dart';
 import 'package:star_in_me_app/screens/accomplishments/work_experience.dart';
-import 'package:star_in_me_app/screens/createpost.dart';
 import 'package:star_in_me_app/screens/landing.dart';
 import 'package:star_in_me_app/Events/EventsHomePage.dart';
 import 'package:star_in_me_app/resources.dart';
+import 'Posts/PostPage.dart';
+import 'Posts/createpost.dart';
 import 'screens/thankyou_screen.dart';
 import 'dart:core';
 import 'package:flutter/material.dart';
@@ -33,8 +34,9 @@ Map<String, Widget Function(BuildContext)> routes = {
   //Onboarding Routes
   onboardingPage.onboarding: (context) => onboardingPage(),
   UI4.onboardingUi4: (context) => UI4(),
-
+  //Post Routes
   CreatePost.CreatePostId: (context) => CreatePost(),
+  PostPage.postPageId: (context) => PostPage(),
 
   //User Profile Routes
   UserProfile.userProfileId: (context) => UserProfile(),
