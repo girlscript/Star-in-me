@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'PostModel.dart';
 class CreatePost extends StatefulWidget{
   static final String CreatePostId = '/createpost';
   @override
@@ -25,12 +26,28 @@ class _CreatePost extends State<CreatePost> with SingleTickerProviderStateMixin{
   int _currentIndex =0;
   List<TextEditingController> title;
   List<TextEditingController> detail;
+  List<TextEditingController> optiondetails;
   List<String> words = [];
   String str='';
   TextPainter painter = new TextPainter();
+  void SubmitPost(int i){
+    List<String> selectedoptions = new List();
+    if(i==0)
+      {
+        for(int j=0;j<optiondetails.length;j++)
+        {
+          selectedoptions.add(optiondetails[j].text);
+        }
+      }
+    PostModel newpost = PostModel(title[i].text,detail[i].text,[],location[i],people[i],label[i],checked[i],visible[i],selectedoptions,"Pragya Gupta","https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",0,[],0,DateTime.now());
+    Navigator.pop(context,newpost);
+  }
   @override
   void initState() {
     people = new List(3);
+    options = [1];
+    optiondetails = new List();
+    optiondetails.add(new TextEditingController());
     _focusNode = new List(3);
     _focusNode[0]=FocusNode();
     _focusNode[1]=FocusNode();
@@ -548,7 +565,7 @@ class _CreatePost extends State<CreatePost> with SingleTickerProviderStateMixin{
                       shape: RoundedRectangleBorder(borderRadius:  BorderRadius.only(topLeft: Radius.circular(5),bottomLeft: Radius.circular(5))),
                       color: Colors.deepPurple,
                       onPressed: (){
-                        return null;
+                        SubmitPost(0);
                       },
                       child: Padding(
                         padding: EdgeInsets.all(10),
@@ -1045,7 +1062,7 @@ class _CreatePost extends State<CreatePost> with SingleTickerProviderStateMixin{
                       shape: RoundedRectangleBorder(borderRadius:  BorderRadius.only(topLeft: Radius.circular(5),bottomLeft: Radius.circular(5))),
                       color: Colors.deepPurple,
                       onPressed: (){
-                        return null;
+                        SubmitPost(1);
                       },
                       child: Padding(
                         padding: EdgeInsets.all(10),
@@ -1559,7 +1576,7 @@ class _CreatePost extends State<CreatePost> with SingleTickerProviderStateMixin{
                        shape: RoundedRectangleBorder(borderRadius:  BorderRadius.only(topLeft: Radius.circular(5),bottomLeft: Radius.circular(5))),
                        color: Colors.deepPurple,
                        onPressed: (){
-                         return null;
+                         SubmitPost(2);
                        },
                        child: Padding(
                          padding: EdgeInsets.all(10),
@@ -1778,6 +1795,7 @@ class _CreatePost extends State<CreatePost> with SingleTickerProviderStateMixin{
             Expanded(
                 child: Center(
                   child: TextField(
+                    controller: optiondetails[data-1],
                     decoration: InputDecoration(
                       hintText: "Add Option",
                       focusedBorder: OutlineInputBorder(
@@ -1805,6 +1823,7 @@ class _CreatePost extends State<CreatePost> with SingleTickerProviderStateMixin{
               onTap: (){
                 setState(() {
                   options.add(options.length+1);
+                  optiondetails.add(new TextEditingController());
                 });
               },
             ):Container(),
