@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:star_in_me_app/mainPage.dart';
 import 'screens/landing.dart';
 import 'package:star_in_me_app/onboarding/onbordingPage.dart';
 import 'constants.dart';
@@ -26,12 +27,13 @@ class MyApp extends StatelessWidget {
           } else if (snapshot.connectionState == ConnectionState.done) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              initialRoute: '/signup',
+              initialRoute: LandingPage.landingPageId,
               routes: routes,
             );
           }
           return Loading(
-              indicator: BallPulseIndicator(), size: 50.0, color: Colors.blue);
+              //indicator: BallPulseIndicator(), size: 50.0, color: Colors.blue
+              );
         });
   }
 }

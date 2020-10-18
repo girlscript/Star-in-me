@@ -10,15 +10,18 @@ class ThankYou extends StatefulWidget {
 }
 
 class _ThankYouState extends State<ThankYou> {
-  // String name = "Pratiksha!";
   String name;
+
   @override
   Widget build(BuildContext context) {
     final Map arguments = ModalRoute.of(context).settings.arguments as Map;
 
     if (arguments != null) {
-      name=arguments['name'];
+      name = arguments['name'];
+    } else {
+      name = "Stranger!";
     }
+
     return SafeArea(
       child: Scaffold(
         body: Padding(

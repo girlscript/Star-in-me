@@ -1,4 +1,5 @@
 import 'package:star_in_me_app/authentication/forgot_password.dart';
+import 'package:star_in_me_app/mainPage.dart';
 import 'package:star_in_me_app/onboarding/UI4.dart';
 import 'package:star_in_me_app/onboarding/onbordingPage.dart';
 import 'package:star_in_me_app/screens/UserProfile.dart';
@@ -24,6 +25,7 @@ import 'authentication/signup.dart';
 Map<String, Widget Function(BuildContext)> routes = {
   //index Page Routes
   LandingPage.landingPageId: (context) => LandingPage(),
+  MainPage.mainPage: (context) => MainPage(),
 
   //Auth Routes
   LoginPage.loginPageId: (context) => LoginPage(),
@@ -34,6 +36,7 @@ Map<String, Widget Function(BuildContext)> routes = {
   //Onboarding Routes
   onboardingPage.onboarding: (context) => onboardingPage(),
   UI4.onboardingUi4: (context) => UI4(),
+
   //Post Routes
   CreatePost.CreatePostId: (context) => CreatePost(),
   PostPage.postPageId: (context) => PostPage(),

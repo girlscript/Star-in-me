@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-
-final TextEditingController clg = TextEditingController();
-final TextEditingController mail = TextEditingController();
-final TextEditingController designation = TextEditingController();
-final TextEditingController linkedin = TextEditingController();
+import 'package:star_in_me_app/Posts/PostPage.dart';
+import 'package:star_in_me_app/mainPage.dart';
+import 'package:star_in_me_app/screens/UserProfile.dart';
 
 class UI4 extends StatelessWidget {
   static final onboardingUi4 = '/onboardingUI4';
+  final TextEditingController clg = TextEditingController();
+  final TextEditingController mail = TextEditingController();
+  final TextEditingController designation = TextEditingController();
+  final TextEditingController linkedin = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,27 +83,18 @@ class UI4 extends StatelessWidget {
                   keyboardType: TextInputType.text,
                   autofocus: false,
                   decoration: InputDecoration(
-
                       labelText: 'College/Company/Organization',
-                      labelStyle: TextStyle(
-                          color: Color(0xff4f439a),
-                          fontSize: 16.0
-                      ),
+                      labelStyle:
+                          TextStyle(color: Color(0xff4f439a), fontSize: 16.0),
                       focusedBorder: OutlineInputBorder(
-
                           borderRadius: BorderRadius.circular(15.0),
-                          borderSide: BorderSide(
-                              color: Color(0xff4f439a)
-                          )
-                      ),
+                          borderSide: BorderSide(color: Color(0xff4f439a))),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15.0),
                           borderSide: BorderSide(
-                            // color: Colors.deepPurple,
-                            //width: 2.0
-                          )
-                      )
-                  ),
+                              // color: Colors.deepPurple,
+                              //width: 2.0
+                              ))),
                 ),
               ),
               Padding(
@@ -113,17 +107,11 @@ class UI4 extends StatelessWidget {
                   autofocus: false,
                   decoration: InputDecoration(
                       labelText: 'pratiksha.g@xelp.com',
-                      labelStyle: TextStyle(
-                          color: Color(0xff4f439a),
-                          fontSize: 16.0
-                      ),
-
+                      labelStyle:
+                          TextStyle(color: Color(0xff4f439a), fontSize: 16.0),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15.0),
-                          borderSide: BorderSide(
-                              color: Color(0xff4f439a)
-                          )
-                      ),
+                          borderSide: BorderSide(color: Color(0xff4f439a))),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15.0),
                           borderSide: BorderSide())),
@@ -139,16 +127,11 @@ class UI4 extends StatelessWidget {
                   autofocus: false,
                   decoration: InputDecoration(
                       labelText: 'Designation',
-                      labelStyle: TextStyle(
-                          color: Color(0xff4f439a),
-                          fontSize: 16.0
-                      ),
+                      labelStyle:
+                          TextStyle(color: Color(0xff4f439a), fontSize: 16.0),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15.0),
-                          borderSide: BorderSide(
-                              color: Color(0xff4f439a)
-                          )
-                      ),
+                          borderSide: BorderSide(color: Color(0xff4f439a))),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15.0),
                           borderSide: BorderSide())),
@@ -164,16 +147,11 @@ class UI4 extends StatelessWidget {
                   autofocus: false,
                   decoration: InputDecoration(
                       labelText: 'Linkedin Profile',
-                      labelStyle: TextStyle(
-                          color: Color(0xff4f439a),
-                          fontSize: 16.0
-                      ),
+                      labelStyle:
+                          TextStyle(color: Color(0xff4f439a), fontSize: 16.0),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15.0),
-                          borderSide: BorderSide(
-                              color: Color(0xff4f439a)
-                          )
-                      ),
+                          borderSide: BorderSide(color: Color(0xff4f439a))),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15.0),
                           borderSide: BorderSide())),
@@ -236,7 +214,7 @@ class UI4 extends StatelessWidget {
                   onPressed: () => print("BUTTON PRESSED"),
                   child: Text(
                     "ADD PHOTO OR VIDEO",
-                    style: TextStyle(color:Color(0xff4f439a), fontSize: 17.0),
+                    style: TextStyle(color: Color(0xff4f439a), fontSize: 17.0),
                   ),
                   borderSide: BorderSide(
                     color: Color(0xff4f439a),
@@ -262,13 +240,17 @@ class UI4 extends StatelessWidget {
               ButtonTheme(
                 height: 50,
                 minWidth: 150,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0) ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)),
                 child: RaisedButton(
-                  onPressed:()=> print("NEXT button pressed"),
-                  child: Text("NEXT", style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0
-                  ),),
+                  onPressed: () {
+                    //TODO: Connect $CTC pages here
+                    Navigator.pushNamed(context, MainPage.mainPage);
+                  },
+                  child: Text(
+                    "NEXT",
+                    style: TextStyle(color: Colors.white, fontSize: 20.0),
+                  ),
                   color: Color(0xff4f439a),
                 ),
               )
