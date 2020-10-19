@@ -1,5 +1,8 @@
 import 'package:star_in_me_app/authentication/forgot_password.dart';
 import 'package:star_in_me_app/onboarding/UI4.dart';
+import 'package:star_in_me_app/onboarding/UI5.dart';
+import 'package:star_in_me_app/onboarding/UI6.dart';
+import 'package:star_in_me_app/onboarding/UI7.dart';
 import 'package:star_in_me_app/onboarding/onbordingPage.dart';
 import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'package:star_in_me_app/screens/accomplishments/awards.dart';
