@@ -34,6 +34,12 @@ Map<String, Widget Function(BuildContext)> routes = {
   //Onboarding Routes
   onboardingPage.onboarding: (context) => onboardingPage(),
   UI4.onboardingUi4: (context) => UI4(),
+
+  UI5.onboardingUi5: (context) => UI5(),
+
+  UI6.onboardingUi6: (context) => UI6(),
+
+  UI7.onboardingUi7: (context) => UI7(),
   //Post Routes
   CreatePost.CreatePostId: (context) => CreatePost(),
   PostPage.postPageId: (context) => PostPage(),
