@@ -1,3 +1,4 @@
+file for android project
 # star_in_me_app
 
 A new Flutter project.
