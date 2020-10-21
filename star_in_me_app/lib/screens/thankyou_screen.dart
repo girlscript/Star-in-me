@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:star_in_me_app/onboarding/onbordingPage.dart';
 
 class ThankYou extends StatefulWidget {
@@ -10,7 +9,6 @@ class ThankYou extends StatefulWidget {
 }
 
 class _ThankYouState extends State<ThankYou> {
-  // String name = "Pratiksha!";
   String name;
   @override
   Widget build(BuildContext context) {

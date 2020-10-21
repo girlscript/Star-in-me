@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:star_in_me_app/authentication/signup.dart';
 import 'package:star_in_me_app/screens/thankyou_screen.dart';
@@ -9,12 +10,12 @@ import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:http/http.dart' as http;
 
 final _auth = FirebaseAuth.instance;
 final _firestore = FirebaseFirestore.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
 final FacebookLogin fbLogin = new FacebookLogin();
+
 
 class LoginPage extends StatefulWidget {
   static final String loginPageId = '/login';
@@ -263,16 +264,17 @@ class _LoginPageState extends State<LoginPage> {
                               SizedBox(width: 8.0),
                               GestureDetector(
                                 onTap: () async {
-                                  try {
-                                    final user = await _signInWithGoogle();
-                                    if (user != null) {
-                                      Navigator.pushNamed(
-                                          context, ThankYou.thankYouPage);
-                                    }
-                                  } on FirebaseAuthException catch (e) {
-                                    print('${e.code}');
-                                  } catch (e) {
-                                    print(e.toString());
+                                  final user = await _signInWithGoogle();
+                                  final snapShot = await _firestore.collection('users').doc(user.email).get();
+                                  if(snapShot == null || !snapShot.exists){
+                                    setState(() {
+                                      googleSignIn.signOut();
+                                      Navigator.pushReplacementNamed(context, SignupPage.signUpPageId);
+                                    });
+
+                                  }
+                                  else{
+                                    Navigator.pushReplacementNamed(context, ThankYou.thankYouPage,arguments: {'name':user.displayName});
                                   }
                                 },
                                 child: Container(
@@ -294,7 +296,7 @@ class _LoginPageState extends State<LoginPage> {
                                     if (user != null) {
                                       print('Logged in successfully.');
                                       print(user.displayName);
-                                      Navigator.pushNamed(
+                                      Navigator.pushReplacementNamed(
                                           context, ThankYou.thankYouPage, arguments: {'name':user.displayName});
                                     } else {
                                       print('Error while Login.');
@@ -326,6 +328,7 @@ class _LoginPageState extends State<LoginPage> {
 
 Future<User> _signInWithGoogle() async {
   bool isSignedIn = await googleSignIn.isSignedIn();
+  print(isSignedIn);
   if (isSignedIn) {
     final user = _auth.currentUser;
     return user;
@@ -347,9 +350,6 @@ Future<User> _signInWithGoogle() async {
     final currentUser = _auth.currentUser;
     assert(currentUser.uid == user.uid);
 
-    _firestore
-        .collection("users")
-        .add({"name": currentUser.displayName, "email": currentUser.email});
     print(currentUser.email);
 
     return user;
@@ -375,7 +375,12 @@ Future<User> facebookLogin(BuildContext context) async {
       assert(await user.getIdToken() != null);
       currentUser = _auth.currentUser;
       assert(user.uid == currentUser.uid);
+
+      _firestore.collection("users").doc(currentUser.email).set({
+        "name": currentUser.displayName, "email": currentUser.email
+      });
       return currentUser;
+
     }
   } catch (e) {
     print(e);
