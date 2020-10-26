@@ -1,5 +1,8 @@
 import 'package:star_in_me_app/authentication/forgot_password.dart';
 import 'package:star_in_me_app/onboarding/UI4.dart';
+import 'package:star_in_me_app/onboarding/UI5.dart';
+import 'package:star_in_me_app/onboarding/UI6.dart';
+import 'package:star_in_me_app/onboarding/UI7.dart';
 import 'package:star_in_me_app/onboarding/onbordingPage.dart';
 import 'package:star_in_me_app/screens/UserProfile.dart';
 import 'package:star_in_me_app/screens/accomplishments/awards.dart';
@@ -34,6 +37,12 @@ Map<String, Widget Function(BuildContext)> routes = {
   //Onboarding Routes
   onboardingPage.onboarding: (context) => onboardingPage(),
   UI4.onboardingUi4: (context) => UI4(),
+
+  UI5.onboardingUi5: (context) => UI5(),
+
+  UI6.onboardingUi6: (context) => UI6(),
+
+  UI7.onboardingUi7: (context) => UI7(),
   //Post Routes
   CreatePost.CreatePostId: (context) => CreatePost(),
   PostPage.postPageId: (context) => PostPage(),

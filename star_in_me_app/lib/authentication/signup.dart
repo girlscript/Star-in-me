@@ -207,8 +207,9 @@ class _SignupPageState extends State<SignupPage> {
                                         color: Colors.deepPurple[500],
                                         textColor: Colors.white,
                                         onPressed: () async {
+                                          User user;
                                           try {
-                                            final user =
+                                             user =
                                                 await _signUpWithGoogle();
                                           } on FirebaseAuthException catch (e) {
                                             print('${e.code}');
@@ -217,7 +218,7 @@ class _SignupPageState extends State<SignupPage> {
                                           }
 
                                           Navigator.pushNamed(
-                                              context, ThankYou.thankYouPage);
+                                              context, ThankYou.thankYouPage,arguments: {'name':user.displayName});
                                         }),
                                   ),
                                 ),
@@ -466,6 +467,7 @@ class _SignupPageState extends State<SignupPage> {
 
 Future<User> _signUpWithGoogle() async {
   bool isSignedIn = await googleSignIn.isSignedIn();
+  print(isSignedIn);
   if (isSignedIn) {
     final user = _auth.currentUser;
     return user;
@@ -487,9 +489,9 @@ Future<User> _signUpWithGoogle() async {
     final currentUser = _auth.currentUser;
     assert(currentUser.uid == user.uid);
 
-    _firestore
-        .collection("users")
-        .add({"name": currentUser.displayName, "email": currentUser.email});
+    _firestore.collection("users").doc(currentUser.email).set({
+      "name": currentUser.displayName, "email": currentUser.email
+    });
     print(currentUser.email);
 
     return user;

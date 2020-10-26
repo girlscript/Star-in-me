@@ -331,7 +331,7 @@ class _PostPage extends State<PostPage>{
                   },
                   child: Row(
                     children: [
-                      Icon(Icons.comment_outlined),
+                      Icon(Icons.comment),
                       SizedBox(
                         width: 5,
                       ),
