@@ -12,7 +12,7 @@ class PostPage extends StatefulWidget{
     return _PostPage();
   }
 }
-List<PostModel> posts = [PostModel("This is the title for the post", "This is the description which user provides for given post. this may be a bit longer as well", null, null, null, null, false, [1,0], null, "Pragya Gupta", "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",0,[],0,DateTime.now())];
+List<PostModel> posts = [PostModel("123456","This is the title for the post", "This is the description which user provides for given post. this may be a bit longer as well", null, null, null, null, false, [1,0], null,null, "Pragya Gupta", "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",0,[],0,DateTime.now())];
 List<bool> liked = [false];
 List<bool> comments = [false];
 List<bool> elapsed = [false];
@@ -593,7 +593,7 @@ class _SharePost extends State<SharePost>{
                     shape: RoundedRectangleBorder(borderRadius:  BorderRadius.only(topLeft: Radius.circular(5),bottomLeft: Radius.circular(5))),
                     color: Colors.deepPurple,
                     onPressed: (){
-                      PostModel sharedpost = PostModel(controller.text+'\n'+post.title,post.description, post.media,  post.location, post.contact, post.labels, post.anonymous, post.visible, post.options, "My User Name", post.userdp, 0, [],0, DateTime.now());
+                      PostModel sharedpost = PostModel("123456",controller.text+'\n'+post.title,post.description, post.media,  post.location, post.contact, post.labels, post.anonymous, post.visible, post.options,post.votes, "My User Name", post.userdp, 0, [],0, DateTime.now());
                       Navigator.pop(context,sharedpost);
                     },
                     child: Padding(
