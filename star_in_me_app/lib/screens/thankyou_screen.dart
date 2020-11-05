@@ -9,7 +9,7 @@ class ThankYou extends StatefulWidget {
 }
 
 class _ThankYouState extends State<ThankYou> {
-  String name;
+  String name="";
   @override
   Widget build(BuildContext context) {
     final Map arguments = ModalRoute.of(context).settings.arguments as Map;

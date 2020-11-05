@@ -39,7 +39,7 @@ class _CreatePost extends State<CreatePost> with SingleTickerProviderStateMixin{
           selectedoptions.add(optiondetails[j].text);
         }
       }
-    PostModel newpost = PostModel(title[i].text,detail[i].text,[],location[i],people[i],label[i],checked[i],visible[i],selectedoptions,"Pragya Gupta","https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",0,[],0,DateTime.now());
+    PostModel newpost = PostModel("123456",title[i].text,detail[i].text,[],location[i],people[i],label[i],checked[i],visible[i],selectedoptions,[0,0,0,0],"Pragya Gupta","https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",0,[],0,DateTime.now());
     Navigator.pop(context,newpost);
   }
   @override
