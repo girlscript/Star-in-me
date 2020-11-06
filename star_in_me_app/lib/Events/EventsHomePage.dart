@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class EventsTest extends StatelessWidget {
+  static final EventsTestPage = "/Events";
+
   @override
   Widget imageCarousel = new Container(
     child: Container(
@@ -238,16 +240,9 @@ class EventsTest extends StatelessWidget {
                       child: Text("Second Item"),
                       value: 2,
                     ),
-                    DropdownMenuItem(
-                        child: Text("Third Item"),
-                        value: 3
-                    ),
-                    DropdownMenuItem(
-                        child: Text("Fourth Item"),
-                        value: 4
-                    ),
+                    DropdownMenuItem(child: Text("Third Item"), value: 3),
+                    DropdownMenuItem(child: Text("Fourth Item"), value: 4),
                   ],
-
                 ),
               ),
             ),
@@ -287,8 +282,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.alarm,
-                                      )),
+                                    Icons.alarm,
+                                  )),
                                   Text('2pm - 5pm')
                                 ],
                               ),
@@ -296,8 +291,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.insert_invitation,
-                                      )),
+                                    Icons.insert_invitation,
+                                  )),
                                   Text('10 October 2020')
                                 ],
                               ),
@@ -305,8 +300,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.location_on,
-                                      )),
+                                    Icons.location_on,
+                                  )),
                                   Text('Bangalore, India')
                                 ],
                               ),
@@ -314,8 +309,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.location_on,
-                                      )),
+                                    Icons.location_on,
+                                  )),
                                   Text('Free')
                                 ],
                               ),
@@ -379,8 +374,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.alarm,
-                                      )),
+                                    Icons.alarm,
+                                  )),
                                   Text('2pm - 5pm')
                                 ],
                               ),
@@ -388,8 +383,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.insert_invitation,
-                                      )),
+                                    Icons.insert_invitation,
+                                  )),
                                   Text('10 October 2020')
                                 ],
                               ),
@@ -397,8 +392,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.location_on,
-                                      )),
+                                    Icons.location_on,
+                                  )),
                                   Text('Bangalore, India')
                                 ],
                               ),
@@ -406,8 +401,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.location_on,
-                                      )),
+                                    Icons.location_on,
+                                  )),
                                   Text('Free')
                                 ],
                               ),
@@ -471,8 +466,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.alarm,
-                                      )),
+                                    Icons.alarm,
+                                  )),
                                   Text('2pm - 5pm')
                                 ],
                               ),
@@ -480,8 +475,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.insert_invitation,
-                                      )),
+                                    Icons.insert_invitation,
+                                  )),
                                   Text('10 October 2020')
                                 ],
                               ),
@@ -489,8 +484,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.location_on,
-                                      )),
+                                    Icons.location_on,
+                                  )),
                                   Text('Bangalore, India')
                                 ],
                               ),
@@ -498,8 +493,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.location_on,
-                                      )),
+                                    Icons.location_on,
+                                  )),
                                   Text('Free')
                                 ],
                               ),
@@ -585,8 +580,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.alarm,
-                                      )),
+                                    Icons.alarm,
+                                  )),
                                   Text('2pm - 5pm')
                                 ],
                               ),
@@ -594,8 +589,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.insert_invitation,
-                                      )),
+                                    Icons.insert_invitation,
+                                  )),
                                   Text('10 October 2020')
                                 ],
                               ),
@@ -603,8 +598,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.location_on,
-                                      )),
+                                    Icons.location_on,
+                                  )),
                                   Text('Bangalore, India')
                                 ],
                               ),
@@ -612,8 +607,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.location_on,
-                                      )),
+                                    Icons.location_on,
+                                  )),
                                   Text('Free')
                                 ],
                               ),
@@ -677,8 +672,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.alarm,
-                                      )),
+                                    Icons.alarm,
+                                  )),
                                   Text('2pm - 5pm')
                                 ],
                               ),
@@ -686,8 +681,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.insert_invitation,
-                                      )),
+                                    Icons.insert_invitation,
+                                  )),
                                   Text('10 October 2020')
                                 ],
                               ),
@@ -695,8 +690,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.location_on,
-                                      )),
+                                    Icons.location_on,
+                                  )),
                                   Text('Bangalore, India')
                                 ],
                               ),
@@ -704,8 +699,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.location_on,
-                                      )),
+                                    Icons.location_on,
+                                  )),
                                   Text('Free')
                                 ],
                               ),
@@ -769,8 +764,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.alarm,
-                                      )),
+                                    Icons.alarm,
+                                  )),
                                   Text('2pm - 5pm')
                                 ],
                               ),
@@ -778,8 +773,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.insert_invitation,
-                                      )),
+                                    Icons.insert_invitation,
+                                  )),
                                   Text('10 October 2020')
                                 ],
                               ),
@@ -787,8 +782,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.location_on,
-                                      )),
+                                    Icons.location_on,
+                                  )),
                                   Text('Bangalore, India')
                                 ],
                               ),
@@ -796,8 +791,8 @@ class EventsTest extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       icon: Icon(
-                                        Icons.location_on,
-                                      )),
+                                    Icons.location_on,
+                                  )),
                                   Text('Free')
                                 ],
                               ),
@@ -900,8 +895,8 @@ class EventsTest extends StatelessWidget {
                             children: [
                               IconButton(
                                   icon: Icon(
-                                    Icons.alarm,
-                                  )),
+                                Icons.alarm,
+                              )),
                               Text('2pm - 5pm')
                             ],
                           ),
@@ -909,8 +904,8 @@ class EventsTest extends StatelessWidget {
                             children: [
                               IconButton(
                                   icon: Icon(
-                                    Icons.insert_invitation,
-                                  )),
+                                Icons.insert_invitation,
+                              )),
                               Text('10 October 2020')
                             ],
                           ),
@@ -918,8 +913,8 @@ class EventsTest extends StatelessWidget {
                             children: [
                               IconButton(
                                   icon: Icon(
-                                    Icons.location_on,
-                                  )),
+                                Icons.location_on,
+                              )),
                               Text('Bangalore, India')
                             ],
                           ),
@@ -927,8 +922,8 @@ class EventsTest extends StatelessWidget {
                             children: [
                               IconButton(
                                   icon: Icon(
-                                    Icons.location_on,
-                                  )),
+                                Icons.location_on,
+                              )),
                               Text('Free')
                             ],
                           ),
@@ -998,8 +993,8 @@ class EventsTest extends StatelessWidget {
                             children: [
                               IconButton(
                                   icon: Icon(
-                                    Icons.alarm,
-                                  )),
+                                Icons.alarm,
+                              )),
                               Text('2pm - 5pm')
                             ],
                           ),
@@ -1007,8 +1002,8 @@ class EventsTest extends StatelessWidget {
                             children: [
                               IconButton(
                                   icon: Icon(
-                                    Icons.insert_invitation,
-                                  )),
+                                Icons.insert_invitation,
+                              )),
                               Text('10 October 2020')
                             ],
                           ),
@@ -1016,8 +1011,8 @@ class EventsTest extends StatelessWidget {
                             children: [
                               IconButton(
                                   icon: Icon(
-                                    Icons.location_on,
-                                  )),
+                                Icons.location_on,
+                              )),
                               Text('Bangalore, India')
                             ],
                           ),
@@ -1025,8 +1020,8 @@ class EventsTest extends StatelessWidget {
                             children: [
                               IconButton(
                                   icon: Icon(
-                                    Icons.location_on,
-                                  )),
+                                Icons.location_on,
+                              )),
                               Text('Free')
                             ],
                           ),
@@ -1071,7 +1066,6 @@ class EventsTest extends StatelessWidget {
                       ),
                     ),
                   ),
-
                 ),
               ),
             ),
@@ -1097,8 +1091,8 @@ class EventsTest extends StatelessWidget {
                             children: [
                               IconButton(
                                   icon: Icon(
-                                    Icons.alarm,
-                                  )),
+                                Icons.alarm,
+                              )),
                               Text('2pm - 5pm')
                             ],
                           ),
@@ -1106,8 +1100,8 @@ class EventsTest extends StatelessWidget {
                             children: [
                               IconButton(
                                   icon: Icon(
-                                    Icons.insert_invitation,
-                                  )),
+                                Icons.insert_invitation,
+                              )),
                               Text('10 October 2020')
                             ],
                           ),
@@ -1115,8 +1109,8 @@ class EventsTest extends StatelessWidget {
                             children: [
                               IconButton(
                                   icon: Icon(
-                                    Icons.location_on,
-                                  )),
+                                Icons.location_on,
+                              )),
                               Text('Bangalore, India')
                             ],
                           ),
@@ -1124,8 +1118,8 @@ class EventsTest extends StatelessWidget {
                             children: [
                               IconButton(
                                   icon: Icon(
-                                    Icons.location_on,
-                                  )),
+                                Icons.location_on,
+                              )),
                               Text('Free')
                             ],
                           ),

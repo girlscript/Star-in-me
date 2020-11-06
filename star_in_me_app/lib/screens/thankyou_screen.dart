@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:star_in_me_app/onboarding/UI1.dart';
+import 'package:star_in_me_app/onboarding/onbordingPage.dart';
 
 class ThankYou extends StatefulWidget {
   static final String thankYouPage = '/login/thankyou';
@@ -10,9 +9,14 @@ class ThankYou extends StatefulWidget {
 }
 
 class _ThankYouState extends State<ThankYou> {
-  String name = "Pratiksha!";
+  String name="";
   @override
   Widget build(BuildContext context) {
+    final Map arguments = ModalRoute.of(context).settings.arguments as Map;
+
+    if (arguments != null) {
+      name=arguments['name'];
+    }
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -24,8 +28,8 @@ class _ThankYouState extends State<ThankYou> {
                   children: <Widget>[
                 Row(children: <Widget>[
                   Text('Welcome to ',
-                      style: TextStyle(
-                          color: Colors.purple[700], fontSize: 25.0)),
+                      style:
+                          TextStyle(color: Colors.purple[700], fontSize: 25.0)),
                   Text(
                     'The star in me,',
                     style: TextStyle(color: Colors.purple[300], fontSize: 25.0),
@@ -76,14 +80,17 @@ class _ThankYouState extends State<ThankYou> {
                     ),
                   ],
                 ),
-                SizedBox(height:20.0),
+                SizedBox(height: 20.0),
                 RaisedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, UI1.onboardingUi1);
+                    Navigator.pushNamed(context, onboardingPage.onboarding);
                   },
                   color: Colors.purple[700],
                   splashColor: Colors.blueAccent,
-                  child: Text('START BUILDING YOUR PROFILE',style: TextStyle(color:Colors.white),),
+                  child: Text(
+                    'START BUILDING YOUR PROFILE',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 )
               ])),
         ),

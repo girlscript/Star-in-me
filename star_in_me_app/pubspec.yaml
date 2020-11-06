@@ -25,11 +25,16 @@ dev_dependencies:
   shared_preferences: ^0.5.10
   email_validator: ^1.0.5
   google_sign_in: ^4.5.3
+  flutter_facebook_login: ^3.0.0
+  provider: ^4.3.2+2
   linkedin_login: ^1.2.2
   dots_indicator: ^1.2.0
   carousel_pro: ^1.0.0
   font_awesome_flutter: 8.10.0
-  
+  image_cropper: ^1.3.1
+  image_picker: ^0.6.7+12
+  flutter_counter: ^1.0.3
+
 
   dotted_border: ^1.0.6
   carousel_slider: ^2.3.1
@@ -52,13 +57,10 @@ flutter:
     - images/assets/Events.jpg
     - images/assets/newImage.jpg
     - images/assets/Seek-guidance.jpg
-    - Asset/Images/Build-your-profile.jpg
-    - Asset/Images/Events.jpg
-    - Asset/Images/Seek-guidance.jpg
-    - Asset/Images/tsim_logo.png
-    - Asset/Images/tsim_main_logo.png
-    - Asset/Images/Welcome-Screen.jpg
-    - Asset/Images/eventsslide/eventscreatives.png
+    - ../Asset/Images/tsim_logo.png
+    - ../Asset/Images/tsim_main_logo.png
+    - ../Asset/Images/Welcome-Screen.jpg
+    - ../Asset/Images/eventsslide/eventscreatives.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
