@@ -8,10 +8,9 @@ starinme.com
 - git commit -m ""commit message"
 - git push origin branch_name
 - create a pull request from github
-For starinmebackend folder
-- Entry point index.js
-- To connect to database
-    -Download MongoDb
-    -Set up Environment variables
-    -To start server use command "mongod"
-    -To check database files and for database commands use "mongo"
+
+To connect to database
+- Download MongoDb
+- Set up Environment variables
+- To start server use command "mongod"
+- To check database files and for database commands use "mongo"
