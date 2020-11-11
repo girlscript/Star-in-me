@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:star_in_me_app/Posts/createpost.dart';
 import 'package:star_in_me_app/components/header.dart';
 import 'package:intl/intl.dart';
-
+import 'package:http/http.dart' as http;
+import 'package:toast/toast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'PostModel.dart';
 class PostPage extends StatefulWidget{
@@ -12,18 +16,117 @@ class PostPage extends StatefulWidget{
     return _PostPage();
   }
 }
-List<PostModel> posts = [PostModel("123456","This is the title for the post", "This is the description which user provides for given post. this may be a bit longer as well", null, null, null, null, false, [1,0], null,null, "Pragya Gupta", "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",0,[],0,DateTime.now())];
-List<bool> liked = [false];
-List<bool> comments = [false];
-List<bool> elapsed = [false];
-List<bool> menu = [false];
+TextEditingController commentcontroller = new TextEditingController();
+List<PostModel> posts = new List(); //= [PostModel("123456","This is the title for the post", "This is the description which user provides for given post. this may be a bit longer as well", null, null, null, null, false, [1,0], null,null, "Pragya Gupta", "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",0,[],0,DateTime.now())];
+List<bool> liked = new List();
+List<bool> comments = new List();
+List<bool> elapsed = new List();
+List<bool> menu = new List();
+bool Loading;
+String url = "http://10.0.0.6:8000/";
+List<int> selectedvote = new List();
 class _PostPage extends State<PostPage>{
+  Future<void> addvote(PostModel post,int index) async {
+    Map<String,dynamic> map = new Map();
+    map['option'] = index;
+    await http.post(url+"post/incrementvote/"+post.id,body: jsonEncode(map),headers: { 'Content-type': 'application/json', 'Accept': 'application/json',},).then((response) async{
+      if(response.statusCode==404)
+      {
+        Toast.show("Error voting the poll please try later", context,backgroundColor: Colors.redAccent,duration: Toast.LENGTH_LONG);
+      }
+      else
+      {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setInt('voted'+post.id,index);
+      }
+    }).catchError((err){
+      print(err.toString());
+      Toast.show("Error voting the poll please try later", context,backgroundColor: Colors.redAccent,duration: Toast.LENGTH_LONG);
+    });
+  }
+  Future<void> addcomment(String comment,String id) async {
+    Map<String,dynamic> map = new Map();
+    map['comments'] = comment;
+    await http.post(url+"post/comments/"+id,body: jsonEncode(map),headers: { 'Content-type': 'application/json', 'Accept': 'application/json',},).then((response){
+      if(response.statusCode==404)
+      {
+        Toast.show("Error liking the post please try later", context,backgroundColor: Colors.redAccent,duration: Toast.LENGTH_LONG);
+      }
+    }).catchError((err){
+      Toast.show("Error liking the post please try later", context,backgroundColor: Colors.redAccent,duration: Toast.LENGTH_LONG);
+    });
+  }
+  Future<void> increaseLikes(String id) async {
+    await http.post(url+"post/incrementlikes/"+id).then((response) async{
+      if(response.statusCode==404)
+        {
+          Toast.show("Error liking the post please try later", context,backgroundColor: Colors.redAccent,duration: Toast.LENGTH_LONG);
+        }
+      else
+        {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString(id,'liked');
+        }
+    }).catchError((err){
+      Toast.show("Error liking the post please try later", context,backgroundColor: Colors.redAccent,duration: Toast.LENGTH_LONG);
+    });
+  }
+  Future<void> decreaseLikes(String id) async {
+    await http.post(url+"post/decrementlikes/"+id).then((response) async{
+      if(response.statusCode==404)
+      {
+        Toast.show("Error disliking the post please try later", context,backgroundColor: Colors.redAccent,duration: Toast.LENGTH_LONG);
+      }
+      else
+      {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.remove(id);
+      }
+    }).catchError((err){
+      Toast.show("Error disliking the post please try later", context,backgroundColor: Colors.redAccent,duration: Toast.LENGTH_LONG);
+    });
+  }
+  Future<void> getPosts() async{
+    print("get post called");
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+      await http.get(url+"post/").then((response){
+        var data = jsonDecode(response.body);
+        for(int i=0;i<data.length;i++)
+          {
+            posts.add(PostModel.fromJson(data[i]));
+            if(prefs.getString(data[i]['_id'])=='liked')
+              liked.add(true);
+            else
+              liked.add(false);
+            comments.add(false);
+            elapsed.add(false);
+            menu.add(false);
+            if(prefs.getInt('voted'+data[i]['_id'])!=null)
+              selectedvote.add(prefs.getInt('voted'+data[i]['_id']));
+            else
+              selectedvote.add(-1);
+          }
+      }).catchError((err){
+        print(err);
+      });
+      setState(() {
+        Loading = false;
+      });
+  }
+  @override
+  void initState() {
+    Loading = true;
+    getPosts();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: Header(),
-        body: SingleChildScrollView(
+        body: (Loading==true)?Center(
+          child: CircularProgressIndicator(),
+        ):SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -104,12 +207,15 @@ class _PostPage extends State<PostPage>{
                           onTap: () async {
                             var newpost = await Navigator.push(context,MaterialPageRoute(builder: (context)=>CreatePost()));
                             if(newpost!=null)
-                            posts.insert(0, newpost);
-                            print(posts.toString());
-                            liked.insert(0,false);
-                            comments.insert(0,false);
-                            elapsed.insert(0,false);
-                            menu.insert(0, false);
+                            {
+                              posts.insert(0, newpost);
+                              print(posts.toString());
+                              liked.insert(0,false);
+                              comments.insert(0,false);
+                              elapsed.insert(0,false);
+                              menu.insert(0, false);
+                              selectedvote.insert(0,-1);
+                            }
                             setState((){
                             });
                             },
@@ -176,10 +282,10 @@ class _PostPage extends State<PostPage>{
               contentPadding: EdgeInsets.only(left: 20,right: 20,top: 20),
               title: Text(post.username,style: TextStyle(color: Colors.deepPurple),),
               subtitle: Text(DateFormat.yMMMMd().format(post.date),style: TextStyle(fontSize: 14),),
-              leading: CircleAvatar(radius: 30,child: ClipOval(
+              leading: (post.userdp!="")?CircleAvatar(radius: 30,child: ClipOval(
                 child: Image.network(post.userdp,fit: BoxFit.fill,),
               ),
-              ),
+              ):CircleAvatar(radius: 30,),
               trailing: GestureDetector(
                 child: Icon(Icons.more_vert),
                 onTap: (){
@@ -238,7 +344,7 @@ class _PostPage extends State<PostPage>{
             (post.options==null)?Container():Padding(
               child: Wrap(
                 direction: Axis.horizontal,
-                children: post.options.map((e) => Options(e)).toList(),
+                children: post.options.map((e) => Options(e,post.options.indexOf(e),post)).toList(),
               ),
               padding: EdgeInsets.only(left: 0,right: 0),
             ),
@@ -254,6 +360,7 @@ class _PostPage extends State<PostPage>{
                 ),
                 SizedBox(width: 20),
                 Expanded(child: TextField(
+                  controller: commentcontroller,
                   decoration: InputDecoration(
                     hintText: "Type your comment",
                     suffixIcon: GestureDetector(
@@ -263,7 +370,16 @@ class _PostPage extends State<PostPage>{
                       ),
                       onTap: (){
                         setState(() {
-                          comments[posts.indexOf(post)]=!comments[posts.indexOf(post)];
+                          if(commentcontroller.text==null||commentcontroller.text=="")
+                            {
+                              Toast.show("Comment cannot be empty", context,backgroundColor: Colors.redAccent,duration: Toast.LENGTH_LONG);
+                            }
+                          else
+                            {
+                              comments[posts.indexOf(post)]=!comments[posts.indexOf(post)];
+                              post.comments.add(commentcontroller.text);
+                              addcomment(commentcontroller.text,post.id);
+                            }
                         });
                       },
                     ),
@@ -301,11 +417,13 @@ class _PostPage extends State<PostPage>{
                         {
                           posts[index].likes--;
                           liked[index] = false;
+                          decreaseLikes(post.id);
                         }
                       else
                         {
                           posts[index].likes++;
                           liked[index] = true;
+                          increaseLikes(post.id);
                         }
                     });
                   },
@@ -344,15 +462,18 @@ class _PostPage extends State<PostPage>{
                 ),
                 GestureDetector(
                   onTap: () async{
-                    print(posts[0].username);//+posts[1].username);
+                    //+posts[1].username);
                     PostModel sharedpost = await Navigator.push(context, MaterialPageRoute(builder: (context)=>SharePost(post)));
                     if(sharedpost!=null)
-                      posts.insert(0, sharedpost);
-                    print(posts[0].username);
-                    liked.insert(0,false);
-                    comments.insert(0,false);
-                    elapsed.insert(0,false);
-                    menu.insert(0, false);
+                      {
+                        posts.insert(0, sharedpost);
+                        liked.insert(0,false);
+                        comments.insert(0,false);
+                        elapsed.insert(0,false);
+                        menu.insert(0, false);
+                        post.shares++;
+                        selectedvote.insert(0, -1);
+                      }
                    // post.shares++;
                     setState((){
                     });
@@ -380,18 +501,49 @@ class _PostPage extends State<PostPage>{
       ),
     );
   }
-  Widget Options(String e){
-    return Padding(padding: EdgeInsets.all(10),child: Container(
-      width: (MediaQuery.of(context).size.width-80)/2,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        border: Border.all(color: Colors.grey.shade400)
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(10),
-        child: Text(e,style: TextStyle(fontWeight: FontWeight.bold),)
-      ),
-    ),);
+  Widget Options(String e,int index,PostModel post){
+    int totalvotes = 0;
+    for(int i=0;i<post.votes.length;i++)
+      totalvotes+=post.votes[i];
+    return GestureDetector(
+      child: Padding(padding: EdgeInsets.all(10),child: Container(
+          width: (MediaQuery.of(context).size.width-80)/2,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              border: Border.all(color: (selectedvote[posts.indexOf(post)]==index)?Colors.deepPurple:Colors.grey.shade400)
+          ),
+          child: Row(
+            children: [
+              Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text(e,style: TextStyle(fontWeight: FontWeight.bold),)
+              ),
+              Expanded(
+                  child: SizedBox()
+              ),
+              Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text(post.votes[index]==0?"0%":((post.votes[index]/totalvotes*100).toString()+"%"),style: TextStyle(fontWeight: FontWeight.w300),)
+              ),
+            ],
+          )
+      ),),
+      onTap: (){
+        setState(() {
+          if(selectedvote[posts.indexOf(post)]==-1)
+            {
+              post.votes[index]++;
+              selectedvote[posts.indexOf(post)] = index;
+              addvote(post,index);
+            }
+          else
+            {
+              print(selectedvote[posts.indexOf(post)]);
+              Toast.show("Can vote only once",context,backgroundColor: Colors.redAccent,duration: Toast.LENGTH_LONG);
+            }
+        });
+      },
+    );
   }
   Widget LabelChip(String data){
     return Padding(
@@ -435,6 +587,7 @@ class _ReportPost extends State<ReportPost>{
         actions: [
           Center(child: GestureDetector(
             onTap: (){
+              Toast.show("Post Reported Successfully", context,backgroundColor: Colors.green,duration: Toast.LENGTH_LONG);
               Navigator.of(context).pop();
             },
             child: Text("Done  ",style: TextStyle(color: Colors.deepPurple,fontWeight: FontWeight.bold,fontSize: 18),),
@@ -501,6 +654,7 @@ class SharePost extends StatefulWidget{
   }
 
 }
+bool shareLoading = false;
 class _SharePost extends State<SharePost>{
   PostModel post;
   TextEditingController controller = new TextEditingController();
@@ -518,7 +672,9 @@ class _SharePost extends State<SharePost>{
           },
         ),
       ),
-      body: SingleChildScrollView(
+      body: (shareLoading)?Center(
+        child: CircularProgressIndicator(),
+      ):SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(
@@ -592,9 +748,55 @@ class _SharePost extends State<SharePost>{
                   FlatButton(
                     shape: RoundedRectangleBorder(borderRadius:  BorderRadius.only(topLeft: Radius.circular(5),bottomLeft: Radius.circular(5))),
                     color: Colors.deepPurple,
-                    onPressed: (){
-                      PostModel sharedpost = PostModel("123456",controller.text+'\n'+post.title,post.description, post.media,  post.location, post.contact, post.labels, post.anonymous, post.visible, post.options,post.votes, "My User Name", post.userdp, 0, [],0, DateTime.now());
-                      Navigator.pop(context,sharedpost);
+                    onPressed: () async{
+                      setState(() {
+                        shareLoading = true;
+                      });
+                      List<int> sharevotes = new List();
+                      for(int i=0;i<post.options.length;i++)
+                        sharevotes.add(0);
+                      PostModel sharedpost = PostModel(controller.text+'\n'+post.title,post.description, post.media,  post.location, post.contact, post.labels, post.anonymous, post.visible, post.options,sharevotes, "My User Name", post.userdp, 0, [],0, DateTime.now());
+                      await http.post(url+"post",body: jsonEncode(sharedpost.toJson()),headers: { 'Content-type': 'application/json', 'Accept': 'application/json',},).then((response) async{
+                        if(response.statusCode==404)
+                          {
+                            setState(() {
+                              shareLoading = false;
+                            });
+                            Toast.show("Server Error! Please try again after some time", context,backgroundColor: Colors.redAccent,duration: Toast.LENGTH_LONG);
+                          }
+                        else
+                        {
+                          sharedpost.id = response.body.substring(1,response.body.length-1);
+                          await http.post(url+"post/shares/"+post.id).then((response){
+                             if(response.statusCode==404)
+                               {
+                                 setState(() {
+                                   shareLoading = false;
+                                 });
+                                 Toast.show("Server Error! Please try again later",context,backgroundColor: Colors.redAccent,duration: Toast.LENGTH_LONG);
+                               }
+                             else
+                               {
+                                 setState(() {
+                                   shareLoading = false;
+                                 });
+                                 Navigator.pop(context,sharedpost);
+                               }
+                          }).catchError((err){
+                            setState(() {
+                              shareLoading = false;
+                            });
+                            Toast.show(err.toString(), context,backgroundColor: Colors.redAccent,duration: Toast.LENGTH_LONG);
+                          });
+                        }
+
+                      }).catchError((err){
+                        setState(() {
+                          shareLoading = false;
+                        });
+                        Toast.show(err.toString(), context,backgroundColor: Colors.redAccent,duration: Toast.LENGTH_LONG);
+                      });
+
                     },
                     child: Padding(
                       padding: EdgeInsets.all(10),
