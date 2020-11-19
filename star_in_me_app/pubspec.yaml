@@ -35,7 +35,7 @@ dev_dependencies:
   image_picker: ^0.6.7+12
   flutter_counter: ^1.0.3
   razorpay_flutter: 1.2.2
-  toast: ^0.1.5
+  
 
 
 
