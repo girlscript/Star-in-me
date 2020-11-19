@@ -27,7 +27,7 @@ class _RPayState extends State<RPay> {
     super.dispose();
     razorpay.clear();
   }
-
+  //TODO Make the amount variable dynamic
   void openCheckOut()
   {
     var options={
