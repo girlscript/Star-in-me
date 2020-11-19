@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'PostModel.dart';
+import 'package:http/http.dart' as http;
+import 'package:toast/toast.dart';
+import 'package:star_in_me_app/Posts/PostModel.dart';
 class CreatePost extends StatefulWidget{
   static final String CreatePostId = '/createpost';
   @override
@@ -9,6 +14,28 @@ class CreatePost extends StatefulWidget{
     return _CreatePost();
   }
 }
+String url = "http://10.0.0.6:8000/";
+/*Map toJson(PostModel p){
+  Map map = {
+    'title' :  p.title,
+    'description' : p.description,
+    'media' : p.media,
+    'location' : p.location,
+    'contact' : p.contact,
+    'labels' : p.labels,
+    'anonymous' : p.anonymous,
+    'visible' : p.visible,
+    'options' : p.options,
+    'votes' : p.votes,
+    'username' : p.username,
+    'userdp' : p.userdp,
+    'likes' : p.likes,
+    'comments' : p.comments,
+    'shares' : p.shares,
+    'date' : p.date.toIso8601String()
+  };
+  return map;
+}*/
 List<int> options = [1];
 List<int> imagepicker = [0,0,0];
 List<String> location = ["","",""];
@@ -30,7 +57,7 @@ class _CreatePost extends State<CreatePost> with SingleTickerProviderStateMixin{
   List<String> words = [];
   String str='';
   TextPainter painter = new TextPainter();
-  void SubmitPost(int i){
+  Future<void> SubmitPost(int i) async{
     List<String> selectedoptions = new List();
     if(i==0)
       {
@@ -39,8 +66,20 @@ class _CreatePost extends State<CreatePost> with SingleTickerProviderStateMixin{
           selectedoptions.add(optiondetails[j].text);
         }
       }
-    PostModel newpost = PostModel("123456",title[i].text,detail[i].text,[],location[i],people[i],label[i],checked[i],visible[i],selectedoptions,[0,0,0,0],"Pragya Gupta","https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",0,[],0,DateTime.now());
-    Navigator.pop(context,newpost);
+    PostModel newpost = PostModel(title[i].text,detail[i].text,[],location[i],people[i],label[i],checked[i],visible[i],selectedoptions,[0,0,0,0],"Pragya Gupta","https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",0,[],0,DateTime.now());
+    await http.post(url+"post",body: jsonEncode(newpost.toJson()),headers: { 'Content-type': 'application/json', 'Accept': 'application/json',},).then((response){
+      if(response.statusCode==404)
+        Toast.show("Server Error! Please try again after some time", context,backgroundColor: Colors.redAccent,duration: Toast.LENGTH_LONG);
+      else
+        {
+          newpost.id = response.body.substring(1,response.body.length-1);
+          Navigator.pop(context,newpost);
+        }
+
+    }).catchError((err){
+      Toast.show(err, context,backgroundColor: Colors.redAccent,duration: Toast.LENGTH_LONG);
+    });
+
   }
   @override
   void initState() {
@@ -245,9 +284,6 @@ class _CreatePost extends State<CreatePost> with SingleTickerProviderStateMixin{
                       words.clear();
                       words = val.split(' ');
                       str = words.length>0 && words[words.length-1].startsWith('@')?words[words.length-1]:'';
-                      print(str);
-                      print(_focusNode[0].offset.dy.toString());
-                      print(_focusNode[0].offset.dx.toString());
                       painter = TextPainter(
                         textDirection: TextDirection.ltr,
                         text: TextSpan(
@@ -746,9 +782,6 @@ class _CreatePost extends State<CreatePost> with SingleTickerProviderStateMixin{
                       words.clear();
                       words = val.split(' ');
                       str = words.length>0 && words[words.length-1].startsWith('@')?words[words.length-1]:'';
-                      print(str);
-                      print(_focusNode[1].offset.dy.toString());
-                      print(_focusNode[1].offset.dx.toString());
                       painter = TextPainter(
                           textDirection: TextDirection.ltr,
                           text: TextSpan(
@@ -1243,9 +1276,6 @@ class _CreatePost extends State<CreatePost> with SingleTickerProviderStateMixin{
                        words.clear();
                        words = val.split(' ');
                        str = words.length>0 && words[words.length-1].startsWith('@')?words[words.length-1]:'';
-                       print(str);
-                       print(_focusNode[2].offset.dy.toString());
-                       print(_focusNode[2].offset.dx.toString());
                        painter = TextPainter(
                            textDirection: TextDirection.ltr,
                            text: TextSpan(
