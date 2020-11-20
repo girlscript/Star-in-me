@@ -5,6 +5,8 @@ import 'package:star_in_me_app/authentication/signup.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:star_in_me_app/model/slide.dart';
 import 'package:star_in_me_app/components/roundRechtangleButton.dart';
+import '../authentication/login.dart';
+import '../authentication/signup.dart';
 
 class LandingPage extends StatefulWidget {
   static final String landingPageId = '/landing';
