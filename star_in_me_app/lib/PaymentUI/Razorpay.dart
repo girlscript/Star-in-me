@@ -1,12 +1,72 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
-class UI2 extends StatefulWidget {
+class RPay extends StatefulWidget {
   @override
-  _UI2State createState() => _UI2State();
+  _RPayState createState() => _RPayState();
 }
 
-class _UI2State extends State<UI2> {
+class _RPayState extends State<RPay> {
+
+  Razorpay razorpay;
+  TextEditingController textEditingController = new TextEditingController();
+
+  @override
+  void initState()
+  {
+    super.initState();
+    razorpay= new Razorpay();
+    razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, handlerPaymentSuccess);
+    razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, handlerPaymentFailure);
+    razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, handlerExternalWallet);
+  }
+
+  @override
+  void dispose()
+  {
+    super.dispose();
+    razorpay.clear();
+  }
+
+  void openCheckOut()
+  {
+    double amount = 100.0*100;
+
+    var options={
+      "key" : "rzp_test_xzylRfGJkDmn7D",
+      "amount" : "$amount",
+      "name" : "The Star in Me",
+      "description" : "Payment for the some random event",
+      "prefill" : {
+        "contact" : "2323232323",
+        "email" : "shdjsdh@gmail.com",
+      },
+      "external" : {
+        "wallets" : ["paytm"]
+      }
+    };
+
+    try{
+      razorpay.open(options);
+
+    }catch(e){
+      print(e.toString());
+    }
+  }
+  void handlerPaymentSuccess()
+  {
+    print("Payment successful!");
+  }
+
+  void handlerPaymentFailure()
+  {
+    print("Payment failed!");
+  }
+
+  void handlerExternalWallet()
+  {
+    print("External Wallet'");
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -142,7 +202,10 @@ class _UI2State extends State<UI2> {
                     child: MaterialButton(
                       height: 54,
                       minWidth: 150,
-                      onPressed: () {},
+                      onPressed: () {
+                        openCheckOut();
+
+                      },
                       color: Colors.deepPurple[600],
                       shape: RoundedRectangleBorder(
                           side: BorderSide(color: Colors.deepPurple[600]),
@@ -153,6 +216,7 @@ class _UI2State extends State<UI2> {
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                             color: Colors.white),
+
                       ),
                     ),
                   )
@@ -162,6 +226,7 @@ class _UI2State extends State<UI2> {
           ),
         ]),
       ),
+
     );
   }
 }
