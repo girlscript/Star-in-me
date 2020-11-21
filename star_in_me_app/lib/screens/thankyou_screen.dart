@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:star_in_me_app/authentication/signup.dart';
 import 'package:star_in_me_app/onboarding/onbordingPage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ThankYou extends StatefulWidget {
   static final String thankYouPage = '/login/thankyou';
@@ -13,9 +16,12 @@ class _ThankYouState extends State<ThankYou> {
   @override
   Widget build(BuildContext context) {
     final Map arguments = ModalRoute.of(context).settings.arguments as Map;
+    name = FirebaseAuth.instance.currentUser.displayName;
+    print(name);
 
-    if (arguments != null) {
-      name=arguments['name'];
+    if (name == "" || arguments != null) {
+      name = arguments['name'];
+      print(name);
     }
     return SafeArea(
       child: Scaffold(
@@ -29,19 +35,19 @@ class _ThankYouState extends State<ThankYou> {
                 Row(children: <Widget>[
                   Text('Welcome to ',
                       style:
-                          TextStyle(color: Colors.purple[700], fontSize: 25.0)),
+                          TextStyle(color: Colors.deepPurple[500], fontSize: 25.0, fontWeight: FontWeight.bold)),
                   Text(
                     'The star in me,',
-                    style: TextStyle(color: Colors.purple[300], fontSize: 25.0),
+                    style: TextStyle(color: Colors.purple[300], fontSize: 25.0, fontWeight: FontWeight.bold),
                   )
                 ]),
                 Row(
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 10.0),
-                      child: Text(name,
+                      child: Text(name + "!",
                           style: TextStyle(
-                              color: Colors.purple[700], fontSize: 25.0)),
+                              color: Colors.deepPurple[500], fontSize: 25.0, fontWeight: FontWeight.bold)),
                     ),
                   ],
                 ),
@@ -50,7 +56,7 @@ class _ThankYouState extends State<ThankYou> {
                   children: [
                     Text(
                       "You're almost done",
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(color: Colors.black45, fontWeight: FontWeight.bold, fontSize: 17),
                     ),
                   ],
                 ),
@@ -59,15 +65,16 @@ class _ThankYouState extends State<ThankYou> {
                   children: [
                     Text(
                       "Thank you for joining.We may reach out to you for",
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(fontSize: 15),
                     ),
                   ],
                 ),
+                SizedBox(height: 3),
                 Row(
                   children: [
                     Text(
                       "additional validation, if required .",
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(fontSize: 15),
                     ),
                   ],
                 ),
@@ -76,22 +83,29 @@ class _ThankYouState extends State<ThankYou> {
                   children: [
                     Text(
                       "Let us help you create an outstanding profile",
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(fontSize: 15),
                     ),
                   ],
                 ),
                 SizedBox(height: 20.0),
-                RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, onboardingPage.onboarding);
-                  },
-                  color: Colors.purple[700],
-                  splashColor: Colors.blueAccent,
-                  child: Text(
-                    'START BUILDING YOUR PROFILE',
-                    style: TextStyle(color: Colors.white),
+                Container(
+                   width: double.infinity,
+                   height: 40,
+                   child: RaisedButton(
+                     onPressed: () {
+                     Navigator.pushNamed(context, onboardingPage.onboarding);
+                     },
+                     color: Colors.deepPurple[500],
+                     splashColor: Colors.blueAccent,
+                     child: Text(
+                     'START BUILDING YOUR PROFILE',
+                     style: TextStyle(color: Colors.white),
+                     ),
+                     shape: RoundedRectangleBorder(
+                       borderRadius: BorderRadius.circular(5),
+                     ),
                   ),
-                )
+                ),
               ])),
         ),
       ),

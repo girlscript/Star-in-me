@@ -10,6 +10,7 @@ import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 final _auth = FirebaseAuth.instance;
 final _firestore = FirebaseFirestore.instance;
@@ -269,6 +270,15 @@ class _LoginPageState extends State<LoginPage> {
                                         isUser = false;
                                       }
                                       print('${e.code}');
+                                      Fluttertoast.showToast(
+                                          msg: e.message,
+                                          gravity: ToastGravity.BOTTOM,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.deepPurple[500],
+                                          fontSize: 16,
+                                          textColor: Colors.white
+                                      );
                                     } catch (e) {
                                       print(e.toString());
                                     } finally {
@@ -417,7 +427,7 @@ Future<User> _signInWithGoogle() async {
         idToken: googleSignInAuthentication.idToken);
 
     final result = await _auth.signInWithCredential(credential);
-    final User user = result.user;
+    final user = result.user;
 
     assert(!user.isAnonymous);
     assert(await user.getIdToken() != null);
