@@ -9,6 +9,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:linkedin_login/linkedin_login.dart';
 import 'package:star_in_me_app/screens/thankyou_screen.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import '../components/countries.dart';
 
 final _auth = FirebaseAuth.instance;
 final _firestore = FirebaseFirestore.instance;
@@ -32,7 +34,7 @@ class _SignupPageState extends State<SignupPage> {
   final emailController = TextEditingController();
   final passController = TextEditingController();
   final confirmPassCOntroller = TextEditingController();
-  String firstName, lastName, email, pass, confirmPass;
+  String firstName, lastName, email, pass, confirmPass, selectedCountry;
 
   bool showSpinner = false;
   bool _isChecked = false;
@@ -90,6 +92,8 @@ class _SignupPageState extends State<SignupPage> {
                                   child: Checkbox(
                                     value: _isChecked,
                                     tristate: false,
+                                    activeColor: Colors.deepPurple,
+                                    checkColor: Colors.white,
                                     onChanged: (bool isChecked) {
                                       setState(() {
                                         _isChecked = isChecked;
@@ -110,40 +114,60 @@ class _SignupPageState extends State<SignupPage> {
                               ],
                             ),
                             SizedBox(height: 10.0),
-
                             DropdownSearch<String>(
-                            hint:"Please select your country",
-                            mode: Mode.MENU,
-                            showSelectedItem: true,
-                            items: ["India","Indonesia","Brazil", "Italy", "Tunisia", 'Canada'],
-                            
-                            onChanged: print,
+                              hint:"Please select your country",
+                              mode: Mode.MENU,
+                              showSelectedItem: true,
+                              items: countries,
+                              onChanged: (value) => setState(() {
+                                selectedCountry = value;
+                                print(selectedCountry);
+                              }),
                             ),
                             SizedBox(height: 10.0),
-                            
                             Row(
                               children: <Widget>[
                                 Expanded(
+                                  flex: 1,
                                   child: ButtonTheme(
                                     height: 40.0,
                                     minWidth: 10.0,
                                     padding:
                                         EdgeInsets.only(left: 5.0, right: 5.0),
                                     child: RaisedButton(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(5),
+                                        ),
                                         splashColor: Colors.lightBlue,
                                         elevation: 10.0,
                                         highlightElevation: 50.0,
                                         child: Row(children: <Widget>[
                                           Padding(
                                             padding: const EdgeInsets.only(
-                                                left: 5.0, right: 5.0),
-                                            child: Image.asset(
-                                              'images/linkedin_logo.png',
-                                              height: 40.0,
-                                              width: 15.0,
+                                                right: 5.0),
+                                            // child: Image.asset(
+                                            //   'images/linkedin_logo.png',
+                                            //   height: 40.0,
+                                            //   width: 15.0,
+                                            // ),
+                                            child: Container(
+                                              height: 20,
+                                              width: 20,
+                                              child: Text('in',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Colors.deepPurple[500],
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16,
+                                              )),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                shape: BoxShape.rectangle,
+                                                borderRadius: BorderRadius.circular(4),
+                                              ),
                                             ),
                                           ),
-                                          Text('Sign up with LinkedIn '),
+                                          Text('Sign up with LinkedIn'),
                                         ]),
                                         color: Colors.deepPurple[500],
                                         textColor: Colors.white,
@@ -183,23 +207,43 @@ class _SignupPageState extends State<SignupPage> {
                                   width: 5.0,
                                 ),
                                 Expanded(
+                                  flex: 1,
                                   child: ButtonTheme(
                                     height: 40.0,
                                     minWidth: 10.0,
                                     padding:
                                         EdgeInsets.only(left: 5.0, right: 5.0),
                                     child: RaisedButton(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(5),
+                                        ),
                                         splashColor: Colors.red,
-                                        elevation: 10.0,
-                                        highlightElevation: 50.0,
+                                        // elevation: 10.0,
+                                        // highlightElevation: 50.0,
                                         child: Row(children: <Widget>[
                                           Padding(
                                             padding: const EdgeInsets.only(
                                                 left: 5.0, right: 5.0),
-                                            child: Image.asset(
-                                              'images/google_logo.png',
-                                              height: 40.0,
-                                              width: 10.0,
+                                            // child: Image.asset(
+                                            //   'images/google_logo.png',
+                                            //   height: 40.0,
+                                            //   width: 15.0,
+                                            // ),
+                                            child: Container(
+                                              height: 20,
+                                              width: 20,
+                                              child: Text('G',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    color: Colors.deepPurple[500],
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 16,
+                                                  )),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                shape: BoxShape.rectangle,
+                                                borderRadius: BorderRadius.circular(4),
+                                              ),
                                             ),
                                           ),
                                           Text('Sign up with Google'),
@@ -212,7 +256,7 @@ class _SignupPageState extends State<SignupPage> {
                                              user =
                                                 await _signUpWithGoogle();
                                           } on FirebaseAuthException catch (e) {
-                                            print('${e.code}');
+                                            print('${e.code} 787878');
                                           } catch (e) {
                                             print(e.toString());
                                           }
@@ -244,6 +288,30 @@ class _SignupPageState extends State<SignupPage> {
                               decoration: InputDecoration(
                                 labelText: "First Name",
                                 border: const OutlineInputBorder(),
+                                labelStyle: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                                focusedBorder:
+                                OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.all(
+                                      Radius.circular(
+                                          10)),
+                                  borderSide: new BorderSide(
+                                      width: 1,
+                                      color: Colors.deepPurple),
+                                ),
+                                enabledBorder:
+                                OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.all(
+                                      Radius.circular(
+                                          10)),
+                                  borderSide: new BorderSide(
+                                      width: 1,
+                                      color:
+                                      Colors.grey),
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -266,6 +334,30 @@ class _SignupPageState extends State<SignupPage> {
                               decoration: InputDecoration(
                                 labelText: "Last Name",
                                 border: const OutlineInputBorder(),
+                                labelStyle: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                                focusedBorder:
+                                OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.all(
+                                      Radius.circular(
+                                          10)),
+                                  borderSide: new BorderSide(
+                                      width: 1,
+                                      color: Colors.deepPurple),
+                                ),
+                                enabledBorder:
+                                OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.all(
+                                      Radius.circular(
+                                          10)),
+                                  borderSide: new BorderSide(
+                                      width: 1,
+                                      color:
+                                      Colors.grey),
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -289,6 +381,30 @@ class _SignupPageState extends State<SignupPage> {
                               },
                               decoration: InputDecoration(
                                 labelText: "Email Address",
+                                labelStyle: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                                focusedBorder:
+                                OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.all(
+                                      Radius.circular(
+                                          10)),
+                                  borderSide: new BorderSide(
+                                      width: 1,
+                                      color: Colors.deepPurple),
+                                ),
+                                enabledBorder:
+                                OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.all(
+                                      Radius.circular(
+                                          10)),
+                                  borderSide: new BorderSide(
+                                      width: 1,
+                                      color:
+                                      Colors.grey),
+                                ),
                                 border: const OutlineInputBorder(),
                               ),
                             ),
@@ -298,17 +414,51 @@ class _SignupPageState extends State<SignupPage> {
                             TextFormField(
                               controller: passController,
                               decoration: InputDecoration(
-                                labelText: "New Password (Min 6 Characters) ",
+                                labelText: "New Password (Min 6 Characters)",
+                                labelStyle: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                                focusedBorder:
+                                OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.all(
+                                      Radius.circular(
+                                          10)),
+                                  borderSide: new BorderSide(
+                                      width: 1,
+                                      color: Colors.deepPurple),
+                                ),
+                                enabledBorder:
+                                OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.all(
+                                      Radius.circular(
+                                          10)),
+                                  borderSide: new BorderSide(
+                                      width: 1,
+                                      color:
+                                      Colors.grey),
+                                ),
                                 suffixIcon: FlatButton(
                                     onPressed: () {
                                       setState(() {
                                         toggle();
                                       });
                                     },
-                                    child: Icon(
-                                      Icons.remove_red_eye,
-                                      color: Colors.black12,
-                                    )),
+                                  child: _secureText
+                                      ? Icon(
+                                      Icons
+                                          .visibility_off,
+                                      color: Colors.grey
+                                          .withOpacity(
+                                          0.5))
+                                      : Icon(
+                                      Icons
+                                          .remove_red_eye,
+                                      color: Colors.grey
+                                          .withOpacity(
+                                          0.5)),
+                                ),
                                 border: const OutlineInputBorder(),
                               ),
                               validator: (value) => value.length < 6
@@ -326,16 +476,50 @@ class _SignupPageState extends State<SignupPage> {
                               controller: confirmPassCOntroller,
                               decoration: InputDecoration(
                                 labelText: "Confirm Password",
+                                labelStyle: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                                focusedBorder:
+                                OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.all(
+                                      Radius.circular(
+                                          10)),
+                                  borderSide: new BorderSide(
+                                      width: 1,
+                                      color: Colors.deepPurple),
+                                ),
+                                enabledBorder:
+                                OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.all(
+                                      Radius.circular(
+                                          10)),
+                                  borderSide: new BorderSide(
+                                      width: 1,
+                                      color:
+                                      Colors.grey),
+                                ),
                                 suffixIcon: FlatButton(
                                     onPressed: () {
                                       setState(() {
                                         toggle();
                                       });
                                     },
-                                    child: Icon(
-                                      Icons.remove_red_eye,
-                                      color: Colors.black12,
-                                    )),
+                                  child: _secureText
+                                      ? Icon(
+                                      Icons
+                                          .visibility_off,
+                                      color: Colors.grey
+                                          .withOpacity(
+                                          0.5))
+                                      : Icon(
+                                      Icons
+                                          .remove_red_eye,
+                                      color: Colors.grey
+                                          .withOpacity(
+                                          0.5)),
+                                ),
                                 border: const OutlineInputBorder(),
                               ),
                               validator: (value) {
@@ -351,7 +535,7 @@ class _SignupPageState extends State<SignupPage> {
                               },
                               obscureText: _secureText,
                             ),
-                            SizedBox(height: 7.0),
+                            SizedBox(height: 15),
                             Padding(
                               padding: const EdgeInsets.only(left: 5.0),
                               child: Row(children: <Widget>[
@@ -368,8 +552,9 @@ class _SignupPageState extends State<SignupPage> {
                                     )),
                               ]),
                             ),
-                            SizedBox(height: 7.0),
+                            SizedBox(height: 15),
                             Container(
+                                height: 40,
                                 width: double.infinity,
                                 padding: const EdgeInsets.only(
                                     left: 5.0, right: 5.0),
@@ -377,6 +562,9 @@ class _SignupPageState extends State<SignupPage> {
                                   splashColor: Colors.lightBlueAccent,
                                   elevation: 10.0,
                                   highlightElevation: 30.0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
                                   child: const Text('SIGN UP NOW'),
                                   color: Colors.deepPurple[500],
                                   textColor: Colors.white,
@@ -393,18 +581,43 @@ class _SignupPageState extends State<SignupPage> {
                                             .createUserWithEmailAndPassword(
                                                 email: email, password: pass);
                                         if (userCredential != null) {
+                                          // adding display name
+                                          String userName = firstName + " " + lastName;
+                                          print('user is $userName');
+                                          _auth.currentUser.updateProfile(displayName: userName);
                                           _firestore.collection("users").add({
                                             "firstName": firstName,
                                             "lastName": lastName,
-                                            "email": email
+                                            "email": email,
                                           });
+                                          Navigator.pushNamed(
+                                              context, ThankYou.thankYouPage, arguments: {'name': userName});
                                         }
+
                                       } on FirebaseAuthException catch (e) {
                                         if (e.code == 'weak-password') {
                                           print("${e.code}");
+                                          Fluttertoast.showToast(
+                                              msg: e.message,
+                                              gravity: ToastGravity.BOTTOM,
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              timeInSecForIosWeb: 1,
+                                              backgroundColor: Colors.deepPurple[500],
+                                              fontSize: 16,
+                                              textColor: Colors.white
+                                          );
                                         } else if (e.code ==
                                             'email-already-in-use') {
                                           print("${e.code}");
+                                          Fluttertoast.showToast(
+                                              msg: e.message,
+                                              gravity: ToastGravity.BOTTOM,
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              timeInSecForIosWeb: 1,
+                                              backgroundColor: Colors.deepPurple[500],
+                                              fontSize: 16,
+                                              textColor: Colors.white
+                                          );
                                           isUser = true;
                                         }
                                       } catch (e) {
@@ -413,16 +626,15 @@ class _SignupPageState extends State<SignupPage> {
                                         setState(() {
                                           showSpinner = false;
                                         });
-                                        if (isUser) {
-                                          Navigator.pushNamed(
-                                              context, ThankYou.thankYouPage);
-                                        }
+                                        // if (isUser) {
+                                        //   Navigator.pushNamed(
+                                        //       context, ThankYou.thankYouPage);
+                                        // }
                                       }
-
-                                      if (userCredential != null) {
-                                        Navigator.pushNamed(
-                                            context, SignupPage.signUpPageId);
-                                      }
+                                      // if (userCredential != null) {
+                                      //   Navigator.pushNamed(
+                                      //       context, SignupPage.signUpPageId);
+                                      // }
                                     }
                                   },
                                 )),
@@ -441,14 +653,15 @@ class _SignupPageState extends State<SignupPage> {
                                     'The Star in me? ',
                                     style: TextStyle(
                                         color: Colors.purple[300],
-                                        fontWeight: FontWeight.bold),
+                                        fontWeight: FontWeight.w400),
                                   ),
                                   Material(
                                     color: Colors.white.withOpacity(0.0),
                                     child: InkWell(
                                       child: Text('Log in',
                                           style: TextStyle(
-                                              color: Colors.purple[700])),
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.deepPurple[500])),
                                       onTap: () => Navigator.pushNamed(
                                           context, LoginPage.loginPageId),
                                     ),
@@ -466,12 +679,13 @@ class _SignupPageState extends State<SignupPage> {
 }
 
 Future<User> _signUpWithGoogle() async {
+  // if the user has signed in using google sign-in, logging that one out
   bool isSignedIn = await googleSignIn.isSignedIn();
   print(isSignedIn);
   if (isSignedIn) {
-    final user = _auth.currentUser;
-    return user;
-  } else {
+    googleSignIn.signOut();
+  }
+
     final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
     final GoogleSignInAuthentication googleSignInAuthentication =
         await googleSignInAccount.authentication;
@@ -495,7 +709,6 @@ Future<User> _signUpWithGoogle() async {
     print(currentUser.email);
 
     return user;
-  }
 }
 
 //Horizontal lIne
@@ -506,7 +719,7 @@ class Drawhorizontalline extends CustomPainter {
 
   Drawhorizontalline(this.reverse) {
     _paint = Paint()
-      ..color = Colors.black
+      ..color = Colors.grey
       ..strokeWidth = 1
       ..strokeCap = StrokeCap.round;
   }
