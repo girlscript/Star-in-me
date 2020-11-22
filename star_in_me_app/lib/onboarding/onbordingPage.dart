@@ -26,30 +26,29 @@ class _onboardingPageState extends State<onboardingPage> {
     UI3(),
   ];
 
-  @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: ListView(
-          children: <Widget>[
-            Container(
-              color: Color(0xff4f439a),
-              child: Row(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(10.0, 5.0, 0.0, 0.0),
-                    child: Image.asset('images/logo.png',
+          backgroundColor: Colors.white,
+          body: SafeArea(
+            child: ListView(
+              children: <Widget>[
+                Container(
+                color: Color(0xff4f439a),
+                  child: Row(
+                    children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10.0, 5.0, 0.0, 0.0),
+                      child: Image.asset('images/logo.png',
                         height: 50.0, width: 50.0),
                   ),
                 ],
               ),
             ),
-            Container(
-              child: CarouselSlider(
-                options: CarouselOptions(
+                Container(
+                  child: CarouselSlider(
+                    options: CarouselOptions(
                     height: 0.70 * height,
                     viewportFraction: 1.0,
                     enlargeCenterPage: false,
@@ -72,29 +71,30 @@ class _onboardingPageState extends State<onboardingPage> {
                         }
                       });
                     }),
-                items: pageList.map((item) {
-                  return Builder(builder: (BuildContext context) {
-                    return item;
-                  });
-                }).toList(),
+                    items: pageList.map((item) {
+                    return Builder(builder: (BuildContext context) {
+                      return item;
+                    });
+                  }).toList(),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: Center(
-                child: DotsIndicator(
-                  dotsCount: 3,
-                  position: _currentPage.toDouble(),
-                  decorator: DotsDecorator(
-                    color: Color(0xff999999), // Inactive color
-                    activeColor: Color(0xff4f439a),
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: Center(
+                  child: DotsIndicator(
+                    dotsCount: 3,
+                    position: _currentPage.toDouble(),
+                    decorator: DotsDecorator(
+                      color: Color(0xff999999), // Inactive color
+                      activeColor: Color(0xff4f439a),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-    ));
+      )
+    );
   }
 }
