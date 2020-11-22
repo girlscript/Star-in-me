@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:star_in_me_app/onboarding/UI6.dart';
+import 'package:star_in_me_app/onboarding/UI7.dart';
 
 class UI5 extends StatelessWidget {
   static final onboardingUi5 = '/onboardingUI5';
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -19,7 +22,7 @@ class UI5 extends StatelessWidget {
                 title: Text(
                   'I am a',
                   style: TextStyle(
-                    color: Color(0xFF4F439A),
+                    color: Colors.deepPurple[500],
                     fontSize: 30.0,
                     fontWeight: FontWeight.bold,
                   ),
@@ -29,42 +32,47 @@ class UI5 extends StatelessWidget {
             ),
             SliverFillRemaining(
               hasScrollBody: false,
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 60.0,
-                  ),
-                  FlatButton(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 70.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Icon(Icons.account_circle_outlined, size: 40,),
-                          Text(' Student', style: TextStyle(fontSize: 16),),
-                        ],
-                      ),
+              child: Center(
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 60.0,
                     ),
-                    onPressed: () {},
-                  ),
-                  SizedBox(
-                    height: 50.0,
-                  ),
-                  FlatButton(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 70.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-
-                          Icon(Icons.account_circle_sharp, size: 40,),
-                          Text(' Working Professional', style: TextStyle(fontSize: 16),),
-                        ],
+                    FlatButton(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Icon(Icons.account_circle_outlined, size: 40,),
+                            Text(' Student', style: TextStyle(fontSize: 16),),
+                          ],
+                        ),
                       ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, UI6.onboardingUi6);
+                      },
                     ),
-                    onPressed: () {},
-                  ),
-                ],
+                    SizedBox(
+                      height: 30.0,
+                    ),
+                    FlatButton(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Icon(Icons.account_circle_sharp, size: 40,),
+                            Text(' Working Professional', style: TextStyle(fontSize: 16),),
+                          ],
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, UI7.onboardingUi7);
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
